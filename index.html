@@ -13,6 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800;900&amp;family=Caveat:wght@600;700&amp;display=swap" rel="stylesheet">
 <style>
+[hidden]{display:none!important}
 body{margin:0;background:#F6F5F1;color:#1C1B18;font-family:'Figtree',ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif;-webkit-font-smoothing:antialiased}
 a{color:#1C1B18}a:hover{color:#1C1B18}
 a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid #3B6CF6;outline-offset:4px}
@@ -304,6 +305,11 @@ a:hover .lg-look{transform:translateX(1.8px)}
 .c-band{animation:c-band linear both;animation-timeline:view();animation-range:entry 0% cover 35%}
 .c-word{animation:c-word linear both;animation-timeline:view();animation-range:entry 0% entry 100%}
 }
+/* fallback for browsers without scroll-driven animation: JS adds .js-rv to <html> and .is-in as elements enter */
+.js-rv .c-rv,.js-rv .c-rv-s{opacity:0}
+.js-rv .c-rv.is-in{animation:c-rv .9s cubic-bezier(.2,.8,.2,1) both}
+.js-rv .c-rv-s.is-in{animation:c-rv-s .9s cubic-bezier(.2,.8,.2,1) both}
+.js-rv .c-rv-2.is-in{animation-delay:.08s}.js-rv .c-rv-3.is-in{animation-delay:.16s}.js-rv .c-rv-4.is-in{animation-delay:.24s}
 /* "What we automate": each card rests in its finished state and only plays its scene while hovered (restarting each time) */
 #automate .c-card:not(:hover) *{animation:none !important}
 /* founder portrait: LinkedIn button appears on hover or focus (always shown on touch screens) */
@@ -383,7 +389,7 @@ a:hover .lg-look{transform:translateX(1.8px)}
 </style>
 </head>
 <body>
-<div id="top" style="width: 100%; min-height: 100%; display: flex; flex-direction: column; background: #F6F5F1; color: #1C1B18; overflow: hidden; position: relative">
+<div id="top" style="width: 100%; min-height: 100%; display: flex; flex-direction: column; background: #F6F5F1; color: #1C1B18; overflow: hidden; overflow: clip; position: relative">
 
 <!-- NAV -->
 <header class="r-nav" style="display: flex; align-items: center; justify-content: space-between; padding: 26px 120px; position: relative; z-index: 6">
@@ -401,9 +407,6 @@ a:hover .lg-look{transform:translateX(1.8px)}
 </header>
 
 <!-- HERO -->
-
-
-<!-- MARQUEE PILLS -->
 <section class="r-hero r-sec" style="padding: 50px 120px 60px; display: grid; grid-template-columns: minmax(0, 1fr) 540px; gap: 50px; align-items: center; position: relative; z-index: 4">
 <div style="display: flex; flex-direction: column">
 <div class="c-rise" style="align-self: flex-start; display: flex; align-items: center; gap: 10px; background: #FFFFFF; border: 1px solid #E6E2D8; border-radius: 999px; padding: 9px 18px 9px 12px; font-size: 14px; font-weight: 700">
@@ -486,7 +489,10 @@ a:hover .lg-look{transform:translateX(1.8px)}
 <svg width="100" height="100" viewBox="0 0 120 120" aria-hidden="true" style="overflow: visible"><g class="hb-hop"><g class="j-bob"><path d="M60 30 V17" fill="none" stroke="#1C1B18" stroke-width="5" stroke-linecap="round"></path><circle class="m-ant" cx="60" cy="11" r="7" fill="#1C1B18"></circle><rect x="14" y="30" width="92" height="72" rx="27" fill="#FFFFFF" stroke="#1C1B18" stroke-width="5"></rect><ellipse cx="30" cy="84" rx="6" ry="4" fill="#FFB08A" opacity="0.85"></ellipse><ellipse cx="90" cy="84" rx="6" ry="4" fill="#FFB08A" opacity="0.85"></ellipse><g class="hb-eyes"><g class="m-norm"><g class="j-blink"><path d="M47 55 V72 M73 55 V72" fill="none" stroke="#1C1B18" stroke-width="7" stroke-linecap="round"></path></g></g></g><g class="m-happy" style="opacity: 0"><path d="M40 68 Q47 58 54 68 M66 68 Q73 58 80 68" fill="none" stroke="#1C1B18" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"></path></g></g></g></svg>
 </div>
 </div></div>
-</section><section aria-label="Automations we build" style="padding: 30px 0 10px; display: flex; flex-direction: column; gap: 14px; overflow: hidden">
+</section>
+
+<!-- MARQUEE PILLS -->
+<section aria-label="Automations we build" style="padding: 30px 0 10px; display: flex; flex-direction: column; gap: 14px; overflow: hidden">
 <div style="overflow: hidden">
 <div class="c-marq r-marq" style="display: flex; width: max-content; gap: 14px; font-size: 21px; font-weight: 700; white-space: nowrap">
 <span style="background: #FFFFFF; border: 1px solid #E6E2D8; border-radius: 999px; padding: 16px 28px">Lead follow-up</span><span style="background: #FFFFFF; border: 1px solid #E6E2D8; border-radius: 999px; padding: 16px 28px">Invoicing</span><span style="background: #FFFFFF; border: 1px solid #E6E2D8; border-radius: 999px; padding: 16px 28px">Weekly reporting</span><span style="background: #FFFFFF; border: 1px solid #E6E2D8; border-radius: 999px; padding: 16px 28px">CRM cleanup</span><span style="background: #FFFFFF; border: 1px solid #E6E2D8; border-radius: 999px; padding: 16px 28px">Customer onboarding</span><span style="background: #FFFFFF; border: 1px solid #E6E2D8; border-radius: 999px; padding: 16px 28px">Quote generation</span><span style="background: #FFFFFF; border: 1px solid #E6E2D8; border-radius: 999px; padding: 16px 28px">Support sorting</span><span style="background: #FFFFFF; border: 1px solid #E6E2D8; border-radius: 999px; padding: 16px 28px">Scheduling</span>
@@ -791,7 +797,7 @@ a:hover .lg-look{transform:translateX(1.8px)}
 </section>
 
 <!-- WHY $500 (dark band) -->
-<section class="c-band r-whyband" style="margin-top: 150px; position: relative; background: #2B2925; color: #F6F5F1; padding: 130px 120px; overflow: hidden">
+<section class="c-band r-whyband" style="margin-top: 150px; position: relative; background: #2B2925; color: #F6F5F1; padding: 130px 120px; overflow: hidden; overflow: clip">
 <svg aria-hidden="true" width="100%" height="100%" style="position: absolute; inset: 0; opacity: 0.09; pointer-events: none"><filter id="c2-grain"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"></feTurbulence></filter><rect width="100%" height="100%" filter="url(#c2-grain)"></rect></svg>
 <div class="r-stack" style="position: relative; display: grid; grid-template-columns: minmax(0, 1fr) 480px; gap: 70px; align-items: center">
 <div class="c-rv" style="display: flex; flex-direction: column; gap: 22px; align-items: flex-start">
@@ -976,7 +982,7 @@ a:hover .lg-look{transform:translateX(1.8px)}
 </section>
 
 <!-- FOOTER -->
-<footer class="r-sec r-footer" style="flex-grow: 1; padding: 130px 120px 0; display: flex; flex-direction: column; position: relative; overflow: hidden">
+<footer class="r-sec r-footer" style="flex-grow: 1; padding: 130px 120px 0; display: flex; flex-direction: column; position: relative; overflow: hidden; overflow: clip">
 <div class="r-col" style="display: flex; justify-content: space-between; align-items: flex-start; gap: 40px">
 <div style="display: flex; flex-direction: column; gap: 14px">
 <div style="display: flex; align-items: center; gap: 10px"><svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true" style="overflow: visible"><path class="lg-ant" d="M16 8 V4.8" fill="none" stroke="#1C1B18" stroke-width="2.6" stroke-linecap="round"></path><circle class="lg-dot" cx="16" cy="3" r="2" fill="#1C1B18"></circle><rect class="lg-face" x="3.5" y="8" width="25" height="20" rx="7.5" fill="none" stroke="#1C1B18" stroke-width="2.6"></rect><g class="lg-look"><g class="lg-blink"><path class="lg-eye" d="M12.5 15 V20" fill="none" stroke="#1C1B18" stroke-width="3" stroke-linecap="round" style="animation-delay: .5s"></path><path class="lg-eye" d="M19.5 15 V20" fill="none" stroke="#1C1B18" stroke-width="3" stroke-linecap="round" style="animation-delay: .58s"></path></g></g></svg><span style="font-size: 28px; font-weight: 900; letter-spacing: -0.04em">opsglee</span></div>
@@ -1002,6 +1008,16 @@ a:hover .lg-look{transform:translateX(1.8px)}
 (function () {
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  /* Scroll reveal fallback where CSS scroll-driven animations aren't supported (e.g. Firefox) */
+  var hasView = window.CSS && CSS.supports && CSS.supports('animation-timeline: view()');
+  if (!hasView && !reduce && 'IntersectionObserver' in window) {
+    document.documentElement.classList.add('js-rv');
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } });
+    }, { rootMargin: '0px 0px -8% 0px' });
+    document.querySelectorAll('.c-rv, .c-rv-s').forEach(function (el) { io.observe(el); });
+  }
+
   /* FAQ: one answer open at a time */
   var faqBtns = Array.prototype.slice.call(document.querySelectorAll('[data-faq]'));
   function setFaq(openKey) {
@@ -1017,7 +1033,7 @@ a:hover .lg-look{transform:translateX(1.8px)}
   });
 
   /* How it works: auto-advances every 4s until a step is clicked */
-  var tints = ['#FFD3BF', '#FFE066', '#BFEFD4'], step = 0, manual = false;
+  var tints = ['#FFD3BF', '#FFE066', '#BFEFD4'], step = 0, manual = reduce;
   var stepBtns = Array.prototype.slice.call(document.querySelectorAll('[data-step]'));
   function renderSteps() {
     stepBtns.forEach(function (b) {
@@ -1031,6 +1047,7 @@ a:hover .lg-look{transform:translateX(1.8px)}
     });
   }
   stepBtns.forEach(function (b) { b.addEventListener('click', function () { step = +b.getAttribute('data-step'); manual = true; renderSteps(); }); });
+  renderSteps();
   setInterval(function () { if (!manual) { step = (step + 1) % 3; renderSteps(); } }, 4000);
 
   /* Before / after toggle */
