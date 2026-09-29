@@ -1,0 +1,1073 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Opsglee — AI ops on a subscription</title>
+<meta name="description" content="Opsglee is your AI ops team on a subscription. Every week we find a leak where your business loses time or money, ship the fix, and show you the proof. One flat monthly price. First week free.">
+<meta property="og:title" content="Opsglee — Your AI ops team, on a subscription">
+<meta property="og:description" content="A new automation every week that cuts cost or grows revenue. $500 a month, flat. First week free.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#F6F5F1">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><path d='M16 8 V4.8' stroke='%231C1B18' stroke-width='2.6' stroke-linecap='round' fill='none'/><circle cx='16' cy='3' r='2' fill='%231C1B18'/><rect x='3.5' y='8' width='25' height='20' rx='7.5' fill='%23FFE066' stroke='%231C1B18' stroke-width='2.6'/><path d='M12.5 15 V20 M19.5 15 V20' stroke='%231C1B18' stroke-width='3' stroke-linecap='round'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800;900&amp;family=Caveat:wght@600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F6F5F1;color:#1C1B18;font-family:'Figtree',ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#1C1B18}a:hover{color:#1C1B18}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid #3B6CF6;outline-offset:4px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.c-hand{font-family:'Caveat','Comic Sans MS',cursive;font-weight:700}
+.c-pill{transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s,background .3s}
+.c-pill:hover{box-shadow:0 12px 24px -14px #1C1B1855}
+.c-lift:hover{transform:translateY(-3px) scale(1.02)}
+.c-ghost{transition:background .25s,transform .3s cubic-bezier(.2,.8,.2,1)}
+.c-ghost:hover{background:#FFFFFF;transform:translateY(-2px)}
+.c-arrow{transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+.c-pill:hover .c-arrow,.c-ghost:hover .c-arrow{transform:translateX(4px)}
+.c-nav{text-decoration:none;color:#3F3C36;padding:10px 4px;transition:color .2s}
+.c-nav:hover{color:#1C1B18}
+.c-card{transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s}
+.c-card:hover{transform:translateY(-8px);box-shadow:0 30px 60px -30px #1C1B1866}
+.c-faq-btn:hover .c-faq-q{color:#3F3C36}
+.c-step{transition:background .35s,box-shadow .35s,transform .35s cubic-bezier(.2,.8,.2,1)}
+.c-step:hover{transform:translateX(4px)}
+.c-seg{transition:color .3s}
+.c-range{width:100%;accent-color:#1C1B18;height:28px;cursor:pointer;margin:0}
+.c-bar-fill{transition:width .5s cubic-bezier(.2,.8,.2,1)}
+
+@keyframes c-rise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+.c-rise{animation:c-rise 1s cubic-bezier(.2,.8,.2,1) both}
+@keyframes c-spin{to{transform:rotate(360deg)}}
+.c-spin{animation:c-spin 16s linear infinite}
+.c-spin-fast{animation:c-spin 2.6s linear infinite}
+.c-spin-clock{transform-box:fill-box;transform-origin:center bottom;animation:c-spin 1.4s steps(12) infinite}
+@keyframes c-ping{0%{box-shadow:0 0 0 0 #1FA66A88}80%{box-shadow:0 0 0 9px #1FA66A00}100%{box-shadow:0 0 0 0 #1FA66A00}}
+.c-ping{animation:c-ping 1.8s ease-out infinite}
+@keyframes c-marq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes c-marq-rev{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+.c-marq{animation:c-marq 46s linear infinite}
+.c-marq-rev{animation:c-marq-rev 52s linear infinite}
+@keyframes c-wobble{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(8deg)}}
+.c-wobble{animation:c-wobble 3.2s ease-in-out infinite}
+@keyframes c-fl-a{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-12px) rotate(-.5deg)}}
+@keyframes c-fl-b{0%,100%{transform:translateY(0) rotate(2deg)}50%{transform:translateY(-10px) rotate(3.5deg)}}
+@keyframes c-fl-c{0%,100%{transform:translateY(0) rotate(-6deg)}50%{transform:translateY(-10px) rotate(-4deg)}}
+.c-fl-a{animation:c-fl-a 6s ease-in-out infinite}
+.c-fl-b{animation:c-fl-b 7s ease-in-out infinite}
+.c-fl-c{animation:c-fl-c 5.5s ease-in-out infinite}
+@keyframes c-shine{0%,62%{transform:translateX(-180%) skewX(-18deg)}82%,100%{transform:translateX(520%) skewX(-18deg)}}
+.c-shine{animation:c-shine 7s ease-in-out infinite}
+@keyframes c-faq{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.c-faq-a{animation:c-faq .4s cubic-bezier(.2,.8,.2,1) both}
+@keyframes c-swap{from{opacity:0;transform:translateY(14px) scale(.98)}to{opacity:1;transform:none}}
+.c-swap{animation:c-swap .55s cubic-bezier(.2,.8,.2,1) both}
+@keyframes c-stepbar{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.c-stepbar{transform-origin:left;animation:c-stepbar 4s linear both}
+@keyframes c-scrawl{0%{stroke-dashoffset:220}25%{stroke-dashoffset:0}85%{stroke-dashoffset:0;opacity:1}95%{opacity:0}100%{stroke-dashoffset:220;opacity:0}}
+.c-scrawl{stroke-dasharray:220;animation:c-scrawl 7s cubic-bezier(.65,0,.35,1) infinite both}
+
+/* highlighter: looping fallback, scroll-driven where supported */
+@keyframes c-mark{0%{background-size:0% 42%}14%{background-size:100% 42%}86%{background-size:100% 42%}96%,100%{background-size:0% 42%}}
+@keyframes c-mark-in{from{background-size:0% 42%}to{background-size:100% 42%}}
+.c-mark{background-image:linear-gradient(#FFE066,#FFE066);background-repeat:no-repeat;background-position:0 88%;background-size:100% 42%;animation:c-mark 9s cubic-bezier(.65,0,.35,1) infinite both}
+
+/* price counter */
+@property --c2n{syntax:'<integer>';inherits:false;initial-value:0}
+@keyframes c-count{from{--c2n:0}to{--c2n:500}}
+.c-count{--c2n:500;counter-reset:c2n var(--c2n)}
+.c-count::after{content:"$" counter(c2n)}
+.c-count-load{animation:c-count 1.8s cubic-bezier(.2,.8,.2,1) .7s both}
+
+/* mascot */
+@keyframes j-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.j-bob{animation:j-bob 2.4s ease-in-out infinite}
+@keyframes j-wave{0%,55%,100%{transform:rotate(0deg)}62%{transform:rotate(26deg)}70%{transform:rotate(-8deg)}78%{transform:rotate(24deg)}86%{transform:rotate(0deg)}}
+.j-wave{transform-box:view-box;transform-origin:24px 72px;animation:j-wave 3.6s ease-in-out infinite}
+@keyframes j-cheer{0%,100%{transform:rotate(0deg)}50%{transform:rotate(-34deg)}}
+.j-cheer-l{transform-box:view-box;transform-origin:24px 72px;animation:j-cheer .9s ease-in-out infinite}
+@keyframes j-cheer-r{0%,100%{transform:rotate(0deg)}50%{transform:rotate(34deg)}}
+.j-cheer-r{transform-box:view-box;transform-origin:96px 72px;animation:j-cheer-r .9s ease-in-out infinite}
+@keyframes j-blink{0%,46%,52%,100%{transform:scaleY(1)}49%{transform:scaleY(.1)}}
+.j-blink{transform-box:fill-box;transform-origin:center;animation:j-blink 4s ease infinite}
+@keyframes j-ant{0%,100%{fill:#FFB08A}50%{fill:#FFE066}}
+.j-ant{animation:j-ant 1.2s steps(1) infinite}
+@keyframes j-hop{0%,60%,100%{transform:translateY(0)}70%{transform:translateY(-16px)}80%{transform:translateY(0)}86%{transform:translateY(-6px)}}
+.j-hop{animation:j-hop 2.2s cubic-bezier(.2,.8,.2,1) infinite}
+@keyframes j-shadow{0%,100%{transform:scaleX(1);opacity:1}50%{transform:scaleX(.8);opacity:.6}}
+.j-shadow{transform-box:fill-box;transform-origin:center;animation:j-shadow 2.4s ease-in-out infinite}
+
+/* how-it-works illustrations */
+@keyframes c-knob{0%,15%{transform:translateX(0)}30%,80%{transform:translateX(88px)}95%,100%{transform:translateX(0)}}
+.c-knob{animation:c-knob 4s cubic-bezier(.3,1.3,.5,1) infinite}
+@keyframes c-track{0%,15%{background:#B9B4A8}30%,80%{background:#2B2925}95%,100%{background:#B9B4A8}}
+.c-track{animation:c-track 4s ease infinite}
+@keyframes c-on{0%,22%{opacity:0}32%,80%{opacity:1}92%,100%{opacity:0}}
+.c-on{animation:c-on 4s ease infinite}
+@keyframes c-lens{0%,100%{transform:translate(0,0)}25%{transform:translate(110px,62px)}50%{transform:translate(-20px,124px)}75%{transform:translate(80px,186px)}}
+.c-lens{animation:c-lens 6s cubic-bezier(.65,0,.35,1) infinite}
+@keyframes c-leak{0%,40%{background:#FFFFFF}50%,70%{background:#FFD3BF}80%,100%{background:#FFFFFF}}
+.c-leak{animation:c-leak 6s ease infinite}
+@keyframes c-bar{0%{transform:scaleY(.15)}35%{transform:scaleY(1)}85%{transform:scaleY(1)}100%{transform:scaleY(.15)}}
+.c-bar{transform-origin:bottom;animation:c-bar 4.5s cubic-bezier(.3,1.3,.5,1) infinite both}
+@keyframes c-tick{0%,30%{transform:scale(0)}40%{transform:scale(1.2)}46%,85%{transform:scale(1)}95%,100%{transform:scale(0)}}
+.c-tick{animation:c-tick 4.5s cubic-bezier(.2,.8,.2,1) infinite both}
+
+/* automate card scenes */
+@keyframes s-lead{0%{transform:translateX(0);opacity:0}8%{opacity:1}45%{transform:translateX(118px);opacity:1}52%,100%{transform:translateX(118px);opacity:0}}
+.s-lead{animation:s-lead 4s cubic-bezier(.65,0,.35,1) infinite both}
+@keyframes s-pop{0%,48%{transform:scale(0)}56%{transform:scale(1.25)}60%,88%{transform:scale(1)}96%,100%{transform:scale(0)}}
+.s-pop{animation:s-pop 4s cubic-bezier(.2,.8,.2,1) infinite both}
+@keyframes s-doc{0%{transform:translateY(90px)}28%,88%{transform:translateY(0)}100%{transform:translateY(90px)}}
+.s-doc{animation:s-doc 4s cubic-bezier(.3,1.3,.5,1) infinite both}
+@keyframes s-stamp{0%,40%{opacity:0;transform:rotate(-14deg) scale(2)}46%{opacity:1;transform:rotate(-14deg) scale(.92)}50%,86%{opacity:1;transform:rotate(-14deg) scale(1)}92%,100%{opacity:0;transform:rotate(-14deg) scale(1)}}
+.s-stamp{animation:s-stamp 4s cubic-bezier(.2,.8,.2,1) infinite both}
+@keyframes s-chk{0%,10%{background:#FFFFFF}16%,84%{background:#2B2925}92%,100%{background:#FFFFFF}}
+.s-chk{animation:s-chk 4s ease infinite both}
+@keyframes s-cell{0%,30%{background:#F1EEE7;transform:scale(1)}38%{background:#FFE066;transform:scale(1.35)}44%,88%{background:#FFE066;transform:scale(1)}96%,100%{background:#F1EEE7}}
+.s-cell{animation:s-cell 4s cubic-bezier(.2,.8,.2,1) infinite both}
+@keyframes s-chip{0%,40%{opacity:0;transform:translateY(8px)}48%,88%{opacity:1;transform:none}96%,100%{opacity:0}}
+.s-chip{animation:s-chip 4s cubic-bezier(.2,.8,.2,1) infinite both}
+@keyframes s-bell{0%,40%,100%{transform:rotate(0)}46%{transform:rotate(18deg)}52%{transform:rotate(-16deg)}58%{transform:rotate(12deg)}64%{transform:rotate(-8deg)}70%{transform:rotate(0)}}
+.s-bell{transform-origin:50% 8%;animation:s-bell 3s ease-in-out infinite}
+@keyframes s-note{0%,48%{opacity:0;transform:translateX(30px)}56%,90%{opacity:1;transform:none}98%,100%{opacity:0}}
+.s-note{animation:s-note 3s cubic-bezier(.2,.8,.2,1) infinite both}
+
+/* before/after flow */
+@keyframes c-flowdot{0%{transform:translateY(0);opacity:0}8%{opacity:1}88%{opacity:1}100%{transform:translateY(258px);opacity:0}}
+.c-flowdot{animation:c-flowdot 2.6s cubic-bezier(.65,0,.35,1) infinite both}
+
+/* confetti */
+@keyframes c-cf1{from{transform:translate(0,0) rotate(0);opacity:1}to{transform:translate(-120px,-110px) rotate(260deg);opacity:0}}
+@keyframes c-cf2{from{transform:translate(0,0) rotate(0);opacity:1}to{transform:translate(-50px,-150px) rotate(-200deg);opacity:0}}
+@keyframes c-cf3{from{transform:translate(0,0) rotate(0);opacity:1}to{transform:translate(20px,-160px) rotate(300deg);opacity:0}}
+@keyframes c-cf4{from{transform:translate(0,0) rotate(0);opacity:1}to{transform:translate(90px,-130px) rotate(-240deg);opacity:0}}
+@keyframes c-cf5{from{transform:translate(0,0) rotate(0);opacity:1}to{transform:translate(150px,-60px) rotate(220deg);opacity:0}}
+@keyframes c-cf6{from{transform:translate(0,0) rotate(0);opacity:1}to{transform:translate(-160px,-40px) rotate(-280deg);opacity:0}}
+@keyframes c-cf7{from{transform:translate(0,0) rotate(0);opacity:1}to{transform:translate(130px,40px) rotate(180deg);opacity:0}}
+@keyframes c-cf8{from{transform:translate(0,0) rotate(0);opacity:1}to{transform:translate(-110px,50px) rotate(-160deg);opacity:0}}
+.c-cf{position:absolute;left:50%;top:50%;border-radius:3px;animation-duration:1.1s;animation-timing-function:cubic-bezier(.2,.8,.2,1);animation-fill-mode:both}
+.c-cf1{animation-name:c-cf1}.c-cf2{animation-name:c-cf2}.c-cf3{animation-name:c-cf3}.c-cf4{animation-name:c-cf4}.c-cf5{animation-name:c-cf5}.c-cf6{animation-name:c-cf6}.c-cf7{animation-name:c-cf7}.c-cf8{animation-name:c-cf8}
+
+@keyframes c-drop{0%{opacity:0;transform:translateY(-22px)}3%{opacity:1;transform:none}88%{opacity:1;transform:none}95%,100%{opacity:0;transform:none}}
+.c-drop{animation:c-drop 12s cubic-bezier(.3,1.3,.5,1) infinite both}
+
+/* scroll choreography: only where scroll-driven animations exist; elsewhere everything simply shows */
+@keyframes c-rv{from{opacity:0;translate:0 44px}to{opacity:1;translate:0 0}}
+@keyframes c-read-ink{from{color:#D6D1C6}to{color:#1C1B18}}
+@keyframes c-read-mute{from{color:#DDD9CF}to{color:#7A756B}}
+@supports (animation-timeline: view()){
+.c-rv{animation:c-rv linear both;animation-timeline:view();animation-range:entry 5% cover 26%}
+.c-rv-2{animation-range:entry 15% cover 32%}
+.c-rv-3{animation-range:entry 25% cover 38%}
+.c-rv-4{animation-range:entry 35% cover 44%}
+.c-rw{animation:c-read-ink linear both;animation-timeline:view()}
+.c-rwm{animation:c-read-mute linear both;animation-timeline:view()}
+.c-mark{animation:c-mark-in linear both;animation-timeline:view();animation-range:cover 38% cover 52%}
+.c-count-view{animation:c-count linear both;animation-timeline:view();animation-range:entry 20% cover 40%}
+}
+
+/* hero banner: one 10s story, seamless loop. Static (reduced-motion) state = finished week */
+.hb-n1,.hb-n2,.hb-n3{animation-duration:10s;animation-iteration-count:infinite;animation-fill-mode:both;animation-timing-function:cubic-bezier(.2,.8,.2,1)}
+@keyframes hb-n1{0%,4%{background:#F1EEE7;transform:scale(1)}7%{background:#FFE066;transform:scale(1.18)}10%,90%{background:#FFE066;transform:scale(1)}96%,100%{background:#F1EEE7;transform:scale(1)}}
+@keyframes hb-n2{0%,24%{background:#F1EEE7;transform:scale(1)}27%{background:#DCD1FF;transform:scale(1.18)}30%,90%{background:#DCD1FF;transform:scale(1)}96%,100%{background:#F1EEE7;transform:scale(1)}}
+@keyframes hb-n3{0%,44%{background:#F1EEE7;transform:scale(1)}47%{background:#BFEFD4;transform:scale(1.18)}50%,90%{background:#BFEFD4;transform:scale(1)}96%,100%{background:#F1EEE7;transform:scale(1)}}
+.hb-n1{animation-name:hb-n1}.hb-n2{animation-name:hb-n2}.hb-n3{animation-name:hb-n3}
+.hb-c1,.hb-c2,.hb-c3{animation-duration:10s;animation-iteration-count:infinite;animation-fill-mode:both;animation-timing-function:cubic-bezier(.2,.8,.2,1)}
+@keyframes hb-c1{0%,4%{background:#F6F5F1;box-shadow:0 0 0 0 #1C1B1800;transform:none}7%{background:#FFFFFF;box-shadow:0 12px 24px -14px #1C1B1855;transform:translateX(7px)}11%,90%{background:#FFFFFF;box-shadow:0 12px 24px -14px #1C1B1855;transform:none}96%,100%{background:#F6F5F1;box-shadow:0 0 0 0 #1C1B1800;transform:none}}
+@keyframes hb-c2{0%,24%{background:#F6F5F1;box-shadow:0 0 0 0 #1C1B1800;transform:none}27%{background:#FFFFFF;box-shadow:0 12px 24px -14px #1C1B1855;transform:translateX(7px)}31%,90%{background:#FFFFFF;box-shadow:0 12px 24px -14px #1C1B1855;transform:none}96%,100%{background:#F6F5F1;box-shadow:0 0 0 0 #1C1B1800;transform:none}}
+@keyframes hb-c3{0%,44%{background:#F6F5F1;box-shadow:0 0 0 0 #1C1B1800;transform:none}47%{background:#FFFFFF;box-shadow:0 12px 24px -14px #1C1B1855;transform:translateX(7px)}51%,90%{background:#FFFFFF;box-shadow:0 12px 24px -14px #1C1B1855;transform:none}96%,100%{background:#F6F5F1;box-shadow:0 0 0 0 #1C1B1800;transform:none}}
+.hb-c1{animation-name:hb-c1}.hb-c2{animation-name:hb-c2}.hb-c3{animation-name:hb-c3}
+.hb-k1,.hb-k2,.hb-k3{animation-duration:10s;animation-iteration-count:infinite;animation-fill-mode:both;animation-timing-function:cubic-bezier(.2,.8,.2,1)}
+@keyframes hb-k1{0%,5%{opacity:0;transform:scale(.3)}9%{opacity:1;transform:scale(1.25)}12%,90%{opacity:1;transform:scale(1)}95%,100%{opacity:0;transform:scale(1)}}
+@keyframes hb-k2{0%,26%{opacity:0;transform:rotate(6deg) scale(.3)}30%{opacity:1;transform:rotate(6deg) scale(1.25)}33%,90%{opacity:1;transform:rotate(6deg) scale(1)}95%,100%{opacity:0;transform:rotate(6deg) scale(1)}}
+@keyframes hb-k3{0%,46%{opacity:0;transform:scale(.3)}50%{opacity:1;transform:scale(1.25)}53%,90%{opacity:1;transform:scale(1)}95%,100%{opacity:0;transform:scale(1)}}
+.hb-k1{animation-name:hb-k1}.hb-k2{animation-name:hb-k2}.hb-k3{animation-name:hb-k3}
+@keyframes hb-line{0%,10%{transform:scaleY(0);opacity:1}25%,29%{transform:scaleY(.5)}45%{transform:scaleY(1)}90%{transform:scaleY(1);opacity:1}96%,100%{transform:scaleY(1);opacity:0}}
+.hb-line{transform-origin:top;animation:hb-line 10s cubic-bezier(.65,0,.35,1) infinite both}
+@keyframes hb-dot{0%,9%{transform:translateY(0);opacity:0}11%{opacity:1}25%,29%{transform:translateY(82px)}45%{transform:translateY(164px);opacity:1}49%,100%{transform:translateY(164px);opacity:0}}
+.hb-dot{animation:hb-dot 10s cubic-bezier(.65,0,.35,1) infinite both}
+@keyframes hb-build{0%,46%{opacity:1}50%,92%{opacity:0}97%,100%{opacity:1}}
+@keyframes hb-live{0%,46%{opacity:0;transform:scale(.8)}50%{opacity:1;transform:scale(1.1)}53%,92%{opacity:1;transform:scale(1)}97%,100%{opacity:0;transform:scale(1)}}
+.hb-build{animation:hb-build 10s ease infinite both}
+.hb-live{animation:hb-live 10s cubic-bezier(.2,.8,.2,1) infinite both}
+@keyframes hb-toast{0%,51%{opacity:0;transform:translateY(28px) scale(.96)}55%{opacity:1;transform:translateY(-4px) scale(1)}58%,90%{opacity:1;transform:none}95%,100%{opacity:0;transform:translateY(14px)}}
+.hb-toast{animation:hb-toast 10s cubic-bezier(.2,.8,.2,1) infinite both}
+@keyframes hb-tile{0%,58%{opacity:0;transform:translateY(-48px) rotate(-8deg) scale(.7)}62%{opacity:1;transform:translateY(4px) rotate(2deg) scale(1.04)}65%,90%{opacity:1;transform:none}95%,100%{opacity:0;transform:none}}
+.hb-tile{animation:hb-tile 10s cubic-bezier(.3,1.3,.5,1) infinite both}
+@keyframes hb-spark{0%,62%{opacity:0;transform:scale(.4)}65%{opacity:1;transform:scale(1)}72%,100%{opacity:0;transform:scale(1.25)}}
+.hb-spark{transform-origin:center;animation:hb-spark 10s ease-out infinite both}
+@keyframes hb-hop{0%,48%,58%,100%{transform:translateY(0)}51%{transform:translateY(-16px)}54%{transform:translateY(0)}56%{transform:translateY(-6px)}}
+.hb-hop{animation:hb-hop 10s cubic-bezier(.2,.8,.2,1) infinite}
+@keyframes hb-arm-r{0%,47%,66%,100%{transform:rotate(0)}51%{transform:rotate(-140deg)}55%{transform:rotate(-118deg)}59%{transform:rotate(-140deg)}}
+.hb-arm-r{transform-box:view-box;transform-origin:94px 72px;animation:hb-arm-r 10s cubic-bezier(.2,.8,.2,1) infinite}
+@keyframes hb-eyes{0%,8%,70%,100%{transform:translate(0,0)}12%,44%{transform:translate(-4px,3px)}50%,62%{transform:translate(0,-2px)}}
+.hb-eyes{animation:hb-eyes 10s cubic-bezier(.65,0,.35,1) infinite}
+@keyframes hb-say1{0%,44%{opacity:1}48%,94%{opacity:0}98%,100%{opacity:1}}
+@keyframes hb-say2{0%,46%{opacity:0;transform:scale(.7)}50%{opacity:1;transform:scale(1.12)}53%,92%{opacity:1;transform:scale(1)}96%,100%{opacity:0;transform:scale(1)}}
+.hb-say1{animation:hb-say1 10s ease infinite both}
+.hb-say2{animation:hb-say2 10s cubic-bezier(.2,.8,.2,1) infinite both}
+
+@keyframes hb-count{0%,60%{transform:translateY(0)}63%,92%{transform:translateY(-15px)}97%,100%{transform:translateY(0)}}
+.hb-count{animation:hb-count 10s cubic-bezier(.3,1.3,.5,1) infinite both}
+/* logomark: one-line robot face that draws itself on load, then blinks now and then */
+@keyframes lg-draw{from{stroke-dashoffset:78}to{stroke-dashoffset:0}}
+.lg-face{stroke-dasharray:78;animation:lg-draw .55s cubic-bezier(.65,0,.35,1) .12s both}
+@keyframes lg-ant{from{stroke-dashoffset:4}to{stroke-dashoffset:0}}
+.lg-ant{stroke-dasharray:4;animation:lg-ant .16s ease-out .6s both}
+@keyframes lg-pop{0%{transform:scale(0)}60%{transform:scale(1.55)}100%{transform:scale(1)}}
+.lg-dot{transform-box:fill-box;transform-origin:center;animation:lg-pop .34s cubic-bezier(.2,.8,.2,1) .72s both}
+@keyframes lg-eye{0%{transform:scaleY(0)}70%{transform:scaleY(1.3)}100%{transform:scaleY(1)}}
+.lg-eye{transform-box:fill-box;transform-origin:center;animation:lg-eye .26s cubic-bezier(.2,.8,.2,1) both}
+@keyframes lg-blink{0%,93%,100%{transform:scaleY(1)}96.5%{transform:scaleY(.1)}}
+.lg-blink{transform-box:fill-box;transform-origin:center;animation:lg-blink 5.5s ease 1.4s infinite}
+.lg-look{transition:transform .28s cubic-bezier(.2,.8,.2,1)}
+a:hover .lg-look{transform:translateX(1.8px)}
+/* how-it-works steps 2 and 3: one bold object, one motion, same 4s rhythm as the step 1 toggle */
+@keyframes c2-lens{0%,12%{transform:translateX(0)}32%,80%{transform:translateX(110px)}96%,100%{transform:translateX(0)}}
+.c2-lens{animation:c2-lens 4s cubic-bezier(.3,1.3,.5,1) infinite}
+@keyframes c2-found{0%,30%{background:#FFFFFF}36%,80%{background:#2B2925}92%,100%{background:#FFFFFF}}
+.c2-found{animation:c2-found 4s ease infinite}
+@keyframes c2-drop{0%,31%{opacity:0;transform:scale(.4)}38%{opacity:1;transform:scale(1.15)}42%,80%{opacity:1;transform:scale(1)}90%,100%{opacity:0;transform:scale(.6)}}
+.c2-drop{transform-box:fill-box;transform-origin:center;animation:c2-drop 4s cubic-bezier(.2,.8,.2,1) infinite}
+@keyframes c2-flag{0%,34%{opacity:0}42%,80%{opacity:1}92%,100%{opacity:0}}
+.c2-flag{animation:c2-flag 4s ease infinite}
+@keyframes c3-line{0%,12%{stroke-dashoffset:260}50%,82%{stroke-dashoffset:0}96%,100%{stroke-dashoffset:260}}
+.c3-line{stroke-dasharray:260;animation:c3-line 4s cubic-bezier(.65,0,.35,1) infinite}
+@keyframes c3-dot{0%,47%{transform:scale(0)}54%{transform:scale(1.25)}58%,82%{transform:scale(1)}92%,100%{transform:scale(0)}}
+.c3-dot{transform-box:fill-box;transform-origin:center;animation:c3-dot 4s cubic-bezier(.2,.8,.2,1) infinite}
+@keyframes c3-flag{0%,50%{opacity:0}58%,82%{opacity:1}94%,100%{opacity:0}}
+.c3-flag{animation:c3-flag 4s ease infinite}
+
+/* automate cards: sync + triage (same simple one-motion loops as the other cards) */
+@keyframes s-sync2{0%{transform:translateX(0) scale(.6);opacity:0}8%{transform:translateX(0) scale(1);opacity:1}46%{transform:translateX(75px) scale(1);opacity:1}52%,100%{transform:translateX(78px) scale(.6);opacity:0}}
+.s-sync2{animation:s-sync2 4s cubic-bezier(.65,0,.35,1) infinite both}
+@keyframes s-bump{0%,46%,58%,100%{transform:translateY(0)}51%{transform:translateY(-5px)}}
+.s-bump{animation:s-bump 4s cubic-bezier(.2,.8,.2,1) infinite}
+@keyframes s-tix2-l{0%{transform:translate(0,-46px);opacity:0}12%{transform:translate(0,0);opacity:1}40%{transform:translate(0,0)}62%{transform:translate(-66px,50px);opacity:1}70%,100%{transform:translate(-66px,50px);opacity:0}}
+@keyframes s-tix2-r{0%{transform:translate(0,-46px);opacity:0}12%{transform:translate(0,0);opacity:1}40%{transform:translate(0,0)}62%{transform:translate(66px,50px);opacity:1}70%,100%{transform:translate(66px,50px);opacity:0}}
+.s-tix2-l{animation:s-tix2-l 4s cubic-bezier(.65,0,.35,1) infinite both}
+.s-tix2-r{animation:s-tix2-r 4s cubic-bezier(.65,0,.35,1) infinite both}
+@keyframes s-tray{0%,60%,74%,100%{transform:translateY(0)}65%{transform:translateY(3px)}}
+.s-tray{animation:s-tray 4s cubic-bezier(.2,.8,.2,1) infinite}
+
+/* logo mascot */
+@keyframes m-norm{0%,46%{opacity:1}50%,88%{opacity:0}92%,100%{opacity:1}}
+@keyframes m-happy{0%,46%{opacity:0;transform:translateY(3px)}50%,88%{opacity:1;transform:none}92%,100%{opacity:0}}
+.m-norm{animation:m-norm 10s ease infinite}
+.m-happy{animation:m-happy 10s cubic-bezier(.2,.8,.2,1) infinite}
+@keyframes m-ant{0%,46%,92%,100%{fill:#1C1B18;transform:scale(1)}50%{fill:#FFE066;transform:scale(1.35)}54%,88%{fill:#FFE066;transform:scale(1)}}
+.m-ant{transform-box:fill-box;transform-origin:center;animation:m-ant 10s cubic-bezier(.2,.8,.2,1) infinite}
+@keyframes m-tilt{0%,55%,100%{transform:rotate(0)}62%{transform:rotate(-10deg)}70%{transform:rotate(8deg)}78%{transform:rotate(-5deg)}86%{transform:rotate(0)}}
+.m-tilt{transform-box:fill-box;transform-origin:50% 90%;animation:m-tilt 3.8s ease-in-out infinite}
+/* why-$500 chart: cumulative savings, one column per week, all clearing together (9s) */
+.m-blk,.m-tot{animation-duration:9s;animation-timing-function:cubic-bezier(.2,.8,.2,1);animation-iteration-count:infinite;animation-fill-mode:both}
+@keyframes m-c1{0%,4.44%{opacity:0;transform:translateY(-14px) scale(.92)}7.94%,88%{opacity:1;transform:none}94%,100%{opacity:0;transform:none}}.m-c1{animation-name:m-c1}
+@keyframes m-c2{0%,20.00%{opacity:0;transform:translateY(-14px) scale(.92)}23.50%,88%{opacity:1;transform:none}94%,100%{opacity:0;transform:none}}.m-c2{animation-name:m-c2}
+@keyframes m-c3{0%,35.56%{opacity:0;transform:translateY(-14px) scale(.92)}39.06%,88%{opacity:1;transform:none}94%,100%{opacity:0;transform:none}}.m-c3{animation-name:m-c3}
+@keyframes m-c4{0%,51.11%{opacity:0;transform:translateY(-14px) scale(.92)}54.61%,88%{opacity:1;transform:none}94%,100%{opacity:0;transform:none}}.m-c4{animation-name:m-c4}
+@keyframes m-sum{0%{transform:translateY(0)}5.94%{transform:translateY(-18px)}21.50%{transform:translateY(-36px)}37.06%{transform:translateY(-54px)}52.61%{transform:translateY(-72px)}93%,100%{transform:translateY(0)}}
+.m-sum{animation:m-sum 9s steps(1,end) infinite both}
+/* how-it-works: three native-feeling components (search, toggle, ring), 4s like the stepper */
+.sf-c{display:inline-block;overflow:hidden;vertical-align:bottom;max-width:40px;animation-duration:4s;animation-timing-function:steps(1,end);animation-iteration-count:infinite;animation-fill-mode:both}
+@keyframes sf-c0{0%,7.99%{max-width:0}8.00%,92%{max-width:40px}93%,100%{max-width:0}}.sf-c0{animation-name:sf-c0}
+@keyframes sf-c1{0%,10.66%{max-width:0}10.67%,92%{max-width:40px}93%,100%{max-width:0}}.sf-c1{animation-name:sf-c1}
+@keyframes sf-c2{0%,13.32%{max-width:0}13.33%,92%{max-width:40px}93%,100%{max-width:0}}.sf-c2{animation-name:sf-c2}
+@keyframes sf-c3{0%,15.99%{max-width:0}16.00%,92%{max-width:40px}93%,100%{max-width:0}}.sf-c3{animation-name:sf-c3}
+@keyframes sf-c4{0%,18.66%{max-width:0}18.67%,92%{max-width:40px}93%,100%{max-width:0}}.sf-c4{animation-name:sf-c4}
+@keyframes sf-c5{0%,21.32%{max-width:0}21.33%,92%{max-width:40px}93%,100%{max-width:0}}.sf-c5{animation-name:sf-c5}
+@keyframes sf-c6{0%,23.99%{max-width:0}24.00%,92%{max-width:40px}93%,100%{max-width:0}}.sf-c6{animation-name:sf-c6}
+@keyframes sf-c7{0%,26.66%{max-width:0}26.67%,92%{max-width:40px}93%,100%{max-width:0}}.sf-c7{animation-name:sf-c7}
+@keyframes sf-c8{0%,29.32%{max-width:0}29.33%,92%{max-width:40px}93%,100%{max-width:0}}.sf-c8{animation-name:sf-c8}
+@keyframes sf-c9{0%,31.99%{max-width:0}32.00%,92%{max-width:40px}93%,100%{max-width:0}}.sf-c9{animation-name:sf-c9}
+@keyframes sf-c10{0%,34.66%{max-width:0}34.67%,92%{max-width:40px}93%,100%{max-width:0}}.sf-c10{animation-name:sf-c10}
+@keyframes sf-c11{0%,37.32%{max-width:0}37.33%,92%{max-width:40px}93%,100%{max-width:0}}.sf-c11{animation-name:sf-c11}
+@keyframes sf-caret{0%,49%{opacity:1}50%,100%{opacity:0}}
+.sf-caret{animation:sf-caret 1s steps(1) infinite}
+@keyframes sf-flag1{0%,42%{opacity:0;transform:scale(.8)}48%{opacity:1;transform:scale(1.08)}52%,88%{opacity:1;transform:scale(1)}96%,100%{opacity:0;transform:scale(1)}}
+.sf-flag1{display:inline-block;animation:sf-flag1 4s cubic-bezier(.2,.8,.2,1) infinite both}
+@keyframes lw-roll{0%,10%{transform:translateY(0)}55%,88%{transform:translateY(-448px)}96%,100%{transform:translateY(0)}}
+.lw-roll{animation:lw-roll 4s cubic-bezier(.65,0,.35,1) infinite both}
+@keyframes lw-chip{0%,52%{opacity:0;transform:translateY(6px) scale(.9)}60%,88%{opacity:1;transform:none}96%,100%{opacity:0;transform:none}}
+.lw-chip{animation:lw-chip 4s cubic-bezier(.3,1.3,.5,1) infinite both}
+@keyframes pr-flag{0%,54%{opacity:0}62%,88%{opacity:1}96%,100%{opacity:0}}
+.pr-flag{animation:pr-flag 4s ease infinite both}
+
+/* scroll motion: same easing family, only where the browser supports scroll-driven animation; otherwise everything simply shows */
+@keyframes c-rv-s{from{opacity:0;translate:0 56px;scale:.95}to{opacity:1;translate:0 0;scale:1}}
+@keyframes c-exit{from{translate:0 0;opacity:1}to{translate:0 -90px;opacity:.35}}
+@keyframes c-band{from{clip-path:inset(0 64px round 48px)}to{clip-path:inset(0 0 round 0)}}
+@keyframes c-word{from{translate:0 45%}to{translate:0 0}}
+@supports (animation-timeline: view()){
+.c-rv-s{animation:c-rv-s linear both;animation-timeline:view();animation-range:entry 0% cover 32%}
+.c-exit{animation:c-exit linear both;animation-timeline:view();animation-range:exit 10% exit 100%}
+.c-band{animation:c-band linear both;animation-timeline:view();animation-range:entry 0% cover 35%}
+.c-word{animation:c-word linear both;animation-timeline:view();animation-range:entry 0% entry 100%}
+}
+/* "What we automate": each card rests in its finished state and only plays its scene while hovered (restarting each time) */
+#automate .c-card:not(:hover) *{animation:none !important}
+/* founder portrait: LinkedIn button appears on hover or focus (always shown on touch screens) */
+.f-li{opacity:0;transform:translateY(6px) scale(.9);transition:opacity .3s cubic-bezier(.2,.8,.2,1),transform .3s cubic-bezier(.3,1.3,.5,1),background .2s}
+.f-panel:hover .f-li,.f-li:focus-visible{opacity:1;transform:none}
+.f-li:hover{background:#1C1B18}
+.f-portrait{transition:transform .45s cubic-bezier(.2,.8,.2,1)}
+.f-panel:hover .f-portrait{transform:translateY(-4px) scale(1.02)}
+@media (hover: none){.f-li{opacity:1;transform:none}}
+/* ============ RESPONSIVE ============
+   Desktop >=1200 (design 1440) · Laptop 1024-1199 · Tablet 768-1023 · Mobile <768 (design 390)
+   Two-column sections stack at tablet; illustrations scale as a whole (zoom) so their compositions stay intact. */
+.lbl-short{display:none}
+.r-nav,.r-sec,.r-roiband,.r-whyband{padding-left:max(120px,calc((100% - 1200px) / 2))!important;padding-right:max(120px,calc((100% - 1200px) / 2))!important}
+.r-heroart{justify-self:center}
+.r-portrait{justify-self:center}
+@media (max-width:1199px){
+.r-nav,.r-sec,.r-roiband,.r-whyband{padding-left:64px!important;padding-right:64px!important}
+.r-hero{grid-template-columns:minmax(0,1fr) 450px!important}
+.r-heroart{zoom:.82}
+.r-h1{font-size:100px!important}
+}
+@media (max-width:1023px){
+.r-navlinks .c-nav{display:none!important}
+.r-hero{grid-template-columns:1fr!important;gap:48px!important}
+.r-heroart{zoom:.9}
+.r-stack{grid-template-columns:1fr!important;gap:44px!important}
+.r-grid4{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+.r-pt{padding-top:110px!important}
+.r-roiband{margin-top:110px!important;padding-top:90px!important;padding-bottom:90px!important}
+.r-whyband{margin-top:110px!important;padding-top:100px!important;padding-bottom:110px!important}
+.r-h2{font-size:48px!important}
+.r-display{font-size:40px!important}
+.r-hide-t{display:none!important}
+.r-first{order:-1}
+.r-stepvis{height:420px!important}
+.r-callpad{padding:56px!important}
+.r-glee-foot{left:auto!important;right:8%!important}
+}
+@media (max-width:767px){
+.r-nav,.r-sec{padding-left:20px!important;padding-right:20px!important}
+.r-nav{padding-top:16px!important;padding-bottom:16px!important}
+.lbl-full{display:none!important}.lbl-short{display:inline!important}
+.r-pt{padding-top:80px!important}
+.r-hero{padding-top:28px!important;gap:36px!important}
+.r-h1{font-size:60px!important}
+.r-heroart{zoom:.62}
+.r-wrap{flex-wrap:wrap!important;gap:10px 18px!important}
+.r-marq{font-size:16px!important}
+.r-display{font-size:30px!important}
+.r-lead{font-size:21px!important}
+.r-h2{font-size:36px!important}
+.r-seg{width:150px!important;font-size:15px!important}
+.r-panelpad{padding:28px 22px!important;gap:28px!important}
+.r-grid4{grid-template-columns:1fr!important}
+.r-stepvis{height:380px!important}
+.r-roiband{margin-top:80px!important;padding:64px 20px!important}
+.r-num{font-size:60px!important}
+.r-price{font-size:80px!important}
+.r-pad{padding:32px 24px!important}
+.r-feat{grid-template-columns:1fr!important}
+.r-fine{grid-template-columns:1fr!important;padding:24px 0 0!important}
+.r-fine span{white-space:normal!important}
+.r-whyband{margin-top:80px!important;padding:72px 20px 96px!important}
+.r-portrait{zoom:.74}
+.c-faq-q{font-size:18px!important}
+.c-faq-a{padding-right:0!important}
+.r-callpad{padding:36px 24px!important}
+.r-col{flex-direction:column!important;gap:32px!important}
+.r-footnav{gap:40px!important}
+.r-colm{flex-direction:column!important;gap:8px!important}
+.r-wordmark{font-size:31vw!important}
+.r-glee-foot{display:none!important}
+.r-hide-m{display:none!important}
+}
+@media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important}.sf-flag1,.c-on,.pr-flag{opacity:1 !important}}
+</style>
+</head>
+<body>
+<div id="top" style="width: 100%; min-height: 100%; display: flex; flex-direction: column; background: #F6F5F1; color: #1C1B18; overflow: hidden; position: relative">
+
+<!-- NAV -->
+<header class="r-nav" style="display: flex; align-items: center; justify-content: space-between; padding: 26px 120px; position: relative; z-index: 6">
+<a href="#top" aria-label="Opsglee home" style="display: flex; align-items: center; gap: 10px; text-decoration: none">
+<svg width="34" height="34" viewBox="0 0 32 32" aria-hidden="true" style="overflow: visible"><path class="lg-ant" d="M16 8 V4.8" fill="none" stroke="#1C1B18" stroke-width="2.6" stroke-linecap="round"></path><circle class="lg-dot" cx="16" cy="3" r="2" fill="#1C1B18"></circle><rect class="lg-face" x="3.5" y="8" width="25" height="20" rx="7.5" fill="none" stroke="#1C1B18" stroke-width="2.6"></rect><g class="lg-look"><g class="lg-blink"><path class="lg-eye" d="M12.5 15 V20" fill="none" stroke="#1C1B18" stroke-width="3" stroke-linecap="round" style="animation-delay: .5s"></path><path class="lg-eye" d="M19.5 15 V20" fill="none" stroke="#1C1B18" stroke-width="3" stroke-linecap="round" style="animation-delay: .58s"></path></g></g></svg>
+<span style="font-size: 28px; font-weight: 900; letter-spacing: -0.04em">opsglee</span>
+</a>
+<nav class="r-navlinks" aria-label="Primary" style="display: flex; align-items: center; gap: 30px; font-size: 17px; font-weight: 700">
+<a class="c-nav" href="#how">How it works</a>
+<a class="c-nav" href="#automate">What we automate</a>
+<a class="c-nav" href="#pricing">Pricing</a>
+<a class="c-nav" href="#faq">FAQ</a>
+<a class="c-pill c-lift" href="#call" style="display: flex; align-items: center; min-height: 48px; box-sizing: border-box; padding: 0 24px; border-radius: 999px; background: #2B2925; color: #FFFFFF; text-decoration: none; font-weight: 700"><span class="lbl-full">Get your first week free</span><span class="lbl-short">Free first week</span></a>
+</nav>
+</header>
+
+<!-- HERO -->
+
+
+<!-- MARQUEE PILLS -->
+<section class="r-hero r-sec" style="padding: 50px 120px 60px; display: grid; grid-template-columns: minmax(0, 1fr) 540px; gap: 50px; align-items: center; position: relative; z-index: 4">
+<div style="display: flex; flex-direction: column">
+<div class="c-rise" style="align-self: flex-start; display: flex; align-items: center; gap: 10px; background: #FFFFFF; border: 1px solid #E6E2D8; border-radius: 999px; padding: 9px 18px 9px 12px; font-size: 14px; font-weight: 700">
+<span class="c-ping" style="width: 9px; height: 9px; border-radius: 50%; background: #1FA66A"></span>Taking on 3 new clients this month</div>
+<h1 class="r-h1" style="margin: 30px 0 0; font-size: 120px; line-height: 0.92; letter-spacing: -0.055em; font-weight: 900; display: flex; flex-direction: column"><span class="c-rise" style="animation-delay: .08s">Your AI</span>
+<span class="c-rise" style="animation-delay: .2s">ops team.</span></h1>
+<p class="c-rise" style="margin: 30px 0 0; font-size: 21px; line-height: 1.55; color: #5C5850; max-width: 540px; text-wrap: pretty; animation-delay: .4s">Opsglee is your AI ops team on a subscription. Every week we find a leak where your business loses time or money, ship the fix, and show you the proof. One flat monthly price.</p>
+<div class="c-rise" style="position: relative; display: flex; align-items: center; gap: 14px; margin-top: 38px; animation-delay: .52s">
+<a class="c-pill" href="#call" data-magnet style="display: flex; align-items: center; gap: 10px; min-height: 60px; box-sizing: border-box; padding: 0 30px; border-radius: 999px; background: #2B2925; color: #FFFFFF; text-decoration: none; font-size: 17px; font-weight: 700; transition: transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .3s">Get your first week free<svg class="c-arrow" width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10 H16 M11 5 L16 10 L11 15" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+</div>
+<div class="c-rise r-wrap" style="display: flex; gap: 22px; margin-top: 30px; font-size: 14px; font-weight: 700; color: #5C5850; animation-delay: .64s">
+<span style="display: flex; align-items: center; gap: 8px"><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="#BFEFD4"></circle><path d="M6 10.3 L8.8 13 L14 7.5" fill="none" stroke="#1C1B18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>$500 a month, flat</span>
+<span style="display: flex; align-items: center; gap: 8px"><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="#BFEFD4"></circle><path d="M6 10.3 L8.8 13 L14 7.5" fill="none" stroke="#1C1B18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>No project fees</span>
+<span style="display: flex; align-items: center; gap: 8px"><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="#BFEFD4"></circle><path d="M6 10.3 L8.8 13 L14 7.5" fill="none" stroke="#1C1B18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Pause anytime</span>
+</div>
+</div>
+
+<!-- hero story scene -->
+<div class="c-exit r-heroart"><div class="c-rise" role="img" aria-label="Illustration: this week’s automation takes a new lead, scores it and routes it to the right sales rep, then joins the shelf of automations already shipped" style="position: relative; width: 540px; height: 600px; animation-delay: .3s">
+
+<div class="c-fl-c" style="position: absolute; left: -7px; top: 15px; z-index: 3; background: #BFEFD4; border-radius: 20px; padding: 13px 20px 14px; display: flex; flex-direction: column; gap: 5px; box-shadow: 0 12px 24px -14px #1C1B1855"><span aria-hidden="true" style="position: absolute; inset: 5px; border: 1.5px dashed rgba(18, 18, 18, 0.18); border-radius: 12px; pointer-events: none"></span><span style="font-size: 12px; font-weight: 800; letter-spacing: 0.1em"><span style="font-size: 28px; letter-spacing: -0.04em">$500</span><span style="font-size: 14px; letter-spacing: 0px">/mo</span></span></div>
+
+<div style="position: absolute; left: 34px; top: 70px; width: 470px; height: 490px; box-sizing: border-box; background: #FFFFFF; border-radius: 40px; box-shadow: 0 30px 60px -30px #1C1B1866; z-index: 2">
+<div style="position: absolute; left: 28px; top: 28px; display: flex; flex-direction: column; gap: 4px">
+<span style="font-size: 12px; font-weight: 800; letter-spacing: 0.1em; color: #5C5850">THIS WEEK’S FIX</span>
+<span style="font-size: 28px; font-weight: 900; letter-spacing: -0.03em">Lead routing</span>
+</div>
+<div style="position: absolute; right: 26px; top: 40px; width: 112px; height: 36px">
+<span class="hb-build" style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; gap: 8px; border-radius: 999px; background: #FFE066; font-size: 14px; font-weight: 800; opacity: 0"><svg class="c-spin-fast" width="14" height="14" viewBox="0 0 14 14"><path d="M12 7 A5 5 0 1 1 7 2" fill="none" stroke="#1C1B18" stroke-width="2" stroke-linecap="round"></path></svg>Building</span>
+<span class="hb-live" style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; gap: 8px; border-radius: 999px; background: #BFEFD4; font-size: 14px; font-weight: 800"><span class="c-ping" style="width: 8px; height: 8px; border-radius: 50%; background: #1FA66A"></span>Live</span>
+</div>
+
+<div style="position: absolute; left: 46px; top: 134px; width: 4px; height: 164px; border-radius: 2px; background: #F1EEE7"></div>
+<div class="hb-line" style="position: absolute; left: 46px; top: 134px; width: 4px; height: 164px; border-radius: 2px; background: #2B2925"></div>
+<span class="hb-dot" style="position: absolute; left: 40px; top: 126px; width: 16px; height: 16px; border-radius: 50%; background: #2B2925; box-shadow: 0 0 0 6px #FFE06699; opacity: 0"></span>
+
+<span class="hb-n1" style="position: absolute; left: 28px; top: 114px; width: 40px; height: 40px; box-sizing: border-box; border-radius: 50%; background: #FFE066; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1C1B18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="3"></rect><path d="M9 8 H15 M9 12 H15 M9 16 H12"></path></svg></span>
+<span class="hb-n2" style="position: absolute; left: 28px; top: 196px; width: 40px; height: 40px; box-sizing: border-box; border-radius: 50%; background: #DCD1FF; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1C1B18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="6"></circle><path d="M15.5 15.5 L20 20"></path></svg></span>
+<span class="hb-n3" style="position: absolute; left: 28px; top: 278px; width: 40px; height: 40px; box-sizing: border-box; border-radius: 50%; background: #BFEFD4; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1C1B18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12 H17 M12 7 L17 12 L12 17"></path></svg></span>
+
+<div class="hb-c1" style="position: absolute; left: 84px; top: 104px; width: 358px; height: 60px; box-sizing: border-box; background: #FFFFFF; border-radius: 20px; box-shadow: 0 12px 24px -14px #1C1B1855; padding: 0 16px; display: flex; align-items: center; justify-content: space-between">
+<div style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 17px; font-weight: 800">New lead</span><span style="font-size: 12px; color: #5C5850">Jordan M. filled in your form</span></div>
+<svg class="hb-k1" width="28" height="28" viewBox="0 0 20 20"><circle cx="10" cy="10" r="9" fill="#BFEFD4" stroke="#1C1B18" stroke-width="1.5"></circle><path d="M6 10.3 L8.8 13 L14 7.5" fill="none" stroke="#1C1B18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</div>
+<div class="hb-c2" style="position: absolute; left: 84px; top: 186px; width: 358px; height: 60px; box-sizing: border-box; background: #FFFFFF; border-radius: 20px; box-shadow: 0 12px 24px -14px #1C1B1855; padding: 0 16px; display: flex; align-items: center; justify-content: space-between">
+<div style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 17px; font-weight: 800">Scored and enriched</span><span style="font-size: 12px; color: #5C5850">Company found, fit checked</span></div>
+<span class="hb-k2" style="height: 28px; box-sizing: border-box; display: flex; align-items: center; background: #FFE066; border-radius: 999px; padding: 0 11px; box-shadow: 0 6px 14px -6px #1C1B1855; font-size: 12px; font-weight: 900; transform: rotate(6deg)">Hot lead</span>
+</div>
+<div class="hb-c3" style="position: absolute; left: 84px; top: 268px; width: 358px; height: 60px; box-sizing: border-box; background: #FFFFFF; border-radius: 20px; box-shadow: 0 12px 24px -14px #1C1B1855; padding: 0 16px; display: flex; align-items: center; justify-content: space-between">
+<div style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 17px; font-weight: 800">Routed to Priya</span><span style="font-size: 12px; color: #5C5850">Right rep, first time</span></div>
+<span class="hb-k3" style="width: 28px; height: 28px; box-sizing: border-box; border-radius: 50%; background: #DCD1FF; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 900">PR</span>
+</div>
+
+<div style="position: absolute; left: 28px; right: 28px; top: 360px; height: 1px; background: #F1EEE7"></div>
+<div style="position: absolute; left: 28px; right: 28px; top: 377px; display: flex; justify-content: space-between; align-items: center; font-size: 12px; font-weight: 800; letter-spacing: 0.1em; color: #5C5850"><span>SHIPPED SO FAR</span><span style="display: flex; align-items: center; gap: 5px; letter-spacing: 0.04em"><span style="display: inline-block; height: 15px; overflow: hidden; color: #1C1B18"><span class="hb-count" style="display: flex; flex-direction: column; line-height: 15px; transform: translateY(-15px)"><span>3</span><span>4</span></span></span>fixes</span></div>
+<div style="position: absolute; left: 28px; right: 20px; top: 404px; display: flex; gap: 6px; white-space: nowrap">
+<span style="background: #DCD1FF; border-radius: 12px; padding: 10px 12px; font-size: 12px; font-weight: 800">Invoicing</span>
+<span style="background: #BFEFD4; border-radius: 12px; padding: 10px 12px; font-size: 12px; font-weight: 800">Reports</span>
+<span style="background: #FFD3BF; border-radius: 12px; padding: 10px 12px; font-size: 12px; font-weight: 800">Onboarding</span>
+<span style="position: relative; display: flex">
+<span class="hb-tile" style="background: #FFE066; border-radius: 12px; padding: 10px 12px; box-shadow: 0 6px 14px -6px #1C1B1855; font-size: 12px; font-weight: 800">Lead routing</span>
+<svg class="hb-spark" width="130" height="80" viewBox="0 0 130 80" style="position: absolute; left: -12px; top: -20px; pointer-events: none; opacity: 0"><path d="M8 20 L20 28 M4 40 H16 M8 60 L20 52 M122 20 L110 28 M126 40 H114 M122 60 L110 52 M65 4 V12" stroke="#1C1B18" stroke-width="2" stroke-linecap="round"></path></svg>
+</span>
+</div>
+</div>
+
+<div class="hb-toast" style="position: absolute; left: -6px; top: 529px; z-index: 4; display: flex; align-items: center; gap: 12px; background: #2B2925; color: #FFFFFF; border-radius: 20px; padding: 11px 16px 11px 11px; box-shadow: 0 12px 24px -14px #1C1B1855">
+<span style="width: 40px; height: 40px; box-sizing: border-box; border-radius: 50%; background: #DCD1FF; color: #1C1B18; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 900">PR</span>
+<span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 14px; font-weight: 800">Priya has a new hot lead</span><span style="font-size: 12px; color: #C9C4B8">CRM updated · follow-up booked</span></span>
+<svg width="24" height="24" viewBox="0 0 20 20" style="margin-left: 4px"><circle cx="10" cy="10" r="9" fill="#BFEFD4"></circle><path d="M6 10.3 L8.8 13 L14 7.5" fill="none" stroke="#1C1B18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</div>
+
+<div class="c-hand" style="position: absolute; left: 244px; top: -18px; width: 130px; height: 58px; z-index: 3; transform: rotate(-3deg)">
+<svg aria-hidden="true" width="130" height="58" viewBox="0 0 130 58" style="position: absolute; left: 0; top: 0; overflow: visible; filter: drop-shadow(0 10px 14px #1C1B1838)"><path d="M22 2 H108 Q128 2 128 22 V24 Q128 44 108 44 H104 L114 55 L90 44 H22 Q2 44 2 24 V22 Q2 2 22 2 Z" fill="#FFFFFF"></path></svg>
+<span class="hb-say1" style="position: absolute; left: 0; right: 0; top: 0; height: 46px; display: flex; align-items: center; justify-content: center; font-size: 21px; opacity: 0">On it…</span>
+<span class="hb-say2" style="position: absolute; left: 0; right: 0; top: 0; height: 46px; display: flex; align-items: center; justify-content: center; font-size: 21px">Shipped!</span>
+</div>
+
+<div style="position: absolute; left: 380px; top: 8px; width: 100px; height: 100px; z-index: 1">
+<svg width="100" height="100" viewBox="0 0 120 120" aria-hidden="true" style="overflow: visible"><g class="hb-hop"><g class="j-bob"><path d="M60 30 V17" fill="none" stroke="#1C1B18" stroke-width="5" stroke-linecap="round"></path><circle class="m-ant" cx="60" cy="11" r="7" fill="#1C1B18"></circle><rect x="14" y="30" width="92" height="72" rx="27" fill="#FFFFFF" stroke="#1C1B18" stroke-width="5"></rect><ellipse cx="30" cy="84" rx="6" ry="4" fill="#FFB08A" opacity="0.85"></ellipse><ellipse cx="90" cy="84" rx="6" ry="4" fill="#FFB08A" opacity="0.85"></ellipse><g class="hb-eyes"><g class="m-norm"><g class="j-blink"><path d="M47 55 V72 M73 55 V72" fill="none" stroke="#1C1B18" stroke-width="7" stroke-linecap="round"></path></g></g></g><g class="m-happy" style="opacity: 0"><path d="M40 68 Q47 58 54 68 M66 68 Q73 58 80 68" fill="none" stroke="#1C1B18" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"></path></g></g></g></svg>
+</div>
+</div></div>
+</section><section aria-label="Automations we build" style="padding: 30px 0 10px; display: flex; flex-direction: column; gap: 14px; overflow: hidden">
+<div style="overflow: hidden">
+<div class="c-marq r-marq" style="display: flex; width: max-content; gap: 14px; font-size: 21px; font-weight: 700; white-space: nowrap">
+<span style="background: #FFFFFF; border: 1px solid #E6E2D8; border-radius: 999px; padding: 16px 28px">Lead follow-up</span><span style="background: #FFFFFF; border: 1px solid #E6E2D8; border-radius: 999px; padding: 16px 28px">Invoicing</span><span style="background: #FFFFFF; border: 1px solid #E6E2D8; border-radius: 999px; padding: 16px 28px">Weekly reporting</span><span style="background: #FFFFFF; border: 1px solid #E6E2D8; border-radius: 999px; padding: 16px 28px">CRM cleanup</span><span style="background: #FFFFFF; border: 1px solid #E6E2D8; border-radius: 999px; padding: 16px 28px">Customer onboarding</span><span style="background: #FFFFFF; border: 1px solid #E6E2D8; border-radius: 999px; padding: 16px 28px">Quote generation</span><span style="background: #FFFFFF; border: 1px solid #E6E2D8; border-radius: 999px; padding: 16px 28px">Support sorting</span><span style="background: #FFFFFF; border: 1px solid #E6E2D8; border-radius: 999px; padding: 16px 28px">Scheduling</span>
+<span aria-hidden="true" style="background: #FFFFFF; border: 1px solid #E6E2D8; border-radius: 999px; padding: 16px 28px">Lead follow-up</span><span aria-hidden="true" style="background: #FFFFFF; border: 1px solid #E6E2D8; border-radius: 999px; padding: 16px 28px">Invoicing</span><span aria-hidden="true" style="background: #FFFFFF; border: 1px solid #E6E2D8; border-radius: 999px; padding: 16px 28px">Weekly reporting</span><span aria-hidden="true" style="background: #FFFFFF; border: 1px solid #E6E2D8; border-radius: 999px; padding: 16px 28px">CRM cleanup</span><span aria-hidden="true" style="background: #FFFFFF; border: 1px solid #E6E2D8; border-radius: 999px; padding: 16px 28px">Customer onboarding</span><span aria-hidden="true" style="background: #FFFFFF; border: 1px solid #E6E2D8; border-radius: 999px; padding: 16px 28px">Quote generation</span><span aria-hidden="true" style="background: #FFFFFF; border: 1px solid #E6E2D8; border-radius: 999px; padding: 16px 28px">Support sorting</span><span aria-hidden="true" style="background: #FFFFFF; border: 1px solid #E6E2D8; border-radius: 999px; padding: 16px 28px">Scheduling</span>
+</div>
+</div>
+<div aria-hidden="true" style="overflow: hidden">
+<div class="c-marq-rev r-marq" style="display: flex; width: max-content; gap: 14px; font-size: 21px; font-weight: 700; white-space: nowrap">
+<span style="background: #FFFFFF; border: 1px solid #E6E2D8; border-radius: 999px; padding: 16px 28px">Connect your tools</span><span style="background: #FFFFFF; border: 1px solid #E6E2D8; border-radius: 999px; padding: 16px 28px">Payment reminders</span><span style="background: #FFFFFF; border: 1px solid #E6E2D8; border-radius: 999px; padding: 16px 28px">Inbox routing</span><span style="background: #FFFFFF; border: 1px solid #E6E2D8; border-radius: 999px; padding: 16px 28px">Team notifications</span><span style="background: #FFFFFF; border: 1px solid #E6E2D8; border-radius: 999px; padding: 16px 28px">Review requests</span><span style="background: #FFFFFF; border: 1px solid #E6E2D8; border-radius: 999px; padding: 16px 28px">Order sync</span><span style="background: #FFFFFF; border: 1px solid #E6E2D8; border-radius: 999px; padding: 16px 28px">Churn alerts</span><span style="background: #FFFFFF; border: 1px solid #E6E2D8; border-radius: 999px; padding: 16px 28px">Proposal drafts</span>
+<span style="background: #FFFFFF; border: 1px solid #E6E2D8; border-radius: 999px; padding: 16px 28px">Connect your tools</span><span style="background: #FFFFFF; border: 1px solid #E6E2D8; border-radius: 999px; padding: 16px 28px">Payment reminders</span><span style="background: #FFFFFF; border: 1px solid #E6E2D8; border-radius: 999px; padding: 16px 28px">Inbox routing</span><span style="background: #FFFFFF; border: 1px solid #E6E2D8; border-radius: 999px; padding: 16px 28px">Team notifications</span><span style="background: #FFFFFF; border: 1px solid #E6E2D8; border-radius: 999px; padding: 16px 28px">Review requests</span><span style="background: #FFFFFF; border: 1px solid #E6E2D8; border-radius: 999px; padding: 16px 28px">Order sync</span><span style="background: #FFFFFF; border: 1px solid #E6E2D8; border-radius: 999px; padding: 16px 28px">Churn alerts</span><span style="background: #FFFFFF; border: 1px solid #E6E2D8; border-radius: 999px; padding: 16px 28px">Proposal drafts</span>
+</div>
+</div>
+</section>
+
+<!-- PROBLEM: words ink in as you scroll -->
+<section class="r-sec r-pt" style="padding: 150px 120px 0">
+<p class="r-display" style="margin: 0; max-width: 1120px; font-size: 52px; line-height: 1.22; letter-spacing: -0.035em; font-weight: 800; text-wrap: pretty"><span class="c-rwm" style="color: #7A756B; animation-range: cover 12.0% cover 22.0%">You</span> <span class="c-rwm" style="color: #7A756B; animation-range: cover 12.8% cover 22.8%">bought</span> <span class="c-rwm" style="color: #7A756B; animation-range: cover 13.5% cover 23.5%">the</span> <span class="c-rwm" style="color: #7A756B; animation-range: cover 14.3% cover 24.3%">AI</span> <span class="c-rwm" style="color: #7A756B; animation-range: cover 15.0% cover 25.0%">tool.</span> <span class="c-rwm" style="color: #7A756B; animation-range: cover 15.8% cover 25.8%">You</span> <span class="c-rwm" style="color: #7A756B; animation-range: cover 16.5% cover 26.5%">sat</span> <span class="c-rwm" style="color: #7A756B; animation-range: cover 17.3% cover 27.3%">through</span> <span class="c-rwm" style="color: #7A756B; animation-range: cover 18.0% cover 28.0%">the</span> <span class="c-rwm" style="color: #7A756B; animation-range: cover 18.8% cover 28.8%">demo.</span> <span class="c-rwm" style="color: #7A756B; animation-range: cover 19.6% cover 29.6%">Six</span> <span class="c-rwm" style="color: #7A756B; animation-range: cover 20.3% cover 30.3%">months</span> <span class="c-rwm" style="color: #7A756B; animation-range: cover 21.1% cover 31.1%">later,</span> <span class="c-rwm" style="color: #7A756B; animation-range: cover 21.8% cover 31.8%">your</span> <span class="c-rwm" style="color: #7A756B; animation-range: cover 22.6% cover 32.6%">team</span> <span class="c-rwm" style="color: #7A756B; animation-range: cover 23.3% cover 33.3%">still</span> <span class="c-rwm" style="color: #7A756B; animation-range: cover 24.1% cover 34.1%">copies</span> <span class="c-rwm" style="color: #7A756B; animation-range: cover 24.8% cover 34.8%">leads</span> <span class="c-rwm" style="color: #7A756B; animation-range: cover 25.6% cover 35.6%">into</span> <span class="c-rwm" style="color: #7A756B; animation-range: cover 26.4% cover 36.4%">the</span> <span class="c-rwm" style="color: #7A756B; animation-range: cover 27.1% cover 37.1%">CRM</span> <span class="c-rwm" style="color: #7A756B; animation-range: cover 27.9% cover 37.9%">by</span> <span class="c-rwm" style="color: #7A756B; animation-range: cover 28.6% cover 38.6%">hand.</span> <span class="c-mark"><span class="c-rw" style="animation-range: cover 29.4% cover 39.4%">Automation</span> <span class="c-rw" style="animation-range: cover 30.1% cover 40.1%">isn’t</span> <span class="c-rw" style="animation-range: cover 30.9% cover 40.9%">a</span> <span class="c-rw" style="animation-range: cover 31.6% cover 41.6%">jump.</span></span> <span class="c-rw" style="animation-range: cover 32.4% cover 42.4%">It</span> <span class="c-rw" style="animation-range: cover 33.2% cover 43.2%">only</span> <span class="c-rw" style="animation-range: cover 33.9% cover 43.9%">pays</span> <span class="c-rw" style="animation-range: cover 34.7% cover 44.7%">off</span> <span class="c-rw" style="animation-range: cover 35.4% cover 45.4%">when</span> <span class="c-rw" style="animation-range: cover 36.2% cover 46.2%">it’s</span> <span class="c-mark" style="animation-delay: .6s"><span class="c-rw" style="animation-range: cover 36.9% cover 46.9%">built</span> <span class="c-rw" style="animation-range: cover 37.7% cover 47.7%">into</span> <span class="c-rw" style="animation-range: cover 38.4% cover 48.4%">how</span> <span class="c-rw" style="animation-range: cover 39.2% cover 49.2%">your</span> <span class="c-rw" style="animation-range: cover 40.0% cover 50.0%">business</span> <span class="c-rw" style="animation-range: cover 40.7% cover 50.7%">already</span> <span class="c-rw" style="animation-range: cover 41.5% cover 51.5%">runs</span></span>, <span class="c-rw" style="animation-range: cover 42.2% cover 52.2%">one</span> <span class="c-rw" style="animation-range: cover 43.0% cover 53.0%">leak</span> <span class="c-rw" style="animation-range: cover 43.7% cover 53.7%">at</span> <span class="c-rw" style="animation-range: cover 44.5% cover 54.5%">a</span> <span class="c-rw" style="animation-range: cover 45.2% cover 55.2%">time.</span></p>
+<p class="c-rv r-lead" style="margin: 44px 0 0; max-width: 900px; font-size: 28px; line-height: 1.4; font-weight: 700; letter-spacing: -0.015em">We’re not an automation agency. We’re a growth partner that ships a fix every week.</p>
+</section>
+
+<!-- BEFORE / AFTER -->
+<section class="r-sec r-pt" style="padding: 150px 120px 0">
+<div class="c-rv" style="display: flex; flex-direction: column; align-items: center; gap: 18px; text-align: center">
+<span style="display: inline-flex; background: #FFFFFF; border: 1px solid #E6E2D8; border-radius: 999px; padding: 8px 16px; font-size: 14px; font-weight: 700; letter-spacing: 0.1em">BEFORE AND AFTER</span>
+<h2 class="r-h2" style="margin: 0; font-size: 64px; line-height: 1; letter-spacing: -0.045em; font-weight: 900">Same process. Minus the leak.</h2>
+</div>
+<div class="c-rv c-rv-2" style="position: relative; display: flex; justify-content: center; margin-top: 44px">
+<div role="group" aria-label="Compare the workflow" style="position: relative; display: flex; background: #FFFFFF; border: 1px solid #E6E2D8; border-radius: 999px; padding: 6px">
+<span data-ba-thumb aria-hidden="true" style="position: absolute; left: 6px; top: 6px; width: calc(50% - 6px); height: 56px; border-radius: 999px; background: #2B2925; transform: translateX(0%); transition: transform .45s cubic-bezier(.3,1.3,.5,1)"></span>
+<button class="r-seg c-seg" type="button" data-ba="before" aria-pressed="true" style="position: relative; width: 230px; height: 56px; border: 0; background: none; border-radius: 999px; cursor: pointer; font: inherit; font-size: 17px; font-weight: 800; color: #FFFFFF">Without Opsglee</button>
+<button class="r-seg c-seg" type="button" data-ba="after" aria-pressed="false" style="position: relative; width: 230px; height: 56px; border: 0; background: none; border-radius: 999px; cursor: pointer; font: inherit; font-size: 17px; font-weight: 800; color: #1C1B18">With Opsglee</button>
+</div>
+<div class="r-hide-t" aria-hidden="true" style="position: absolute; left: calc(50% + 250px); top: -8px; display: flex; align-items: flex-start; gap: 2px">
+<svg width="56" height="44" viewBox="0 0 56 44"><path class="c-scrawl" d="M50 6 C34 4 16 12 10 34 M4 26 L10 36 L19 29" fill="none" stroke="#1C1B18" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+<span class="c-hand" style="font-size: 28px; transform: rotate(3deg); color: #3F3C36">flip it!</span>
+</div>
+</div>
+<div class="c-rv-s" style="margin-top: 30px; min-height: 470px">
+<div data-ba-panel="before" class="c-swap r-stack r-panelpad" style="background: #FFD3BF; border-radius: 40px; padding: 56px 60px; display: grid; grid-template-columns: 380px minmax(0, 1fr); gap: 60px; align-items: center">
+<div style="display: flex; flex-direction: column; gap: 16px">
+<span style="align-self: flex-start; background: #FFFFFF; border-radius: 999px; padding: 6px 14px; font-size: 12px; font-weight: 800; letter-spacing: 0.1em">EXAMPLE WORKFLOW</span>
+<h3 style="margin: 0; font-size: 40px; line-height: 1.05; letter-spacing: -0.035em; font-weight: 900">A new lead fills in your form.</h3>
+<p style="margin: 0; font-size: 17px; line-height: 1.55; color: #3F3C36">Here’s what usually happens next.</p>
+<span style="display: flex; align-items: center; gap: 12px; margin-top: 16px; font-size: 17px; font-weight: 800"><svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><circle cx="17" cy="17" r="15" fill="#FFFFFF" stroke="#1C1B18" stroke-width="2.5"></circle><line class="c-spin-clock" x1="17" y1="17" x2="17" y2="8" stroke="#1C1B18" stroke-width="2.5" stroke-linecap="round"></line><circle cx="17" cy="17" r="2" fill="#1C1B18"></circle></svg>Repeated for every lead, by hand.</span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px">
+<div class="c-swap" style="display: flex; align-items: center; gap: 14px; background: #FFFFFF; border-radius: 20px; padding: 14px 18px; animation-delay: .05s"><span style="flex-shrink: 0; width: 34px; height: 34px; border-radius: 50%; background: #F6F5F1; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#1C1B18" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 21 C4 16.5 7.5 14 12 14 C16.5 14 20 16.5 20 21"></path></svg></span><span style="flex-grow: 1; font-size: 17px; font-weight: 700">Someone spots it in the inbox</span><span style="background: #F6F5F1; border-radius: 999px; padding: 6px 12px; font-size: 14px; font-weight: 700; color: #5C5850">hours later</span></div>
+<div class="c-swap" style="display: flex; align-items: center; gap: 14px; background: #FFFFFF; border-radius: 20px; padding: 14px 18px; animation-delay: .12s"><span style="flex-shrink: 0; width: 34px; height: 34px; border-radius: 50%; background: #F6F5F1; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#1C1B18" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 21 C4 16.5 7.5 14 12 14 C16.5 14 20 16.5 20 21"></path></svg></span><span style="flex-grow: 1; font-size: 17px; font-weight: 700">Copies the details into the CRM</span><span style="background: #F6F5F1; border-radius: 999px; padding: 6px 12px; font-size: 14px; font-weight: 700; color: #5C5850">5 min</span></div>
+<div class="c-swap" style="display: flex; align-items: center; gap: 14px; background: #FFFFFF; border-radius: 20px; padding: 14px 18px; animation-delay: .19s"><span style="flex-shrink: 0; width: 34px; height: 34px; border-radius: 50%; background: #F6F5F1; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#1C1B18" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 21 C4 16.5 7.5 14 12 14 C16.5 14 20 16.5 20 21"></path></svg></span><span style="flex-grow: 1; font-size: 17px; font-weight: 700">Looks the company up</span><span style="background: #F6F5F1; border-radius: 999px; padding: 6px 12px; font-size: 14px; font-weight: 700; color: #5C5850">10 min</span></div>
+<div class="c-swap" style="display: flex; align-items: center; gap: 14px; background: #FFFFFF; border-radius: 20px; padding: 14px 18px; animation-delay: .26s"><span style="flex-shrink: 0; width: 34px; height: 34px; border-radius: 50%; background: #F6F5F1; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#1C1B18" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 21 C4 16.5 7.5 14 12 14 C16.5 14 20 16.5 20 21"></path></svg></span><span style="flex-grow: 1; font-size: 17px; font-weight: 700">Emails whichever rep is free</span><span style="background: #F6F5F1; border-radius: 999px; padding: 6px 12px; font-size: 14px; font-weight: 700; color: #5C5850">3 min</span></div>
+<div class="c-swap" style="display: flex; align-items: center; gap: 14px; background: #FFFFFF; border-radius: 20px; padding: 14px 18px; animation-delay: .33s"><span style="flex-shrink: 0; width: 34px; height: 34px; border-radius: 50%; background: #F6F5F1; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#1C1B18" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 21 C4 16.5 7.5 14 12 14 C16.5 14 20 16.5 20 21"></path></svg></span><span style="flex-grow: 1; font-size: 17px; font-weight: 700">Hopes someone remembers to follow up</span><span style="background: #F6F5F1; border-radius: 999px; padding: 6px 12px; font-size: 14px; font-weight: 700; color: #5C5850">maybe</span></div>
+</div>
+</div>
+<div data-ba-panel="after" hidden class="c-swap r-stack r-panelpad" style="background: #BFEFD4; border-radius: 40px; padding: 56px 60px; display: grid; grid-template-columns: 380px minmax(0, 1fr); gap: 60px; align-items: center">
+<div style="display: flex; flex-direction: column; gap: 16px">
+<span style="align-self: flex-start; background: #FFFFFF; border-radius: 999px; padding: 6px 14px; font-size: 12px; font-weight: 800; letter-spacing: 0.1em">EXAMPLE WORKFLOW</span>
+<h3 style="margin: 0; font-size: 40px; line-height: 1.05; letter-spacing: -0.035em; font-weight: 900">A new lead fills in your form.</h3>
+<p style="margin: 0; font-size: 17px; line-height: 1.55; color: #3F3C36">The same process, one week later.</p>
+<span style="display: flex; align-items: center; gap: 12px; margin-top: 16px; font-size: 17px; font-weight: 800"><svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><circle cx="17" cy="17" r="15" fill="#FFE066" stroke="#1C1B18" stroke-width="2.5"></circle><path d="M19 7 L11 19 H17 L15 27 L23 15 H17 Z" fill="#1C1B18"></path></svg>Handled in seconds, every time.</span>
+</div>
+<div style="position: relative; display: flex; flex-direction: column; gap: 22px; padding-left: 8px">
+<div aria-hidden="true" style="position: absolute; left: 39px; top: 30px; bottom: 30px; width: 3px; background: #1C1B182E; border-radius: 3px"></div>
+<span class="c-flowdot" aria-hidden="true" style="position: absolute; left: 33px; top: 26px; width: 15px; height: 15px; border-radius: 50%; background: #2B2925; box-shadow: 0 0 0 5px #FFFFFF"></span>
+<div class="c-swap" style="position: relative; display: flex; align-items: center; gap: 16px; background: #FFFFFF; border-radius: 20px; padding: 12px 18px 12px 12px; animation-delay: .05s"><span style="flex-shrink: 0; width: 38px; height: 38px; border-radius: 12px; background: #FFE066; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#1C1B18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="3"></rect><path d="M8 8 H16 M8 12 H16 M8 16 H12"></path></svg></span><span style="flex-grow: 1; font-size: 17px; font-weight: 800">Form submitted</span><span style="font-size: 14px; font-weight: 700; color: #1A7F52">automatic</span></div>
+<div class="c-swap" style="position: relative; display: flex; align-items: center; gap: 16px; background: #FFFFFF; border-radius: 20px; padding: 12px 18px 12px 12px; animation-delay: .15s"><span style="flex-shrink: 0; width: 38px; height: 38px; border-radius: 12px; background: #DCD1FF; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#1C1B18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="6.5"></circle><path d="M16 16 L21 21"></path></svg></span><span style="flex-grow: 1; font-size: 17px; font-weight: 800">Company looked up and lead scored</span><span style="font-size: 14px; font-weight: 700; color: #1A7F52">automatic</span></div>
+<div class="c-swap" style="position: relative; display: flex; align-items: center; gap: 16px; background: #FFFFFF; border-radius: 20px; padding: 12px 18px 12px 12px; animation-delay: .25s"><span style="flex-shrink: 0; width: 38px; height: 38px; border-radius: 12px; background: #FFD3BF; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#1C1B18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12 H18 M13 7 L18 12 L13 17"></path></svg></span><span style="flex-grow: 1; font-size: 17px; font-weight: 800">Routed to the right rep, instantly</span><span style="font-size: 14px; font-weight: 700; color: #1A7F52">automatic</span></div>
+<div class="c-swap" style="position: relative; display: flex; align-items: center; gap: 16px; background: #FFFFFF; border-radius: 20px; padding: 12px 18px 12px 12px; animation-delay: .35s"><span style="flex-shrink: 0; width: 38px; height: 38px; border-radius: 12px; background: #BFEFD4; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#1C1B18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5 L10 17.5 L19 7"></path></svg></span><span style="flex-grow: 1; font-size: 17px; font-weight: 800">CRM updated, follow-up scheduled</span><span style="font-size: 14px; font-weight: 700; color: #1A7F52">automatic</span></div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- HOW IT WORKS: auto-advancing, clickable stepper -->
+<section class="r-sec r-pt" id="how" style="padding: 150px 120px 0">
+<div class="c-rv" style="display: flex; flex-direction: column; align-items: center; gap: 18px; text-align: center">
+<span style="display: inline-flex; background: #FFFFFF; border: 1px solid #E6E2D8; border-radius: 999px; padding: 8px 16px; font-size: 14px; font-weight: 700; letter-spacing: 0.1em">HOW IT WORKS</span>
+<h2 class="r-h2" style="margin: 0; font-size: 64px; line-height: 1; letter-spacing: -0.045em; font-weight: 900">Three steps. Then repeat.</h2>
+</div>
+<div class="c-rv c-rv-2 r-stack" style="display: grid; grid-template-columns: 500px minmax(0, 1fr); gap: 40px; margin-top: 60px; align-items: center">
+<div style="display: flex; flex-direction: column; gap: 12px">
+<button type="button" class="c-step" data-step="0" aria-pressed="true" style="position: relative; overflow: hidden; display: flex; gap: 20px; align-items: flex-start; text-align: left; border: 0; font: inherit; color: #1C1B18; cursor: pointer; border-radius: 28px; padding: 28px 30px; background: #FFFFFF; box-shadow: 0 12px 24px -14px #1C1B1855"><span style="flex-shrink: 0; width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 17px; font-weight: 900; background: #FFD3BF">1</span><span style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 28px; font-weight: 900; letter-spacing: -0.03em">Find the leak</span><span style="font-size: 17px; line-height: 1.5; color: #5C5850">We map how work flows through your business and find where time or money escapes.</span></span><span data-stepbar="0" class="c-stepbar" aria-hidden="true" style="position: absolute; left: 0; bottom: 0; height: 4px; width: 100%; background: #FFD3BF"></span></button>
+<button type="button" class="c-step" data-step="1" aria-pressed="false" style="position: relative; overflow: hidden; display: flex; gap: 20px; align-items: flex-start; text-align: left; border: 0; font: inherit; color: #1C1B18; cursor: pointer; border-radius: 28px; padding: 28px 30px; background: transparent; box-shadow: none"><span style="flex-shrink: 0; width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 17px; font-weight: 900; background: #F1EEE7">2</span><span style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 28px; font-weight: 900; letter-spacing: -0.03em">Build the fix</span><span style="font-size: 17px; line-height: 1.5; color: #5C5850">We build one automation that plugs it, inside the tools you already use. Live the same week.</span></span><span data-stepbar="1" hidden class="c-stepbar" aria-hidden="true" style="position: absolute; left: 0; bottom: 0; height: 4px; width: 100%; background: #FFE066"></span></button>
+<button type="button" class="c-step" data-step="2" aria-pressed="false" style="position: relative; overflow: hidden; display: flex; gap: 20px; align-items: flex-start; text-align: left; border: 0; font: inherit; color: #1C1B18; cursor: pointer; border-radius: 28px; padding: 28px 30px; background: transparent; box-shadow: none"><span style="flex-shrink: 0; width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 17px; font-weight: 900; background: #F1EEE7">3</span><span style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 28px; font-weight: 900; letter-spacing: -0.03em">Show the proof</span><span style="font-size: 17px; line-height: 1.5; color: #5C5850">You see the proof in real numbers, like more leads won. Then we find the next leak.</span></span><span data-stepbar="2" hidden class="c-stepbar" aria-hidden="true" style="position: absolute; left: 0; bottom: 0; height: 4px; width: 100%; background: #BFEFD4"></span></button>
+</div>
+<div class="c-rv-s r-stepvis" style="position: relative; height: 480px">
+<div data-panel="0" class="c-swap" style="position: absolute; inset: 0; border-radius: 40px; background: #FFD3BF; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 26px">
+<div aria-hidden="true" style="width: 330px; height: 84px; box-sizing: border-box; border-radius: 999px; background: #FFFFFF; box-shadow: 0 30px 60px -30px #1C1B1866; display: flex; align-items: center; gap: 16px; padding: 0 30px">
+<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1C1B18" stroke-width="2" stroke-linecap="round" style="flex-shrink: 0"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="M15.5 15.5 L20 20"></path></svg>
+<span style="display: flex; align-items: center; font-size: 24px; font-weight: 700; letter-spacing: -0.01em; white-space: nowrap"><span class="sf-c sf-c0">m</span><span class="sf-c sf-c1">a</span><span class="sf-c sf-c2">n</span><span class="sf-c sf-c3">u</span><span class="sf-c sf-c4">a</span><span class="sf-c sf-c5">l</span><span class="sf-c sf-c6">&nbsp;</span><span class="sf-c sf-c7">t</span><span class="sf-c sf-c8">a</span><span class="sf-c sf-c9">s</span><span class="sf-c sf-c10">k</span><span class="sf-c sf-c11">s</span><span class="sf-caret" style="width: 2.5px; height: 30px; border-radius: 2px; background: #2B2925; margin-left: 2px"></span></span>
+</div>
+<span style="display: flex; align-items: center; gap: 10px; background: #FFFFFF; border-radius: 999px; padding: 12px 22px; font-size: 21px; font-weight: 800">Lead follow-up<span class="sf-flag1" style="color: #B4481F; opacity: 0">· LEAK</span></span>
+<div style="display: flex; gap: 10px"><span style="background: #FFFFFF99; border-radius: 999px; padding: 8px 16px; font-size: 14px; font-weight: 700">Every step mapped</span><span style="background: #FFFFFF99; border-radius: 999px; padding: 8px 16px; font-size: 14px; font-weight: 700">Clearest return first</span></div>
+</div>
+<div data-panel="1" hidden class="c-swap" style="position: absolute; inset: 0; border-radius: 40px; background: #FFE066; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 26px">
+<div aria-hidden="true" class="c-track" style="width: 190px; height: 102px; border-radius: 999px; background: #2B2925; padding: 9px; box-sizing: border-box"><div class="c-knob" style="width: 84px; height: 84px; border-radius: 50%; background: #FFFFFF; box-shadow: 0 6px 14px -6px #1C1B1855; transform: translateX(88px)"></div></div>
+<span style="display: flex; align-items: center; gap: 10px; background: #FFFFFF; border-radius: 999px; padding: 12px 22px; font-size: 21px; font-weight: 800">Lead follow-up<span class="c-on" style="color: #1A7F52; opacity: 0">· FIXED</span></span>
+<div style="display: flex; gap: 10px"><span style="background: #FFFFFF99; border-radius: 999px; padding: 8px 16px; font-size: 14px; font-weight: 700">Built in your tools</span><span style="background: #FFFFFF99; border-radius: 999px; padding: 8px 16px; font-size: 14px; font-weight: 700">Live the same week</span></div>
+</div>
+<div data-panel="2" hidden class="c-swap" style="position: absolute; inset: 0; border-radius: 40px; background: #BFEFD4; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 26px">
+<div aria-hidden="true" style="width: 210px; height: 172px; box-sizing: border-box; border-radius: 40px; background: #2B2925; color: #FFFFFF; box-shadow: 0 30px 60px -30px #1C1B1866; padding: 24px 26px 22px; display: flex; flex-direction: column; justify-content: space-between">
+<span style="font-size: 12px; font-weight: 800; letter-spacing: 0.1em; color: #C9C4B8">LEADS WON THIS WEEK</span>
+<div style="display: flex; align-items: flex-end; justify-content: space-between">
+<span style="display: flex; font-size: 64px; font-weight: 900; letter-spacing: -0.04em; line-height: 64px; height: 64px; font-variant-numeric: tabular-nums">1<span style="display: inline-block; height: 64px; overflow: hidden"><span class="lw-roll" style="display: flex; flex-direction: column; transform: translateY(-448px)"><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></span></span>
+<span class="lw-chip" style="display: flex; align-items: center; gap: 4px; background: #FFE066; color: #1C1B18; border-radius: 999px; padding: 5px 10px 5px 8px; font-size: 14px; font-weight: 800; margin-bottom: 8px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1C1B18" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19 V5 M6 11 L12 5 L18 11"></path></svg>7</span>
+</div>
+</div>
+<span style="display: flex; align-items: center; gap: 10px; background: #FFFFFF; border-radius: 999px; padding: 12px 22px; font-size: 21px; font-weight: 800">Leads won<span class="pr-flag" style="color: #1A7F52; opacity: 0">· UP</span></span>
+<div style="display: flex; gap: 10px"><span style="background: #FFFFFF99; border-radius: 999px; padding: 8px 16px; font-size: 14px; font-weight: 700">Reported every week</span><span style="background: #FFFFFF99; border-radius: 999px; padding: 8px 16px; font-size: 14px; font-weight: 700">Next leak queued</span></div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- WHAT WE AUTOMATE: each card is a tiny animated scene -->
+<section class="r-sec r-pt" id="automate" style="padding: 150px 120px 0">
+<div class="c-rv r-stack" style="display: grid; grid-template-columns: minmax(0, 1fr) 400px; gap: 60px; align-items: end">
+<div style="display: flex; flex-direction: column; gap: 18px; align-items: flex-start">
+<span style="display: inline-flex; background: #FFFFFF; border: 1px solid #E6E2D8; border-radius: 999px; padding: 8px 16px; font-size: 14px; font-weight: 700; letter-spacing: 0.1em">WHAT WE AUTOMATE</span>
+<h2 class="r-h2" style="margin: 0; font-size: 64px; line-height: 1; letter-spacing: -0.045em; font-weight: 900">If it’s repetitive, it’s fair game.</h2>
+</div>
+<p style="margin: 0; font-size: 17px; line-height: 1.55; color: #5C5850">A few of the usual suspects. Not on the list? Bring it to the intro call anyway.</p>
+</div>
+<div class="r-grid4" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; margin-top: 56px">
+
+<article class="c-card c-rv" style="background: #FFFFFF; border-radius: 28px; padding: 14px 14px 26px; display: flex; flex-direction: column; gap: 12px">
+<div aria-hidden="true" style="position: relative; height: 140px; border-radius: 20px; background: #FFE066; overflow: hidden">
+<span class="s-lead" style="position: absolute; left: 18px; top: 54px; background: #FFFFFF; border-radius: 999px; padding: 7px 14px; font-size: 12px; font-weight: 800; box-shadow: 0 6px 14px -6px #1C1B1855">New lead</span>
+<span style="position: absolute; right: 26px; top: 46px; width: 48px; height: 48px; border-radius: 50%; background: #2B2925; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 900">AK</span>
+<svg class="s-pop" width="26" height="26" viewBox="0 0 20 20" style="position: absolute; right: 16px; top: 36px"><circle cx="10" cy="10" r="9" fill="#BFEFD4" stroke="#1C1B18" stroke-width="1.5"></circle><path d="M6 10.3 L8.8 13 L14 7.5" fill="none" stroke="#1C1B18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</div>
+<div style="padding: 6px 14px 0; display: flex; flex-direction: column; gap: 8px"><h3 style="margin: 0; font-size: 21px; font-weight: 800; letter-spacing: -0.02em">Lead follow-up</h3><p style="margin: 0; font-size: 17px; line-height: 1.5; color: #5C5850">Every inbound lead tagged, routed and followed up before it goes cold.</p></div>
+</article>
+
+<article class="c-card c-rv c-rv-2" style="background: #FFFFFF; border-radius: 28px; padding: 14px 14px 26px; display: flex; flex-direction: column; gap: 12px">
+<div aria-hidden="true" style="height: 140px; border-radius: 20px; background: #BFEFD4; display: flex; align-items: flex-end; justify-content: center; gap: 10px; padding-bottom: 24px; box-sizing: border-box">
+<div class="c-bar" style="width: 22px; height: 34px; border-radius: 8px; background: #2B2925; animation-delay: 0s"></div>
+<div class="c-bar" style="width: 22px; height: 56px; border-radius: 8px; background: #2B2925; animation-delay: .1s"></div>
+<div class="c-bar" style="width: 22px; height: 44px; border-radius: 8px; background: #2B2925; animation-delay: .2s"></div>
+<div class="c-bar" style="width: 22px; height: 72px; border-radius: 8px; background: #2B2925; animation-delay: .3s"></div>
+<div class="c-bar" style="width: 22px; height: 90px; border-radius: 8px; background: #FFFFFF; box-shadow: 0 6px 14px -6px #1C1B1855; animation-delay: .4s"></div>
+</div>
+<div style="padding: 6px 14px 0; display: flex; flex-direction: column; gap: 8px"><h3 style="margin: 0; font-size: 21px; font-weight: 800; letter-spacing: -0.02em">Reporting</h3><p style="margin: 0; font-size: 17px; line-height: 1.5; color: #5C5850">Weekly numbers that assemble themselves instead of eating an afternoon.</p></div>
+</article>
+
+<article class="c-card c-rv c-rv-3" style="background: #FFFFFF; border-radius: 28px; padding: 14px 14px 26px; display: flex; flex-direction: column; gap: 12px">
+<div aria-hidden="true" style="position: relative; height: 140px; border-radius: 20px; background: #DCD1FF; overflow: hidden; display: flex; justify-content: center">
+<div class="s-doc" style="position: relative; margin-top: 22px; width: 104px; height: 130px; border-radius: 12px; background: #FFFFFF; box-shadow: 0 12px 24px -14px #1C1B1855; padding: 14px; box-sizing: border-box; display: flex; flex-direction: column; gap: 7px">
+<span style="height: 7px; width: 60%; border-radius: 4px; background: #2B2925"></span><span style="height: 5px; width: 90%; border-radius: 4px; background: #E6E2D8"></span><span style="height: 5px; width: 80%; border-radius: 4px; background: #E6E2D8"></span><span style="height: 5px; width: 70%; border-radius: 4px; background: #E6E2D8"></span>
+<span class="s-stamp" style="position: absolute; left: 18px; top: 50px; background: #BFEFD4; color: #1C1B18; border-radius: 8px; padding: 3px 11px; box-shadow: 0 6px 14px -6px #1C1B1855; font-size: 17px; font-weight: 900; letter-spacing: 0.1em">PAID</span>
+</div>
+</div>
+<div style="padding: 6px 14px 0; display: flex; flex-direction: column; gap: 8px"><h3 style="margin: 0; font-size: 21px; font-weight: 800; letter-spacing: -0.02em">Invoicing and payments</h3><p style="margin: 0; font-size: 17px; line-height: 1.5; color: #5C5850">Invoices out, reminders sent and payments reconciled, without the spreadsheet shuffle.</p></div>
+</article>
+
+<article class="c-card c-rv c-rv-4" style="background: #FFFFFF; border-radius: 28px; padding: 14px 14px 26px; display: flex; flex-direction: column; gap: 12px">
+<div aria-hidden="true" style="height: 140px; border-radius: 20px; background: #FFD3BF; display: flex; flex-direction: column; justify-content: center; gap: 10px; padding: 0 30px; box-sizing: border-box">
+<div style="display: flex; align-items: center; gap: 12px"><span class="s-chk" style="width: 22px; height: 22px; border-radius: 8px; background: #2B2925; box-shadow: 0 6px 14px -6px #1C1B1855; animation-delay: 0s"></span><span style="height: 9px; width: 70%; border-radius: 5px; background: #FFFFFF"></span></div>
+<div style="display: flex; align-items: center; gap: 12px"><span class="s-chk" style="width: 22px; height: 22px; border-radius: 8px; background: #2B2925; box-shadow: 0 6px 14px -6px #1C1B1855; animation-delay: .5s"></span><span style="height: 9px; width: 55%; border-radius: 5px; background: #FFFFFF"></span></div>
+<div style="display: flex; align-items: center; gap: 12px"><span class="s-chk" style="width: 22px; height: 22px; border-radius: 8px; background: #2B2925; box-shadow: 0 6px 14px -6px #1C1B1855; animation-delay: 1s"></span><span style="height: 9px; width: 80%; border-radius: 5px; background: #FFFFFF"></span></div>
+</div>
+<div style="padding: 6px 14px 0; display: flex; flex-direction: column; gap: 8px"><h3 style="margin: 0; font-size: 21px; font-weight: 800; letter-spacing: -0.02em">Customer onboarding</h3><p style="margin: 0; font-size: 17px; line-height: 1.5; color: #5C5850">Welcomes, setup steps and check-ins that run on schedule without anyone remembering.</p></div>
+</article>
+
+<article class="c-card c-rv" style="background: #FFFFFF; border-radius: 28px; padding: 14px 14px 26px; display: flex; flex-direction: column; gap: 12px">
+<div aria-hidden="true" style="position: relative; height: 140px; border-radius: 20px; background: #BFEFD4">
+<span style="position: absolute; left: 80px; right: 80px; top: 57px; height: 2px; border-radius: 1px; background: #1C1B1826"></span>
+<span class="s-sync2" style="position: absolute; left: 80px; top: 50px; width: 22px; height: 16px; border-radius: 6px; background: #FFE066; box-shadow: 0 6px 14px -6px #1C1B1855"></span>
+<span style="position: absolute; left: 22px; top: 32px; width: 52px; height: 52px; border-radius: 20px; background: #2B2925; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="7" ry="3"></ellipse><path d="M5 6 V18 C5 19.7 8 21 12 21 C16 21 19 19.7 19 18 V6 M5 12 C5 13.7 8 15 12 15 C16 15 19 13.7 19 12"></path></svg></span>
+<span class="s-bump" style="position: absolute; right: 22px; top: 32px; width: 52px; height: 52px; border-radius: 20px; background: #FFFFFF; box-shadow: 0 12px 24px -14px #1C1B1855; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1C1B18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="13" rx="3"></rect><path d="M3 10.5 H21 M7 15 H10"></path></svg></span>
+<svg class="s-pop" width="22" height="22" viewBox="0 0 20 20" style="position: absolute; right: 14px; top: 24px"><circle cx="10" cy="10" r="9" fill="#FFE066" stroke="#1C1B18" stroke-width="1.5"></circle><path d="M6 10.3 L8.8 13 L14 7.5" fill="none" stroke="#1C1B18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+<span style="position: absolute; left: 22px; top: 94px; width: 52px; text-align: center; font-size: 12px; font-weight: 800; letter-spacing: 0.1em">CRM</span>
+<span style="position: absolute; right: 22px; top: 94px; width: 52px; text-align: center; font-size: 12px; font-weight: 800; letter-spacing: 0.1em">Billing</span>
+</div>
+<div style="padding: 6px 14px 0; display: flex; flex-direction: column; gap: 8px"><h3 style="margin: 0; font-size: 21px; font-weight: 800; letter-spacing: -0.02em">Connect your tools</h3><p style="margin: 0; font-size: 17px; line-height: 1.5; color: #5C5850">Your CRM, billing and project tools sharing data like they’re one system.</p></div>
+</article>
+
+<article class="c-card c-rv c-rv-2" style="background: #FFFFFF; border-radius: 28px; padding: 14px 14px 26px; display: flex; flex-direction: column; gap: 12px">
+<div aria-hidden="true" style="position: relative; height: 140px; border-radius: 20px; background: #FFE066; overflow: hidden">
+<span class="s-tix2-l" style="position: absolute; left: calc(50% - 22px); top: 22px; width: 44px; height: 30px; border-radius: 8px; background: #FFFFFF; box-shadow: 0 6px 14px -6px #1C1B1855; overflow: hidden; display: flex; flex-direction: column; gap: 4px"><span style="height: 7px; background: #DCD1FF"></span><span style="height: 3px; width: 26px; margin-left: 6px; border-radius: 2px; background: #D6D1C6"></span><span style="height: 3px; width: 18px; margin-left: 6px; border-radius: 2px; background: #D6D1C6"></span></span>
+<span class="s-tix2-r" style="position: absolute; left: calc(50% - 22px); top: 22px; width: 44px; height: 30px; border-radius: 8px; background: #FFFFFF; box-shadow: 0 6px 14px -6px #1C1B1855; overflow: hidden; display: flex; flex-direction: column; gap: 4px; animation-delay: 2s"><span style="height: 7px; background: #FFD3BF"></span><span style="height: 3px; width: 26px; margin-left: 6px; border-radius: 2px; background: #D6D1C6"></span><span style="height: 3px; width: 18px; margin-left: 6px; border-radius: 2px; background: #D6D1C6"></span></span>
+<span class="s-tray" style="position: absolute; left: 20px; top: 84px; width: 86px; height: 42px; border-radius: 12px; background: #FFFFFF; box-shadow: 0 12px 24px -14px #1C1B1855; display: flex; align-items: center; justify-content: center; gap: 7px; font-size: 12px; font-weight: 800"><span style="width: 9px; height: 9px; border-radius: 50%; background: #DCD1FF"></span>Sales</span>
+<span class="s-tray" style="position: absolute; right: 20px; top: 84px; width: 86px; height: 42px; border-radius: 12px; background: #FFFFFF; box-shadow: 0 12px 24px -14px #1C1B1855; display: flex; align-items: center; justify-content: center; gap: 7px; font-size: 12px; font-weight: 800; animation-delay: 2s"><span style="width: 9px; height: 9px; border-radius: 50%; background: #FFD3BF"></span>Support</span>
+</div>
+<div style="padding: 6px 14px 0; display: flex; flex-direction: column; gap: 8px"><h3 style="margin: 0; font-size: 21px; font-weight: 800; letter-spacing: -0.02em">Sort support requests</h3><p style="margin: 0; font-size: 17px; line-height: 1.5; color: #5C5850">Tickets sorted and routed, with the simple questions answered straight away.</p></div>
+</article>
+
+<article class="c-card c-rv c-rv-3" style="background: #FFFFFF; border-radius: 28px; padding: 14px 14px 26px; display: flex; flex-direction: column; gap: 12px">
+<div aria-hidden="true" style="position: relative; height: 140px; border-radius: 20px; background: #FFD3BF; display: flex; align-items: center; justify-content: center">
+<div style="width: 158px; border-radius: 12px; background: #FFFFFF; overflow: hidden; box-shadow: 0 12px 24px -14px #1C1B1855">
+<div style="height: 18px; background: #2B2925"></div>
+<div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px; padding: 10px">
+<span style="height: 12px; border-radius: 3px; background: #F1EEE7"></span><span style="height: 12px; border-radius: 3px; background: #F1EEE7"></span><span style="height: 12px; border-radius: 3px; background: #F1EEE7"></span><span style="height: 12px; border-radius: 3px; background: #F1EEE7"></span><span style="height: 12px; border-radius: 3px; background: #F1EEE7"></span><span style="height: 12px; border-radius: 3px; background: #F1EEE7"></span><span style="height: 12px; border-radius: 3px; background: #F1EEE7"></span>
+<span style="height: 12px; border-radius: 3px; background: #F1EEE7"></span><span style="height: 12px; border-radius: 3px; background: #F1EEE7"></span><span style="height: 12px; border-radius: 3px; background: #F1EEE7"></span><span class="s-cell" style="height: 12px; border-radius: 3px; background: #FFE066"></span><span style="height: 12px; border-radius: 3px; background: #F1EEE7"></span><span style="height: 12px; border-radius: 3px; background: #F1EEE7"></span><span style="height: 12px; border-radius: 3px; background: #F1EEE7"></span>
+<span style="height: 12px; border-radius: 3px; background: #F1EEE7"></span><span style="height: 12px; border-radius: 3px; background: #F1EEE7"></span><span style="height: 12px; border-radius: 3px; background: #F1EEE7"></span><span style="height: 12px; border-radius: 3px; background: #F1EEE7"></span><span style="height: 12px; border-radius: 3px; background: #F1EEE7"></span><span style="height: 12px; border-radius: 3px; background: #F1EEE7"></span><span style="height: 12px; border-radius: 3px; background: #F1EEE7"></span>
+</div>
+</div>
+<span class="s-chip" style="position: absolute; right: 14px; top: 14px; background: #FFFFFF; color: #1C1B18; border-radius: 999px; padding: 5px 11px; font-size: 12px; font-weight: 800; box-shadow: 0 6px 14px -6px #1C1B1855">Booked</span>
+</div>
+<div style="padding: 6px 14px 0; display: flex; flex-direction: column; gap: 8px"><h3 style="margin: 0; font-size: 21px; font-weight: 800; letter-spacing: -0.02em">Scheduling</h3><p style="margin: 0; font-size: 17px; line-height: 1.5; color: #5C5850">Bookings, reminders and no-show follow-ups handled end to end.</p></div>
+</article>
+
+<article class="c-card c-rv c-rv-4" style="background: #FFFFFF; border-radius: 28px; padding: 14px 14px 26px; display: flex; flex-direction: column; gap: 12px">
+<div aria-hidden="true" style="position: relative; height: 140px; border-radius: 20px; background: #DCD1FF; overflow: hidden; display: flex; align-items: center; padding-left: 34px; box-sizing: border-box">
+<div class="s-bell" style="position: relative; width: 58px; height: 62px">
+<svg width="58" height="62" viewBox="0 0 24 26"><path d="M6 17 V11 A6 6 0 0 1 18 11 V17 L20 19 H4 Z" fill="#FFE066" stroke="#1C1B18" stroke-width="1.8" stroke-linejoin="round"></path><path d="M10 22 H14" stroke="#1C1B18" stroke-width="1.8" stroke-linecap="round"></path></svg>
+<span class="s-pop" style="position: absolute; right: -6px; top: -4px; width: 22px; height: 22px; border-radius: 50%; background: #2B2925; color: #FFFFFF; box-shadow: 0 6px 14px -6px #1C1B1855; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 900">1</span>
+</div>
+<span class="s-note" style="position: absolute; right: 14px; top: 52px; background: #FFFFFF; border-radius: 12px; padding: 8px 12px; font-size: 12px; font-weight: 800; box-shadow: 0 6px 14px -6px #1C1B1855">Deal marked won</span>
+</div>
+<div style="padding: 6px 14px 0; display: flex; flex-direction: column; gap: 8px"><h3 style="margin: 0; font-size: 21px; font-weight: 800; letter-spacing: -0.02em">Team notifications</h3><p style="margin: 0; font-size: 17px; line-height: 1.5; color: #5C5850">The right person pinged at the right moment, with the context attached.</p></div>
+</article>
+</div>
+</section>
+
+<!-- ROI CALCULATOR (white band) -->
+<section class="r-stack r-roiband" id="roi" style="margin-top: 150px; background: #FFFFFF; padding: 120px 120px; display: grid; grid-template-columns: minmax(0, 1fr) 540px; gap: 80px; align-items: center">
+<div class="c-rv" style="display: flex; flex-direction: column; gap: 22px">
+<span style="align-self: flex-start; display: inline-flex; background: #F6F5F1; border-radius: 999px; padding: 8px 16px; font-size: 14px; font-weight: 700; letter-spacing: 0.1em">ROI CALCULATOR</span>
+<h2 class="r-h2" style="margin: 0; font-size: 64px; line-height: 1.02; letter-spacing: -0.045em; font-weight: 900">What are your leaks costing you?</h2>
+<p style="margin: 0; font-size: 17px; line-height: 1.55; color: #5C5850; max-width: 520px">Move the sliders. Your numbers, not ours.</p>
+<div style="position: relative; display: flex; flex-direction: column; gap: 30px; margin-top: 14px; background: #F6F5F1; border-radius: 28px; padding: 32px 34px">
+<div style="display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; justify-content: space-between; align-items: baseline; gap: 20px"><label for="roi-hours" style="font-size: 17px; font-weight: 700">Hours a week your team spends on manual, repeatable tasks</label><span style="flex-shrink: 0; font-size: 28px; font-weight: 900; letter-spacing: -0.03em"><span data-roi="hours">12</span> hrs</span></div>
+<input id="roi-hours" class="c-range" type="range" min="1" max="60" step="1" value="12" data-roi-in="hours">
+</div>
+<div style="display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; justify-content: space-between; align-items: baseline; gap: 20px"><label for="roi-rate" style="font-size: 17px; font-weight: 700">What an hour of that time costs you</label><span style="flex-shrink: 0; font-size: 28px; font-weight: 900; letter-spacing: -0.03em">$<span data-roi="rate">40</span></span></div>
+<input id="roi-rate" class="c-range" type="range" min="10" max="150" step="5" value="40" data-roi-in="rate">
+</div>
+<div class="r-hide-m" aria-hidden="true" style="position: absolute; right: -44px; top: -64px; display: flex; align-items: flex-end; gap: 0">
+<span class="c-hand" style="font-size: 28px; transform: rotate(3deg); color: #3F3C36">drag me!</span>
+<svg width="50" height="60" viewBox="0 0 50 60"><path class="c-scrawl" d="M6 8 C30 10 40 28 30 54 M22 46 L30 56 L40 48" fill="none" stroke="#1C1B18" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</div>
+</div>
+</div>
+<div class="c-rv c-rv-2" style="background: #FFE066; color: #1C1B18; border-radius: 40px; padding: 44px 46px; display: flex; flex-direction: column; gap: 22px; box-shadow: 0 30px 60px -30px #1C1B1866">
+<span style="font-size: 17px; font-weight: 700; color: #3F3C36">Those leaks cost you about</span>
+<div style="display: flex; align-items: baseline; gap: 8px"><span class="r-num" style="font-size: 84px; line-height: 1; font-weight: 900; letter-spacing: -0.05em; font-variant-numeric: tabular-nums">$<span data-roi="monthly">2,080</span></span><span style="font-size: 21px; font-weight: 700; color: #3F3C36">/month</span></div>
+<div style="display: flex; flex-direction: column; gap: 14px; margin-top: 6px">
+<div style="display: flex; flex-direction: column; gap: 8px"><div style="display: flex; justify-content: space-between; font-size: 14px; font-weight: 700"><span>Your leaks</span><span>$<span data-roi="monthly">2,080</span></span></div><div style="height: 14px; border-radius: 999px; background: #FFFFFF99; overflow: hidden"><div class="c-bar-fill" data-roi-bar="manual" style="height: 100%; border-radius: 999px; background: #FFD3BF; width: 100%"></div></div></div>
+<div style="display: flex; flex-direction: column; gap: 8px"><div style="display: flex; justify-content: space-between; font-size: 14px; font-weight: 700"><span>Opsglee</span><span>$500</span></div><div style="height: 14px; border-radius: 999px; background: #FFFFFF99; overflow: hidden"><div class="c-bar-fill" data-roi-bar="joy" style="height: 100%; border-radius: 999px; background: #2B2925; width: 24%"></div></div></div>
+</div>
+<div style="height: 1px; background: #1C1B181F; margin: 6px 0"></div>
+<p style="margin: 0; font-size: 17px; line-height: 1.5">Opsglee pays for itself once its fixes save about <strong><span data-roi="be">2.9</span> hours a week</strong>.</p>
+<p style="margin: 0; font-size: 14px; line-height: 1.5; color: #3F3C36">Based on 52 working weeks a year. A rough guide, not a quote.</p>
+<a class="c-pill c-lift" href="#call" style="display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 58px; border-radius: 999px; background: #2B2925; color: #FFFFFF; text-decoration: none; font-size: 17px; font-weight: 800">Get your first week free<svg class="c-arrow" width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10 H16 M11 5 L16 10 L11 15" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+</div>
+</section>
+
+<!-- PRICING -->
+<section class="r-sec r-pt" id="pricing" style="padding: 150px 120px 0">
+<div class="c-rv" style="display: flex; flex-direction: column; align-items: center; gap: 18px; text-align: center">
+<h2 class="r-h2" style="margin: 0; font-size: 64px; line-height: 1; letter-spacing: -0.045em; font-weight: 900">One subscription. <br>No project fees.<br>Ever.</h2>
+</div>
+<div class="r-stack r-pricegrid" style="display: grid; grid-template-columns: 440px minmax(0, 1fr); gap: 24px; margin-top: 120px; align-items: stretch">
+<div class="c-card c-rv" style="background: #FFFFFF; border-radius: 28px; padding: 44px; display: flex; flex-direction: column; gap: 18px; box-shadow: 0 12px 24px -14px #1C1B1855">
+<div class="c-fl-c" style="width: 84px; height: 84px; border-radius: 28px; background: #DCD1FF; display: flex; align-items: center; justify-content: center"><svg width="40" height="40" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#1C1B18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="3"></rect><path d="M3 10 H21 M8 3 V7 M16 3 V7"></path><circle cx="12" cy="15.5" r="2.2" fill="#1C1B18"></circle></svg></div>
+<h3 style="margin: 8px 0 0; font-size: 28px; line-height: 1.1; font-weight: 900; letter-spacing: -0.03em">Your first week is on us</h3>
+<p style="margin: 0; font-size: 17px; line-height: 1.55; color: #5C5850">On the call we find your biggest leak. Then we fix it in week one, before you pay anything. Only subscribe if it’s worth it.</p>
+<div style="margin-top: auto; height: 1px; background: #E6E2D8"></div>
+<div style="display: flex; flex-direction: column; gap: 4px"><span style="font-size: 14px; color: #5C5850">Prefer to email?</span><span style="font-size: 17px; font-weight: 700">hello@opsglee.com</span></div>
+</div>
+<div class="c-rv c-rv-2 r-first" style="position: relative">
+<div style="position: absolute; right: 120px; top: -76px; width: 120px; height: 120px; z-index: 1">
+<svg width="120" height="120" viewBox="0 0 120 120" aria-hidden="true" style="overflow: visible"><g class="j-hop"><path d="M60 30 V17" fill="none" stroke="#1C1B18" stroke-width="5" stroke-linecap="round"></path><circle class="" cx="60" cy="11" r="7" fill="#1C1B18"></circle><rect x="14" y="30" width="92" height="72" rx="27" fill="#FFFFFF" stroke="#1C1B18" stroke-width="5"></rect><ellipse cx="30" cy="84" rx="6" ry="4" fill="#FFB08A" opacity="0.85"></ellipse><ellipse cx="90" cy="84" rx="6" ry="4" fill="#FFB08A" opacity="0.85"></ellipse><path d="M40 68 Q47 58 54 68 M66 68 Q73 58 80 68" fill="none" stroke="#1C1B18" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"></path></g></svg>
+
+</div>
+<div class="r-pad" style="position: relative; z-index: 2; height: 100%; box-sizing: border-box; background: #2B2925; color: #FFFFFF; border-radius: 40px; padding: 44px 48px; box-shadow: 0 30px 60px -30px #1C1B1866">
+<div style="position: absolute; inset: 0; pointer-events: none; overflow: hidden; border-radius: 40px"><div class="c-shine" style="position: absolute; top: 0; bottom: 0; left: 0; width: 22%; background: linear-gradient(90deg, #FFFFFF00, #FFFFFF14, #FFFFFF00)"></div></div>
+
+<div style="position: relative; display: flex; justify-content: space-between; align-items: center">
+<span style="background: #FFE066; color: #1C1B18; border-radius: 999px; padding: 8px 16px; font-size: 14px; font-weight: 800">Monthly plan</span>
+<span style="font-size: 14px; font-weight: 700; letter-spacing: 0.1em; color: #FFE066">FIRST WEEK FREE</span>
+</div>
+<div style="position: relative; display: flex; align-items: baseline; gap: 8px; margin-top: 30px">
+<span class="sr">$500</span><span class="c-count c-count-view r-price" aria-hidden="true" style="font-size: 104px; line-height: 1; font-weight: 900; letter-spacing: -0.055em; font-variant-numeric: tabular-nums"></span>
+<span style="font-size: 21px; font-weight: 700; color: #C9C4B8">/month</span>
+<div class="r-hide-m" aria-hidden="true" style="display: flex; align-items: center; gap: 4px; margin-left: 18px; align-self: center">
+<svg width="54" height="30" viewBox="0 0 54 30"><path class="c-scrawl" d="M50 22 C36 26 20 22 8 12 M6 22 L7 11 L18 10" fill="none" stroke="#FFE066" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+<span class="c-hand" style="font-size: 28px; color: #FFE066; transform: rotate(-3deg)">yep, the whole price</span>
+</div>
+</div>
+<p style="position: relative; margin: 14px 0 0; font-size: 17px; font-weight: 700; color: #FFE066">Founding clients: the first 10 lock in $500 for life.</p>
+<div class="r-feat" style="position: relative; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 28px; margin-top: 36px; font-size: 17px; font-weight: 700">
+<span style="display: flex; gap: 12px; align-items: center; white-space: nowrap"><svg width="22" height="22" viewBox="0 0 20 20" aria-hidden="true" style="flex-shrink: 0"><circle cx="10" cy="10" r="9" fill="#BFEFD4"></circle><path d="M6 10.3 L8.8 13 L14 7.5" fill="none" stroke="#1C1B18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>A new fix every week</span>
+<span style="display: flex; gap: 12px; align-items: center; white-space: nowrap"><svg width="22" height="22" viewBox="0 0 20 20" aria-hidden="true" style="flex-shrink: 0"><circle cx="10" cy="10" r="9" fill="#BFEFD4"></circle><path d="M6 10.3 L8.8 13 L14 7.5" fill="none" stroke="#1C1B18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>We map before we build</span>
+<span style="display: flex; gap: 12px; align-items: center; white-space: nowrap"><svg width="22" height="22" viewBox="0 0 20 20" aria-hidden="true" style="flex-shrink: 0"><circle cx="10" cy="10" r="9" fill="#BFEFD4"></circle><path d="M6 10.3 L8.8 13 L14 7.5" fill="none" stroke="#1C1B18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Works in the tools you use</span>
+<span style="display: flex; gap: 12px; align-items: center; white-space: nowrap"><svg width="22" height="22" viewBox="0 0 20 20" aria-hidden="true" style="flex-shrink: 0"><circle cx="10" cy="10" r="9" fill="#BFEFD4"></circle><path d="M6 10.3 L8.8 13 L14 7.5" fill="none" stroke="#1C1B18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>You own all we build</span>
+<span style="display: flex; gap: 12px; align-items: center; white-space: nowrap"><svg width="22" height="22" viewBox="0 0 20 20" aria-hidden="true" style="flex-shrink: 0"><circle cx="10" cy="10" r="9" fill="#BFEFD4"></circle><path d="M6 10.3 L8.8 13 L14 7.5" fill="none" stroke="#1C1B18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>A weekly proof report</span>
+<span style="display: flex; gap: 12px; align-items: center; white-space: nowrap"><svg width="22" height="22" viewBox="0 0 20 20" aria-hidden="true" style="flex-shrink: 0"><circle cx="10" cy="10" r="9" fill="#BFEFD4"></circle><path d="M6 10.3 L8.8 13 L14 7.5" fill="none" stroke="#1C1B18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Pause or cancel anytime</span>
+</div>
+<div style="position: relative; margin-top: 42px">
+<a class="c-pill" href="#call" data-magnet style="position: relative; display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 62px; border-radius: 999px; background: #FFE066; color: #1C1B18; text-decoration: none; font-size: 17px; font-weight: 800; transition: transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .3s">Get your first week free<svg class="c-arrow" width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10 H16 M11 5 L16 10 L11 15" fill="none" stroke="#1C1B18" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+</div>
+</div>
+</div>
+</div>
+<div class="r-fine" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin-top: 40px; padding: 28px 8px 0; border-top: 1px solid #E6E2D8">
+<div class="c-rv" style="display: flex; gap: 14px; align-items: center"><span style="flex-shrink: 0; width: 40px; height: 40px; box-sizing: border-box; border-radius: 50%; border: 1px solid #D6D1C6; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#1C1B18" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9.5"></circle><path d="M9.5 8.5 V15.5 M14.5 8.5 V15.5"></path></svg></span><span style="font-size: 17px; line-height: 1.4; color: #5C5850; white-space: nowrap"><strong style="color: #1C1B18; font-weight: 800">Pause anytime.</strong> Quiet month? Pick back up when you’re ready.</span></div>
+<div class="c-rv c-rv-2" style="display: flex; gap: 14px; align-items: center"><span style="flex-shrink: 0; width: 40px; height: 40px; box-sizing: border-box; border-radius: 50%; border: 1px solid #D6D1C6; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#1C1B18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5 L10 17.5 L19 7"></path></svg></span><span style="font-size: 17px; line-height: 1.4; color: #5C5850; white-space: nowrap"><strong style="color: #1C1B18; font-weight: 800">Month to month.</strong> No contract. Stay because it pays off.</span></div>
+</div>
+</section>
+
+<!-- WHY $500 (dark band) -->
+<section class="c-band r-whyband" style="margin-top: 150px; position: relative; background: #2B2925; color: #F6F5F1; padding: 130px 120px; overflow: hidden">
+<svg aria-hidden="true" width="100%" height="100%" style="position: absolute; inset: 0; opacity: 0.09; pointer-events: none"><filter id="c2-grain"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"></feTurbulence></filter><rect width="100%" height="100%" filter="url(#c2-grain)"></rect></svg>
+<div class="r-stack" style="position: relative; display: grid; grid-template-columns: minmax(0, 1fr) 480px; gap: 70px; align-items: center">
+<div class="c-rv" style="display: flex; flex-direction: column; gap: 22px; align-items: flex-start">
+<h2 class="r-h2" style="margin: 0; font-size: 64px; line-height: 1.02; letter-spacing: -0.045em; font-weight: 900">Why $500 and not $15,000?</h2>
+<p style="margin: 0; font-size: 17px; line-height: 1.6; color: #C9C4B8; text-wrap: pretty">Big automation projects price in months of scoping and one giant build. We skip all of that. Each week we take the single leak with the clearest return, fix it properly and show the proof before moving on. The small scope is exactly why every fix gets done right.</p>
+<p style="margin: 0; font-size: 17px; line-height: 1.6; color: #C9C4B8; text-wrap: pretty">And the savings compound. Every fix keeps saving, week after week, and each new one adds on top. So your total doesn’t grow in a straight line: by week 4 you’ve banked ten weeks’ worth of savings from just four fixes, for the same $500 a month. <strong style="color: #FFE066">That’s the whole model.</strong></p>
+</div>
+<div class="c-rv c-rv-2" role="img" aria-label="Chart: cumulative savings over four weeks. Each fix keeps saving every week after it ships, so total savings grow from 1 week's worth in week 1 to 3, 6 and 10 weeks' worth by week 4." style="position: relative; background: #FFFFFF; color: #1C1B18; border-radius: 28px; padding: 28px 30px 26px; box-shadow: 0 30px 60px -30px #1C1B1866">
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 12px">
+<span style="font-size: 12px; font-weight: 800; letter-spacing: 0.1em">TOTAL SAVED SO FAR</span>
+<span style="display: flex; align-items: center; gap: 4px; background: #2B2925; color: #FFFFFF; border-radius: 999px; padding: 6px 12px; font-size: 14px; font-weight: 800; white-space: nowrap">Savings:&nbsp;<span style="display: inline-block; height: 18px; overflow: hidden; text-align: left"><span class="m-sum" style="display: flex; flex-direction: column; line-height: 18px; transform: translateY(-72px)"><span>0×</span><span>1×</span><span>3×</span><span>6×</span><span>10×</span></span></span></span>
+</div>
+<div aria-hidden="true" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 22px; height: 262px; margin-top: 18px; align-items: end">
+<div style="display: flex; flex-direction: column-reverse; gap: 3px">
+<div class="m-blk m-c1" style="height: 20px; flex-shrink: 0; border-radius: 6px; background: #BFEFD4; animation-delay: 0.000s"></div>
+<span class="m-tot m-c1" style="text-align: center; font-size: 17px; font-weight: 900; letter-spacing: -0.02em; padding-bottom: 6px">1×</span>
+</div>
+<div style="display: flex; flex-direction: column-reverse; gap: 3px">
+<div class="m-blk m-c2" style="height: 20px; flex-shrink: 0; border-radius: 6px; background: #BFEFD4; animation-delay: 0.000s"></div>
+<div class="m-blk m-c2" style="height: 20px; flex-shrink: 0; border-radius: 6px; background: #BFEFD4; animation-delay: 0.035s"></div>
+<div class="m-blk m-c2" style="height: 20px; flex-shrink: 0; border-radius: 6px; background: #FFE066; animation-delay: 0.070s"></div>
+<span class="m-tot m-c2" style="text-align: center; font-size: 17px; font-weight: 900; letter-spacing: -0.02em; padding-bottom: 6px">3×</span>
+</div>
+<div style="display: flex; flex-direction: column-reverse; gap: 3px">
+<div class="m-blk m-c3" style="height: 20px; flex-shrink: 0; border-radius: 6px; background: #BFEFD4; animation-delay: 0.000s"></div>
+<div class="m-blk m-c3" style="height: 20px; flex-shrink: 0; border-radius: 6px; background: #BFEFD4; animation-delay: 0.035s"></div>
+<div class="m-blk m-c3" style="height: 20px; flex-shrink: 0; border-radius: 6px; background: #BFEFD4; animation-delay: 0.070s"></div>
+<div class="m-blk m-c3" style="height: 20px; flex-shrink: 0; border-radius: 6px; background: #FFE066; animation-delay: 0.105s"></div>
+<div class="m-blk m-c3" style="height: 20px; flex-shrink: 0; border-radius: 6px; background: #FFE066; animation-delay: 0.140s"></div>
+<div class="m-blk m-c3" style="height: 20px; flex-shrink: 0; border-radius: 6px; background: #DCD1FF; animation-delay: 0.175s"></div>
+<span class="m-tot m-c3" style="text-align: center; font-size: 17px; font-weight: 900; letter-spacing: -0.02em; padding-bottom: 6px">6×</span>
+</div>
+<div style="display: flex; flex-direction: column-reverse; gap: 3px">
+<div class="m-blk m-c4" style="height: 20px; flex-shrink: 0; border-radius: 6px; background: #BFEFD4; animation-delay: 0.000s"></div>
+<div class="m-blk m-c4" style="height: 20px; flex-shrink: 0; border-radius: 6px; background: #BFEFD4; animation-delay: 0.035s"></div>
+<div class="m-blk m-c4" style="height: 20px; flex-shrink: 0; border-radius: 6px; background: #BFEFD4; animation-delay: 0.070s"></div>
+<div class="m-blk m-c4" style="height: 20px; flex-shrink: 0; border-radius: 6px; background: #BFEFD4; animation-delay: 0.105s"></div>
+<div class="m-blk m-c4" style="height: 20px; flex-shrink: 0; border-radius: 6px; background: #FFE066; animation-delay: 0.140s"></div>
+<div class="m-blk m-c4" style="height: 20px; flex-shrink: 0; border-radius: 6px; background: #FFE066; animation-delay: 0.175s"></div>
+<div class="m-blk m-c4" style="height: 20px; flex-shrink: 0; border-radius: 6px; background: #FFE066; animation-delay: 0.210s"></div>
+<div class="m-blk m-c4" style="height: 20px; flex-shrink: 0; border-radius: 6px; background: #DCD1FF; animation-delay: 0.245s"></div>
+<div class="m-blk m-c4" style="height: 20px; flex-shrink: 0; border-radius: 6px; background: #DCD1FF; animation-delay: 0.280s"></div>
+<div class="m-blk m-c4" style="height: 20px; flex-shrink: 0; border-radius: 6px; background: #FFD3BF; animation-delay: 0.315s"></div>
+<span class="m-tot m-c4" style="text-align: center; font-size: 17px; font-weight: 900; letter-spacing: -0.02em; padding-bottom: 6px">10×</span>
+</div>
+</div>
+<div aria-hidden="true" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 22px; margin-top: 8px; font-size: 12px; font-weight: 700; color: #5C5850; text-align: center">
+<span>Week 1</span><span>Week 2</span><span>Week 3</span><span>Week 4</span>
+</div>
+<div aria-hidden="true" style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; margin-top: 16px; font-size: 12px; font-weight: 700; color: #3F3C36"><span style="display: flex; align-items: center; gap: 6px"><span style="width: 12px; height: 12px; border-radius: 4px; background: #BFEFD4"></span>Week 1 fix</span><span style="display: flex; align-items: center; gap: 6px"><span style="width: 12px; height: 12px; border-radius: 4px; background: #FFE066"></span>Week 2 fix</span><span style="display: flex; align-items: center; gap: 6px"><span style="width: 12px; height: 12px; border-radius: 4px; background: #DCD1FF"></span>Week 3 fix</span><span style="display: flex; align-items: center; gap: 6px"><span style="width: 12px; height: 12px; border-radius: 4px; background: #FFD3BF"></span>Week 4 fix</span></div>
+<div aria-hidden="true" style="position: absolute; right: 8px; bottom: -66px; display: flex; align-items: flex-end; gap: 4px">
+<span class="c-hand" style="font-size: 28px; color: #FFE066">wins that compound</span>
+<svg width="44" height="50" viewBox="0 0 44 50"><path class="c-scrawl" d="M6 44 C24 42 34 30 32 8 M24 15 L32 6 L39 16" fill="none" stroke="#FFE066" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</div>
+</div>
+</div>
+</section>
+
+<!-- FOUNDER -->
+<section class="r-sec r-pt r-stack r-founder" style="padding: 150px 120px 0; display: grid; grid-template-columns: 440px minmax(0, 1fr); gap: 90px; align-items: center">
+<div class="c-rv f-panel r-portrait" style="position: relative; width: 440px; height: 440px">
+<div style="position: absolute; inset: 0; border-radius: 40px; background: #BFEFD4; transform: rotate(-2deg); box-shadow: 0 12px 24px -14px #1C1B1855"></div>
+<a class="f-li" href="https://www.linkedin.com/in/imran-sharif-rizvi/" target="_blank" rel="noopener noreferrer" aria-label="Imran on LinkedIn (opens in a new tab)" style="position: absolute; left: 22px; top: 22px; z-index: 3; width: 52px; height: 52px; border-radius: 50%; background: #2B2925; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 14px -6px #1C1B1855; text-decoration: none"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" fill="#FFFFFF"><rect x="3.5" y="9" width="3.6" height="11.5" rx="1"></rect><circle cx="5.3" cy="5.2" r="2.1"></circle><path d="M9.8 9 H13.2 V10.7 C13.9 9.6 15.3 8.7 17.1 8.7 C20.1 8.7 21.5 10.6 21.5 14 V20.5 H17.9 V14.6 C17.9 12.9 17.2 12 15.9 12 C14.4 12 13.4 13.1 13.4 14.8 V20.5 H9.8 Z"></path></svg></a>
+<div class="f-portrait" role="img" aria-label="Portrait of Imran Sharif Rizvi, founder of Opsglee" style="position: absolute; left: 40px; top: 30px"><svg width="360" height="360" viewBox="0 0 400 400" fill="none" aria-hidden="true" style="flex-shrink: 0"><path d="M37.0211 315.566C30.837 306.846 25.3699 297.676 20.6198 288.056C11.9262 270.525 6.23508 252.05 2.87416 232.766C0.364667 218.426 -0.397142 203.997 0.185418 189.477C1.08166 167.721 5.69733 146.728 13.8084 126.545C21.1576 108.25 30.9715 91.348 43.3845 76.0195C54.0946 62.7588 66.2388 50.9815 79.8169 40.7775C102.94 23.3812 128.349 10.7498 156.804 4.72634C165.543 2.88332 174.416 1.57973 183.333 0.81555C190.772 0.141277 198.211 -0.173384 205.695 0.0963252C231.91 1.08526 257.094 6.5244 281.069 17.3577C297.694 24.8646 313.155 34.2146 327.181 45.902C338.877 55.6115 349.228 66.7145 358.639 78.6267C370.828 94.0001 380.552 110.812 387.319 129.197C391.711 141.109 395.161 153.336 397.133 165.968C399.284 179.633 400.404 193.343 399.866 207.188C399.149 225.079 396.237 242.565 390.859 259.647C385.347 277.268 377.505 293.81 367.333 309.228C366.526 309.588 366.033 309.048 365.54 308.599C356.354 300.687 345.912 294.934 334.754 290.304C322.61 285.224 310.69 279.74 298.68 274.301C290.255 270.48 281.92 266.434 273.092 263.557C271.524 263.063 270.538 262.029 269.956 260.546C267.401 254.342 263.906 248.678 259.38 243.734C256.512 240.587 253.375 237.755 249.118 236.497C247.28 235.957 247.191 235.508 248.356 234.114C258.752 221.752 264.04 207.188 266.55 191.455C266.774 190.152 266.326 188.488 267.939 187.634C275.064 190.826 279.769 187.814 284.34 181.296C287.612 176.621 288.732 171.002 289.852 165.473C290.883 160.349 291.197 155.134 290.3 149.92C289.628 146.054 288.149 142.593 285.057 139.941C283.086 138.277 280.979 137.199 278.38 137.154C277.439 137.154 276.453 137.333 275.602 136.704C274.93 134.906 275.781 133.198 275.96 131.445C276.588 125.017 277.305 118.634 277.708 112.161C278.335 101.732 279.232 91.348 278.828 80.8743C278.559 73.9967 276.722 67.6136 272.241 62.1744C269.552 58.9379 266.236 56.5555 262.606 54.6226C259.559 53.0043 257.318 50.7567 255.347 47.8798C250.955 41.4967 244.95 36.8217 238.497 32.6413C230.521 27.4718 221.827 23.6959 213.089 20.0998C212.506 19.8301 211.879 19.4704 210.893 19.8301C211.52 21.8978 212.282 23.9206 212.909 26.0334C213.044 26.4379 213.178 26.7975 213.313 27.2021C213.626 28.236 214.164 29.4497 213.358 30.3487C212.417 31.3377 211.341 30.3487 210.355 30.0341C202.423 27.6067 194.357 25.8536 186.022 25.2692C173.071 24.3702 160.613 26.4829 148.604 31.1579C144.84 32.6413 141.21 34.4393 137.67 36.4172C136.325 37.1364 136.236 37.8107 137.356 38.8446C138.431 39.8335 139.507 40.7325 140.627 41.6765C142.375 43.2049 142.33 43.7892 140.313 45.0479C136.056 47.7 132.068 50.7118 128.259 53.9932C119.789 61.2304 114.77 70.3107 113.471 81.4137C112.306 91.3929 113.561 101.282 114.905 111.172C115.98 119.083 117.459 126.905 118.848 134.771C118.983 135.49 119.252 136.255 118.848 136.974C118.266 137.468 117.549 137.423 116.921 137.513C111.768 138.053 108.631 141.109 106.794 145.694C105.718 148.392 105.36 151.268 105.046 154.145C103.791 165.473 106.211 175.902 112.575 185.297C116.115 190.511 121.313 192.309 127.452 191.77C128.08 191.725 128.662 191.59 129.29 191.635C130.32 191.86 130.41 192.804 130.544 193.568C132.202 202.468 135.608 210.784 139.417 218.921C142.42 225.349 146.498 231.102 150.8 236.721C151.293 237.351 152.054 237.89 151.696 238.879C141.927 243.644 135.832 251.735 131.53 261.355C130.007 264.681 127.99 266.749 124.45 268.098C111.186 273.087 98.2796 279.021 85.4184 285.044C77.8451 288.595 70.3167 292.236 62.833 295.967C53.288 300.732 44.7737 306.846 37.8278 315.027C37.5141 315.342 37.29 315.476 37.0211 315.566Z" fill="#FFE066"></path>
+<path d="M267.843 187.77C266.857 192.714 266.006 197.659 264.796 202.559C261.749 214.786 256.281 225.844 247.946 235.418C257.312 238.385 262.376 245.667 267.081 253.399C268.56 255.826 269.815 258.434 270.801 261.131C271.114 261.94 271.562 262.569 272.414 262.839C285.902 267.244 298.45 273.762 311.356 279.516C321.304 283.921 331.208 288.326 341.201 292.642C350.253 296.553 358.319 301.947 365.848 308.195C366.296 308.6 366.833 308.914 367.326 309.274C361.232 318.444 354.465 327.075 347.026 335.256C331.297 352.562 313.283 366.767 292.535 377.555C288.233 379.803 283.886 381.961 279.36 383.804C277.119 383.983 275.282 385.242 273.31 386.051C261.435 390.681 249.246 394.277 236.699 396.48C234.01 396.974 231.321 397.424 228.632 397.873C226.526 398.233 226.571 398.233 226.526 396.165C226.436 390.681 226.974 385.197 227.288 379.713C227.736 372.521 228.408 365.328 229.529 358.226C230.918 349.55 233.114 341.01 235.265 332.469C237.371 324.063 240.015 315.837 242.121 307.431C244.093 299.474 245.437 291.428 246.154 283.247C248.395 274.796 248.126 266.255 247.588 257.669C247.453 255.871 247.543 254.118 247.543 252.32C247.543 247.6 247.05 242.925 246.692 237.756C245.302 239.689 243.868 240.947 242.569 242.431C234.951 250.927 226.033 257.58 215.189 261.445C202.193 266.03 189.601 264.637 177.233 259.153C167.329 254.793 159.263 247.96 152.003 240.093C151.824 239.869 151.69 239.644 151.555 239.419C151.555 239.329 151.51 239.194 151.51 239.104C150.569 236.902 148.732 235.284 147.388 233.351C138.918 221.573 133.227 208.627 130.09 194.468C129.911 193.613 129.642 192.759 129.418 191.95C128.522 191.411 128.522 190.422 128.342 189.613C126.774 181.611 125.43 173.61 124.533 165.519C124.354 164.08 124.085 162.687 124.13 161.248C124.04 160.125 124.264 158.956 123.906 157.832C123.592 155.09 123.727 152.348 123.368 149.651C123.189 148.212 122.83 147.044 121.8 146.01C119.962 144.077 118.708 141.829 118.349 139.132C118.26 138.458 117.991 137.784 118.439 137.154C117.139 129.602 115.705 122.096 114.585 114.544C113.061 104.43 111.672 94.2705 112.434 84.0216C113.375 70.626 119.38 59.8826 130.045 51.7913C133.72 48.9594 137.439 46.1724 141.652 43.7C139.411 41.6772 136.991 39.9241 134.975 37.4518C159.935 22.6178 185.926 21.1793 213.217 30.6191C212.948 26.4836 210.976 22.8425 209.901 18.7969C212.097 19.0666 214.023 20.0555 215.95 20.9096C225.54 25.0002 235.04 29.3155 243.465 35.6537C249.067 39.8792 254.175 44.644 257.805 50.7574C258.388 51.7464 259.239 52.1509 260.091 52.6903C264.706 55.3874 269.367 57.9497 272.817 62.2201C276.357 66.5354 278.284 71.5251 278.957 76.9642C280.032 85.505 279.449 94.0907 278.867 102.676C278.508 108.206 278.15 113.78 277.791 119.309C277.433 125.197 276.626 130.996 275.775 136.84C276.357 138.728 275.327 140.301 274.251 141.47C271.921 143.942 271.518 146.819 271.742 149.966C271.831 151.539 271.876 153.112 271.607 154.64C271.249 156.169 271.473 157.697 271.383 159.226C270.711 167.991 270.039 176.757 268.694 185.477C268.515 186.152 268.56 187.096 267.843 187.77Z" fill="#222C37"></path>
+<path d="M37.0234 315.566C39.757 311.341 43.5212 308.194 47.3751 305.092C56.0239 298.17 66.0618 293.72 75.9205 289C92.9044 280.864 109.978 272.952 127.589 266.299C128.575 265.94 128.889 265.265 129.292 264.456C132.026 258.927 134.625 253.353 138.658 248.633C141.436 245.397 144.573 242.565 148.113 240.182C149.144 239.508 150.219 238.879 151.519 239.059L151.474 239.014C152.281 240.182 152.191 241.486 152.012 242.79C151.564 246.206 151.698 249.622 151.295 253.039C151.116 257.489 150.667 261.894 150.488 266.299C150.309 270.615 150.578 274.93 151.071 279.2C151.026 282.707 151.474 286.168 151.922 289.629C153.222 299.698 155.866 309.453 158.241 319.252C161.154 331.299 163.215 343.481 164.514 355.798C165.5 365.328 165.769 374.857 165.769 384.387C165.769 387.893 166.262 391.354 165.948 394.861C165.769 396.749 165.59 397.018 163.708 396.614C156.359 395.085 148.965 393.647 141.839 391.22C141.391 391.085 140.943 390.86 140.45 391.085C114.952 383.263 92.1426 370.542 71.753 353.46C58.4885 342.402 47.0166 329.636 37.0234 315.566Z" fill="#222C37"></path>
+<path d="M140.352 391.175C141.337 390.411 142.189 391.13 143.04 391.445C149.897 393.693 157.022 394.996 164.057 396.57C164.819 396.749 165.446 396.659 165.402 395.626C165.222 387.579 165.178 379.533 164.909 371.487C164.729 365.508 164.102 359.529 163.475 353.551C162.354 342.628 160.338 331.839 157.963 321.141C156.394 314.083 154.602 307.071 152.989 300.014C151.689 294.305 150.748 288.506 150.614 282.617C150.569 281.583 149.628 280.55 150.479 279.471C151.734 280.684 151.824 282.572 152.944 283.921C156.17 287.787 159.755 291.203 164.057 293.9C173.557 299.834 183.864 303.025 195.023 303.789C207.391 304.599 219.132 302.396 230.245 296.867C235.936 294.035 240.955 290.259 244.809 285.045C245.257 284.46 245.616 283.741 246.467 283.606C246.781 287.202 245.929 290.754 245.392 294.26C243.33 307.655 238.939 320.511 235.578 333.592C232.979 343.617 230.469 353.686 229.259 364.025C228.632 369.374 228.184 374.768 227.87 380.117C227.556 385.646 227.063 391.175 227.108 396.704C227.108 397.424 226.794 397.918 228.049 397.738C241.358 395.67 254.399 392.704 267.036 388.074C270.621 386.77 274.206 385.466 277.701 383.893C278.239 383.668 278.777 383.174 279.359 383.803C266.812 389.332 253.816 393.423 240.417 396.12C231.679 397.918 222.851 399.132 213.889 399.626C207.167 399.986 200.49 400.031 193.768 399.986C180.1 399.851 166.612 398.008 153.347 394.816C149 393.738 144.609 392.794 140.352 391.175Z" fill="#0D1733"></path>
+<path d="M118.538 137.018C119.031 140.749 120.375 144.12 123.422 146.503C123.826 146.817 123.915 147.267 123.96 147.761C124.005 151.043 124.587 154.279 124.408 157.561C124.543 157.875 124.722 158.235 124.318 158.46C124.005 158.639 123.736 158.37 123.736 158.1C123.288 153.74 118.672 154.279 116.521 151.942C116.252 151.627 115.58 151.447 115.222 151.942C114.953 152.301 115.266 152.751 115.446 153.065C117.686 156.617 120.285 159.853 123.422 162.64C124.318 162.325 123.601 160.977 124.722 161.022C125.797 171.361 127.41 181.655 129.472 191.859C122.436 193.657 115.401 191.454 111.188 184.442C107.872 178.868 105.318 172.979 104.422 166.506C103.884 162.415 104.063 158.28 104.377 154.189C104.601 151.267 105.139 148.39 106.125 145.603C108.007 140.389 112.398 137.018 117.776 136.793C118 136.793 118.269 136.928 118.538 137.018Z" fill="#FAB49B"></path>
+<path d="M271.125 154.325C271.17 152.887 271.215 151.448 271.215 150.01C271.125 146.639 270.901 143.402 273.993 140.885C275.158 139.941 275.382 138.143 275.83 136.614C283.986 135.491 289.812 141.919 290.932 149.605C292.545 160.574 290.394 171.047 285.375 180.847C283.314 184.847 280.132 188.084 275.427 189.208C272.738 189.837 270.139 189.612 267.898 187.769C268.526 182.42 269.153 177.026 269.736 171.677C270.184 167.451 270.542 163.226 270.901 159C272.38 159.405 271.304 160.798 272.066 161.742C274.307 160.214 276.144 158.236 277.847 156.123C278.564 155.224 279.146 154.191 279.819 153.247C280.177 152.752 280.715 152.213 280.177 151.583C279.594 150.909 278.833 150.954 278.116 151.359C276.592 152.258 275.203 153.381 273.59 154.146C272.962 154.415 272.38 154.82 271.707 154.865C271.304 154.955 270.99 154.865 271.125 154.325Z" fill="#FAB49B"></path>
+<path d="M190.102 182.509C184.008 182.059 177.958 181.385 171.864 181.654C168.996 181.789 166.173 182.149 163.349 182.778C159.137 183.767 155.776 186.24 152.863 189.206C149.861 192.218 149.592 196.309 149.368 200.489C146.41 199.006 143.946 196.848 141.257 195.05C136.372 191.858 133.997 187.094 132.563 181.61C130.681 174.372 129.83 166.955 128.799 159.583C128.037 154.099 127.231 148.615 127.051 143.041C126.827 135.22 127.186 127.623 131.219 120.565C133.773 116.07 133.504 111.081 132.698 106.136C132.026 102 131.936 97.8198 132.115 93.5944C132.294 89.0543 134.983 85.9976 138.21 83.3454C143.99 78.5806 150.847 75.9284 158.017 73.9955C158.958 73.7258 159.316 73.8157 159.047 75.0294C158.33 78.8053 156.717 82.2666 154.925 86.1774C165.859 82.4464 176.524 79.2548 187.548 76.8724C187.01 79.12 186.562 81.2327 186.024 83.3904C186.965 83.6151 187.458 82.9409 188.041 82.6262C194.494 79.12 200.947 75.5238 208.251 74.0854C225.414 70.759 241.009 74.49 255.125 84.7389C257.455 86.4471 257.231 89.2341 257.5 91.6615C258.172 98.0895 257.724 104.563 257.948 111.036C258.217 118.318 260.502 124.836 265.745 130.095C266.911 131.264 266.955 132.657 267 134.051C267.224 142.592 266.731 151.087 265.925 159.538C265.253 166.506 264.446 173.428 263.102 180.261C262.026 185.61 259.203 189.791 254.901 193.072C251.809 195.41 248.851 197.972 244.953 199.545C244.773 196.219 244.236 193.117 242.353 190.375C239.217 185.745 234.691 183.273 229.313 182.329C221.292 180.89 213.225 181.385 205.159 182.149C204.129 182.239 203.098 182.284 202.067 182.374C201.798 182.464 201.485 182.598 201.305 182.329C200.947 181.654 201.619 181.52 201.978 181.385C204.039 180.8 205.831 179.632 207.624 178.508C208.431 178.013 209.192 177.429 209.685 176.53C209.909 176.17 210.133 175.811 209.865 175.406C209.596 175.002 209.148 175.047 208.744 175.092C206.1 175.451 203.456 175.721 200.812 175.946C197.451 176.26 194.046 177.114 190.64 176.125C189.923 175.901 189.161 175.766 188.489 175.406C184.814 173.563 183.918 170.956 185.755 167.315C189.475 159.898 193.105 152.391 195.614 144.48C195.928 143.536 197.003 142.187 195.121 141.603C193.553 141.108 192.388 141.827 192.029 143.67C190.461 151.717 187.458 159.359 184.501 166.955C183.022 170.776 183.605 174.237 185.397 177.654C186.383 179.497 187.727 181.07 190.013 181.385C190.416 181.43 191.088 181.52 190.73 182.239C190.685 182.778 190.371 182.643 190.102 182.509Z" fill="#F9B39A"></path>
+<path d="M168.812 190.332C180.283 191.006 191.8 191.905 203.317 191.501C210.353 191.276 217.388 190.872 224.468 190.467C226.888 190.332 229.308 190.287 231.638 190.827C236.433 191.95 239.032 195.546 239.122 200.986C239.256 207.953 237.061 214.291 233.745 220.27C227.516 231.598 217.971 239.015 205.468 241.892C195.34 244.229 185.616 241.757 176.833 236.318C166.168 229.755 158.818 220.54 155.771 208.133C155.009 204.941 154.965 201.75 155.637 198.558C156.802 193.254 160.342 190.512 166.078 190.242C167.064 190.287 167.915 190.332 168.812 190.332Z" fill="#F9B39A"></path>
+<path d="M246.56 283.56C238.897 294.753 227.56 300.102 214.923 302.844C198.073 306.485 181.851 304.373 166.615 295.967C161.148 292.955 156.308 289.134 152.544 283.965C151.513 282.571 150.931 281.043 150.572 279.424C149.631 274.12 149.721 268.816 149.945 263.512C150.124 260.05 150.438 256.589 150.707 253.083C152.051 253.532 151.603 254.701 151.513 255.51C151.289 257.623 152.23 258.927 153.799 260.185C157.608 263.287 161.058 266.883 164.823 270.075C172.53 276.592 181.493 280.503 191.262 282.571C199.776 284.369 207.932 283.29 216.043 280.323C225.364 276.907 233.161 271.243 240.466 264.68C242.034 263.287 243.647 261.848 245.171 260.41C246.65 259.016 247.232 257.488 247.188 255.51C247.188 254.297 246.426 252.768 247.994 251.869C248.218 258.342 248.846 264.86 248.442 271.333C248.308 275.424 248.218 279.649 246.56 283.56Z" fill="#FAB49B"></path>
+<path d="M248.09 251.827C247.373 253.535 247.866 255.333 247.776 257.086C247.732 258.03 247.597 258.794 246.88 259.468C239.128 266.93 231.151 274.078 221.248 278.663C213.719 282.169 205.922 284.461 197.497 283.922C190.641 283.473 184.098 281.495 177.824 278.753C171.237 275.876 165.635 271.515 160.348 266.706C157.569 264.188 155.105 261.266 151.923 259.199C150.847 258.479 151.161 257.535 151.072 256.636C150.937 255.423 151.43 254.164 150.758 253.04C150.982 248.365 151.251 243.645 151.475 238.97C153.76 241.173 156.001 243.466 158.331 245.623C166.756 253.49 176.346 259.289 187.594 262.076C202.875 265.896 216.587 262.21 229.269 253.49C235.543 249.219 240.786 243.78 245.715 238.071C246.163 237.577 246.567 237.083 247.284 236.318C247.552 241.757 247.821 246.792 248.09 251.827Z" fill="#F6987D"></path>
+<path d="M190.103 182.508C190.148 182.463 190.238 182.463 190.283 182.418C190.372 182.329 190.462 182.239 190.507 182.149C187.191 182.014 185.667 179.721 184.457 177.114C182.933 173.743 182.665 170.371 184.099 166.775C187.191 159.089 190.014 151.312 191.717 143.176C192.075 141.333 195.212 140.344 196.601 141.558C197.453 142.277 196.691 143.131 196.512 143.805C195.346 148.21 193.509 152.301 191.672 156.437C189.969 160.257 188.356 164.168 186.205 167.719C184.009 171.405 185.846 173.473 189.117 175.226C190.91 176.17 193.061 176.395 195.122 176.17C199.648 175.721 204.174 175.136 208.7 174.642C209.417 174.552 210.403 174.237 210.851 174.867C211.389 175.631 210.672 176.53 210.179 177.069C207.983 179.632 205.115 181.16 201.889 182.014C201.799 182.059 201.71 182.104 201.62 182.194C201.799 182.284 201.934 182.374 202.113 182.508C198.125 184.172 194.136 183.542 190.103 182.508Z" fill="#DE846F"></path>
+<path d="M271.123 154.326C273.543 154.371 275.111 152.617 276.904 151.494C277.89 150.864 278.696 150.19 279.996 150.685C280.982 151.044 281.385 151.763 280.847 152.572C278.606 155.989 276.142 159.27 272.826 161.788C272.422 162.102 271.929 162.417 271.302 162.327C270.764 161.293 271.571 159.989 270.764 159.001C270.72 157.427 270.764 155.899 271.123 154.326Z" fill="#E98C74"></path>
+<path d="M124.678 161.024C123.961 161.743 124.678 162.777 124.05 163.676C120.062 160.664 117.06 156.843 114.55 152.573C113.833 151.359 114.326 150.999 115.581 151.089C116.387 151.134 116.97 151.539 117.597 151.988C118.673 152.708 119.704 153.562 120.869 154.056C122.706 154.82 124.543 155.36 123.961 157.967C123.961 157.967 124.05 158.012 124.095 158.057C124.185 157.922 124.274 157.742 124.364 157.607C124.947 158.686 124.767 159.9 124.678 161.024Z" fill="#EA8D75"></path>
+<path d="M136.773 132.885C136.818 128.659 138.431 125.512 141.837 123.31C146.677 120.118 152.099 118.994 157.746 118.725C164.243 118.41 170.741 118.095 177.105 119.804C179.838 120.568 181.362 122.141 181.496 124.299C181.765 127.985 180.017 129.783 175.984 130.142C171.906 130.502 167.963 129.558 163.93 129.198C154.654 128.344 145.557 128.974 136.773 132.885Z" fill="#142244"></path>
+<path d="M256.779 132.704C248.758 129.467 240.691 128.299 232.312 128.883C227.337 129.243 222.363 129.647 217.389 130.052C213.49 130.411 211.788 127.714 211.519 124.478C211.339 122.275 212.46 120.927 214.476 120.117C216.807 119.218 219.226 118.859 221.646 118.724C229.175 118.274 236.658 118.095 244.008 120.162C248.041 121.286 251.805 123.084 254.538 126.456C256.107 128.209 256.734 130.187 256.779 132.704Z" fill="#142245"></path>
+<path d="M156.353 147.087C156.308 144.3 157.428 142.007 159.266 140.074C162.089 137.063 165.45 137.018 168.407 139.895C173.157 144.525 172.44 152.256 166.929 155.897C165.36 156.931 163.657 157.291 161.954 156.212C158.593 154.099 156.442 151.222 156.353 147.087Z" fill="#142245"></path>
+<path d="M237.866 147.133C237.821 150.28 236.88 153.022 234.46 155.18C232.085 157.337 229.531 157.292 227.201 155.09C222.943 151.134 222.809 143.672 226.932 139.537C229.352 137.064 232.713 137.064 235.043 139.626C237.014 141.739 237.911 144.301 237.866 147.133Z" fill="#142244"></path>
+<path d="M231.328 194.871C232.18 196.265 231.866 197.748 231.373 199.142C228.236 208.357 221.828 214.29 212.687 217.167C198.481 221.618 184.948 220.494 172.624 211.458C168.188 208.222 164.827 204.176 164.02 198.512C163.796 197.074 163.976 195.725 164.693 194.467C164.827 194.602 165.006 194.737 165.096 194.916C167.157 200.041 171.549 201.884 176.433 203.098C186.113 205.48 195.927 205.884 205.785 205.12C211.701 204.671 217.481 203.727 223.128 201.929C226.444 200.895 228.953 199.007 230.567 195.905C230.746 195.456 231.015 195.186 231.328 194.871Z" fill="#0D1733"></path>
+<path d="M231.329 194.871C230.433 198.872 227.52 200.985 224.025 202.198C218.423 204.176 212.598 205.075 206.682 205.615C200.095 206.199 193.552 206.199 187.01 205.57C181.453 205.03 175.941 204.131 170.833 201.794C167.651 200.355 165.231 198.153 164.648 194.467C169.981 195.501 175.314 196.624 180.691 197.524C188.757 198.872 196.868 198.827 204.98 198.288C213.091 197.748 221.022 195.95 229.089 195.231C229.85 195.186 230.567 195.006 231.329 194.871Z" fill="#FFF7F2"></path></svg></div>
+<svg class="c-wobble" width="60" height="60" viewBox="0 0 26 26" aria-hidden="true" style="position: absolute; right: -22px; top: -22px"><path d="M13 0 C14 8 18 12 26 13 C18 14 14 18 13 26 C12 18 8 14 0 13 C8 12 12 8 13 0 Z" fill="#FFE066" stroke="#1C1B18" stroke-width="0.8"></path></svg>
+<span style="position: absolute; left: 50%; bottom: -22px; transform: translateX(-50%); white-space: nowrap; background: #FFFFFF; border-radius: 999px; padding: 12px 22px; font-size: 17px; font-weight: 800; box-shadow: 0 6px 14px -6px #1C1B1855">Imran Sharif Rizvi<span style="font-weight: 700; color: #5C5850"> · Founder</span></span>
+</div>
+<div class="c-rv c-rv-2" style="display: flex; flex-direction: column; gap: 24px; align-items: flex-start">
+<span style="display: inline-flex; background: #FFFFFF; border: 1px solid #E6E2D8; border-radius: 999px; padding: 8px 16px; font-size: 14px; font-weight: 700; letter-spacing: 0.1em">WHO’S BEHIND OPSGLEE</span>
+<h2 class="r-h2" style="margin: 0; font-size: 64px; line-height: 1.02; letter-spacing: -0.045em; font-weight: 900">A growth partner, not an agency.</h2>
+<p style="margin: 0; font-size: 21px; line-height: 1.55; color: #5C5850; max-width: 660px; text-wrap: pretty">Hi, I’m Imran. I’m a software engineer turned operator: I’ve spent years building web and mobile products, and I’m COO at Leet Pros, where I run the day-to-day. Opsglee is where those meet. The person you meet on the call is the person who maps your processes and builds your fixes, so nothing gets lost in a hand-off.</p>
+<span class="c-hand" style="font-size: 40px; line-height: 1; color: #1C1B18; transform: rotate(-3deg)">— Imran</span>
+</div>
+</section>
+
+<!-- FAQ -->
+<section class="r-sec r-pt" id="faq" style="padding: 150px 120px 0">
+<div class="c-rv" style="display: flex; flex-direction: column; align-items: center; gap: 18px; text-align: center">
+<h2 class="r-h2" style="margin: 0; font-size: 64px; line-height: 1; letter-spacing: -0.045em; font-weight: 900">Questions, answered.</h2>
+</div>
+<div style="max-width: 880px; margin: 56px auto 0; display: flex; flex-direction: column; gap: 12px">
+<div class="c-rv" style="background: #FFFFFF; border-radius: 28px; padding: 0 30px">
+<button type="button" class="c-faq-btn" data-faq="0" aria-expanded="true" style="width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 24px; background: none; border: 0; padding: 26px 0; cursor: pointer; text-align: left; font: inherit; color: #1C1B18"><span class="c-faq-q" style="font-size: 21px; font-weight: 800; letter-spacing: -0.01em">What kind of leaks can you fix?</span><span style="width: 44px; height: 44px; flex-shrink: 0; border-radius: 50%; background: #FFE066; display: flex; align-items: center; justify-content: center; transform: rotate(180deg); transition: transform .4s cubic-bezier(.2,.8,.2,1), background .3s"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 6 L8 11 L13 6" fill="none" stroke="#1C1B18" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></button>
+<p data-faq-a="0" class="c-faq-a" style="margin: 0; padding: 0 70px 28px 0; font-size: 17px; line-height: 1.6; color: #5C5850">Anything repeatable that eats your team’s time or lets revenue slip: lead follow-up, invoicing, reporting, onboarding, support, scheduling and the hand-offs between your tools. If someone does it on repeat, it’s a candidate.</p>
+</div>
+<div class="c-rv" style="background: #FFFFFF; border-radius: 28px; padding: 0 30px">
+<button type="button" class="c-faq-btn" data-faq="1" aria-expanded="false" style="width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 24px; background: none; border: 0; padding: 26px 0; cursor: pointer; text-align: left; font: inherit; color: #1C1B18"><span class="c-faq-q" style="font-size: 21px; font-weight: 800; letter-spacing: -0.01em">Why one fix a week instead of one big project?</span><span style="width: 44px; height: 44px; flex-shrink: 0; border-radius: 50%; background: #F6F5F1; display: flex; align-items: center; justify-content: center; transform: rotate(0deg); transition: transform .4s cubic-bezier(.2,.8,.2,1), background .3s"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 6 L8 11 L13 6" fill="none" stroke="#1C1B18" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></button>
+<p data-faq-a="1" hidden class="c-faq-a" style="margin: 0; padding: 0 70px 28px 0; font-size: 17px; line-height: 1.6; color: #5C5850">Because automation only pays when it’s embedded. Small, shipped, measured wins get adopted; giant roadmaps get routed around. A weekly rhythm means each fix is judged on real results before the next one starts.</p>
+</div>
+<div class="c-rv" style="background: #FFFFFF; border-radius: 28px; padding: 0 30px">
+<button type="button" class="c-faq-btn" data-faq="2" aria-expanded="false" style="width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 24px; background: none; border: 0; padding: 26px 0; cursor: pointer; text-align: left; font: inherit; color: #1C1B18"><span class="c-faq-q" style="font-size: 21px; font-weight: 800; letter-spacing: -0.01em">What happens in the first few weeks?</span><span style="width: 44px; height: 44px; flex-shrink: 0; border-radius: 50%; background: #F6F5F1; display: flex; align-items: center; justify-content: center; transform: rotate(0deg); transition: transform .4s cubic-bezier(.2,.8,.2,1), background .3s"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 6 L8 11 L13 6" fill="none" stroke="#1C1B18" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></button>
+<p data-faq-a="2" hidden class="c-faq-a" style="margin: 0; padding: 0 70px 28px 0; font-size: 17px; line-height: 1.6; color: #5C5850">In week one we map how work actually flows through your business, find the leak with the clearest return and ship the fix. After that, a new fix every week, each chosen by what the last one proved.</p>
+</div>
+<div class="c-rv" style="background: #FFFFFF; border-radius: 28px; padding: 0 30px">
+<button type="button" class="c-faq-btn" data-faq="6" aria-expanded="false" style="width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 24px; background: none; border: 0; padding: 26px 0; cursor: pointer; text-align: left; font: inherit; color: #1C1B18"><span class="c-faq-q" style="font-size: 21px; font-weight: 800; letter-spacing: -0.01em">What fits in one week? What if a fix is bigger?</span><span style="width: 44px; height: 44px; flex-shrink: 0; border-radius: 50%; background: #F6F5F1; display: flex; align-items: center; justify-content: center; transform: rotate(0deg); transition: transform .4s cubic-bezier(.2,.8,.2,1), background .3s"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 6 L8 11 L13 6" fill="none" stroke="#1C1B18" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></button>
+<p data-faq-a="6" hidden class="c-faq-a" style="margin: 0; padding: 0 70px 28px 0; font-size: 17px; line-height: 1.6; color: #5C5850">Most fixes fit in a week: one process, automated end to end. Bigger jobs get split into week-sized pieces, and each piece ships and works on its own.</p>
+</div>
+<div class="c-rv" style="background: #FFFFFF; border-radius: 28px; padding: 0 30px">
+<button type="button" class="c-faq-btn" data-faq="7" aria-expanded="false" style="width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 24px; background: none; border: 0; padding: 26px 0; cursor: pointer; text-align: left; font: inherit; color: #1C1B18"><span class="c-faq-q" style="font-size: 21px; font-weight: 800; letter-spacing: -0.01em">Who fixes things when they break?</span><span style="width: 44px; height: 44px; flex-shrink: 0; border-radius: 50%; background: #F6F5F1; display: flex; align-items: center; justify-content: center; transform: rotate(0deg); transition: transform .4s cubic-bezier(.2,.8,.2,1), background .3s"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 6 L8 11 L13 6" fill="none" stroke="#1C1B18" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></button>
+<p data-faq-a="7" hidden class="c-faq-a" style="margin: 0; padding: 0 70px 28px 0; font-size: 17px; line-height: 1.6; color: #5C5850">We do. Everything we’ve built is monitored and maintained for as long as you’re subscribed, and repairing a broken fix always comes before starting a new one.</p>
+</div>
+<div class="c-rv" style="background: #FFFFFF; border-radius: 28px; padding: 0 30px">
+<button type="button" class="c-faq-btn" data-faq="8" aria-expanded="false" style="width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 24px; background: none; border: 0; padding: 26px 0; cursor: pointer; text-align: left; font: inherit; color: #1C1B18"><span class="c-faq-q" style="font-size: 21px; font-weight: 800; letter-spacing: -0.01em">Who pays for the software?</span><span style="width: 44px; height: 44px; flex-shrink: 0; border-radius: 50%; background: #F6F5F1; display: flex; align-items: center; justify-content: center; transform: rotate(0deg); transition: transform .4s cubic-bezier(.2,.8,.2,1), background .3s"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 6 L8 11 L13 6" fill="none" stroke="#1C1B18" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></button>
+<p data-faq-a="8" hidden class="c-faq-a" style="margin: 0; padding: 0 70px 28px 0; font-size: 17px; line-height: 1.6; color: #5C5850">You do, directly. Any paid tools run on your own accounts, so you own them and pay the vendor at cost. We flag every cost before we build and pick the cheapest tool that does the job well.</p>
+</div>
+<div class="c-rv" style="background: #FFFFFF; border-radius: 28px; padding: 0 30px">
+<button type="button" class="c-faq-btn" data-faq="9" aria-expanded="false" style="width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 24px; background: none; border: 0; padding: 26px 0; cursor: pointer; text-align: left; font: inherit; color: #1C1B18"><span class="c-faq-q" style="font-size: 21px; font-weight: 800; letter-spacing: -0.01em">Is there a free trial?</span><span style="width: 44px; height: 44px; flex-shrink: 0; border-radius: 50%; background: #F6F5F1; display: flex; align-items: center; justify-content: center; transform: rotate(0deg); transition: transform .4s cubic-bezier(.2,.8,.2,1), background .3s"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 6 L8 11 L13 6" fill="none" stroke="#1C1B18" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></button>
+<p data-faq-a="9" hidden class="c-faq-a" style="margin: 0; padding: 0 70px 28px 0; font-size: 17px; line-height: 1.6; color: #5C5850">Yes. Your first week is free: we find your first leak and ship the fix before you pay anything. If it’s not worth it, you walk away.</p>
+</div>
+<div class="c-rv" style="background: #FFFFFF; border-radius: 28px; padding: 0 30px">
+<button type="button" class="c-faq-btn" data-faq="3" aria-expanded="false" style="width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 24px; background: none; border: 0; padding: 26px 0; cursor: pointer; text-align: left; font: inherit; color: #1C1B18"><span class="c-faq-q" style="font-size: 21px; font-weight: 800; letter-spacing: -0.01em">Do we own what you build?</span><span style="width: 44px; height: 44px; flex-shrink: 0; border-radius: 50%; background: #F6F5F1; display: flex; align-items: center; justify-content: center; transform: rotate(0deg); transition: transform .4s cubic-bezier(.2,.8,.2,1), background .3s"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 6 L8 11 L13 6" fill="none" stroke="#1C1B18" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></button>
+<p data-faq-a="3" hidden class="c-faq-a" style="margin: 0; padding: 0 70px 28px 0; font-size: 17px; line-height: 1.6; color: #5C5850">Yes. Everything is built in your accounts, so it keeps running whether or not you stay subscribed.</p>
+</div>
+<div class="c-rv" style="background: #FFFFFF; border-radius: 28px; padding: 0 30px">
+<button type="button" class="c-faq-btn" data-faq="4" aria-expanded="false" style="width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 24px; background: none; border: 0; padding: 26px 0; cursor: pointer; text-align: left; font: inherit; color: #1C1B18"><span class="c-faq-q" style="font-size: 21px; font-weight: 800; letter-spacing: -0.01em">Do we have to switch tools?</span><span style="width: 44px; height: 44px; flex-shrink: 0; border-radius: 50%; background: #F6F5F1; display: flex; align-items: center; justify-content: center; transform: rotate(0deg); transition: transform .4s cubic-bezier(.2,.8,.2,1), background .3s"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 6 L8 11 L13 6" fill="none" stroke="#1C1B18" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></button>
+<p data-faq-a="4" hidden class="c-faq-a" style="margin: 0; padding: 0 70px 28px 0; font-size: 17px; line-height: 1.6; color: #5C5850">No. We build inside the stack you already use wherever we can, and choose tooling that’s cheap to run and easy for your team to change.</p>
+</div>
+<div class="c-rv" style="background: #FFFFFF; border-radius: 28px; padding: 0 30px">
+<button type="button" class="c-faq-btn" data-faq="5" aria-expanded="false" style="width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 24px; background: none; border: 0; padding: 26px 0; cursor: pointer; text-align: left; font: inherit; color: #1C1B18"><span class="c-faq-q" style="font-size: 21px; font-weight: 800; letter-spacing: -0.01em">Can I pause or cancel?</span><span style="width: 44px; height: 44px; flex-shrink: 0; border-radius: 50%; background: #F6F5F1; display: flex; align-items: center; justify-content: center; transform: rotate(0deg); transition: transform .4s cubic-bezier(.2,.8,.2,1), background .3s"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 6 L8 11 L13 6" fill="none" stroke="#1C1B18" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></button>
+<p data-faq-a="5" hidden class="c-faq-a" style="margin: 0; padding: 0 70px 28px 0; font-size: 17px; line-height: 1.6; color: #5C5850">Anytime. It’s month to month. If the ROI stops showing up, you stop paying. That’s the point.</p>
+</div>
+</div>
+</section>
+
+<!-- BOOK A CALL -->
+<section class="r-sec r-pt" id="call" style="padding: 150px 120px 0">
+<div class="c-rv-s r-stack r-callpad" style="position: relative; background: #FFE066; border-radius: 40px; padding: 80px; display: grid; grid-template-columns: minmax(0, 1fr) 400px; gap: 60px; align-items: center">
+<svg class="c-spin" width="90" height="90" viewBox="0 0 26 26" aria-hidden="true" style="position: absolute; left: -30px; bottom: -30px"><path d="M13 0 C14 8 18 12 26 13 C18 14 14 18 13 26 C12 18 8 14 0 13 C8 12 12 8 13 0 Z" fill="#DCD1FF" stroke="#1C1B18" stroke-width="0.6"></path></svg>
+<div style="display: flex; flex-direction: column; gap: 24px; align-items: flex-start">
+<h2 class="r-h2" style="margin: 0; font-size: 64px; line-height: 0.98; letter-spacing: -0.05em; font-weight: 900">Not sure yet? Let’s talk it through.</h2>
+<p style="margin: 0; font-size: 21px; line-height: 1.55; max-width: 560px">15 minutes, no slide deck. We look at what’s eating your team’s week and tell you honestly whether a weekly fix would pay off. If it won’t, we’ll say so. If it will, your first week is on us.</p>
+<div style="display: flex; align-items: center; gap: 14px; margin-top: 6px">
+<a class="c-pill" href="#call" data-magnet style="display: flex; align-items: center; gap: 10px; min-height: 62px; box-sizing: border-box; padding: 0 32px; border-radius: 999px; background: #2B2925; color: #FFFFFF; text-decoration: none; font-size: 17px; font-weight: 700; transition: transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .3s">Get your first week free<svg class="c-arrow" width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10 H16 M11 5 L16 10 L11 15" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+</div>
+</div>
+<div class="c-fl-b" style="background: #FFFFFF; border-radius: 28px; padding: 34px; display: flex; flex-direction: column; gap: 16px; box-shadow: 0 30px 60px -30px #1C1B1866">
+<span style="display: flex; align-items: center; gap: 12px; padding-bottom: 14px; border-bottom: 1px solid #E6E2D8"><svg width="48" height="48" viewBox="0 0 400 400" fill="none" aria-hidden="true" style="flex-shrink: 0"><path d="M37.0211 315.566C30.837 306.846 25.3699 297.676 20.6198 288.056C11.9262 270.525 6.23508 252.05 2.87416 232.766C0.364667 218.426 -0.397142 203.997 0.185418 189.477C1.08166 167.721 5.69733 146.728 13.8084 126.545C21.1576 108.25 30.9715 91.348 43.3845 76.0195C54.0946 62.7588 66.2388 50.9815 79.8169 40.7775C102.94 23.3812 128.349 10.7498 156.804 4.72634C165.543 2.88332 174.416 1.57973 183.333 0.81555C190.772 0.141277 198.211 -0.173384 205.695 0.0963252C231.91 1.08526 257.094 6.5244 281.069 17.3577C297.694 24.8646 313.155 34.2146 327.181 45.902C338.877 55.6115 349.228 66.7145 358.639 78.6267C370.828 94.0001 380.552 110.812 387.319 129.197C391.711 141.109 395.161 153.336 397.133 165.968C399.284 179.633 400.404 193.343 399.866 207.188C399.149 225.079 396.237 242.565 390.859 259.647C385.347 277.268 377.505 293.81 367.333 309.228C366.526 309.588 366.033 309.048 365.54 308.599C356.354 300.687 345.912 294.934 334.754 290.304C322.61 285.224 310.69 279.74 298.68 274.301C290.255 270.48 281.92 266.434 273.092 263.557C271.524 263.063 270.538 262.029 269.956 260.546C267.401 254.342 263.906 248.678 259.38 243.734C256.512 240.587 253.375 237.755 249.118 236.497C247.28 235.957 247.191 235.508 248.356 234.114C258.752 221.752 264.04 207.188 266.55 191.455C266.774 190.152 266.326 188.488 267.939 187.634C275.064 190.826 279.769 187.814 284.34 181.296C287.612 176.621 288.732 171.002 289.852 165.473C290.883 160.349 291.197 155.134 290.3 149.92C289.628 146.054 288.149 142.593 285.057 139.941C283.086 138.277 280.979 137.199 278.38 137.154C277.439 137.154 276.453 137.333 275.602 136.704C274.93 134.906 275.781 133.198 275.96 131.445C276.588 125.017 277.305 118.634 277.708 112.161C278.335 101.732 279.232 91.348 278.828 80.8743C278.559 73.9967 276.722 67.6136 272.241 62.1744C269.552 58.9379 266.236 56.5555 262.606 54.6226C259.559 53.0043 257.318 50.7567 255.347 47.8798C250.955 41.4967 244.95 36.8217 238.497 32.6413C230.521 27.4718 221.827 23.6959 213.089 20.0998C212.506 19.8301 211.879 19.4704 210.893 19.8301C211.52 21.8978 212.282 23.9206 212.909 26.0334C213.044 26.4379 213.178 26.7975 213.313 27.2021C213.626 28.236 214.164 29.4497 213.358 30.3487C212.417 31.3377 211.341 30.3487 210.355 30.0341C202.423 27.6067 194.357 25.8536 186.022 25.2692C173.071 24.3702 160.613 26.4829 148.604 31.1579C144.84 32.6413 141.21 34.4393 137.67 36.4172C136.325 37.1364 136.236 37.8107 137.356 38.8446C138.431 39.8335 139.507 40.7325 140.627 41.6765C142.375 43.2049 142.33 43.7892 140.313 45.0479C136.056 47.7 132.068 50.7118 128.259 53.9932C119.789 61.2304 114.77 70.3107 113.471 81.4137C112.306 91.3929 113.561 101.282 114.905 111.172C115.98 119.083 117.459 126.905 118.848 134.771C118.983 135.49 119.252 136.255 118.848 136.974C118.266 137.468 117.549 137.423 116.921 137.513C111.768 138.053 108.631 141.109 106.794 145.694C105.718 148.392 105.36 151.268 105.046 154.145C103.791 165.473 106.211 175.902 112.575 185.297C116.115 190.511 121.313 192.309 127.452 191.77C128.08 191.725 128.662 191.59 129.29 191.635C130.32 191.86 130.41 192.804 130.544 193.568C132.202 202.468 135.608 210.784 139.417 218.921C142.42 225.349 146.498 231.102 150.8 236.721C151.293 237.351 152.054 237.89 151.696 238.879C141.927 243.644 135.832 251.735 131.53 261.355C130.007 264.681 127.99 266.749 124.45 268.098C111.186 273.087 98.2796 279.021 85.4184 285.044C77.8451 288.595 70.3167 292.236 62.833 295.967C53.288 300.732 44.7737 306.846 37.8278 315.027C37.5141 315.342 37.29 315.476 37.0211 315.566Z" fill="#FFE066"></path>
+<path d="M267.843 187.77C266.857 192.714 266.006 197.659 264.796 202.559C261.749 214.786 256.281 225.844 247.946 235.418C257.312 238.385 262.376 245.667 267.081 253.399C268.56 255.826 269.815 258.434 270.801 261.131C271.114 261.94 271.562 262.569 272.414 262.839C285.902 267.244 298.45 273.762 311.356 279.516C321.304 283.921 331.208 288.326 341.201 292.642C350.253 296.553 358.319 301.947 365.848 308.195C366.296 308.6 366.833 308.914 367.326 309.274C361.232 318.444 354.465 327.075 347.026 335.256C331.297 352.562 313.283 366.767 292.535 377.555C288.233 379.803 283.886 381.961 279.36 383.804C277.119 383.983 275.282 385.242 273.31 386.051C261.435 390.681 249.246 394.277 236.699 396.48C234.01 396.974 231.321 397.424 228.632 397.873C226.526 398.233 226.571 398.233 226.526 396.165C226.436 390.681 226.974 385.197 227.288 379.713C227.736 372.521 228.408 365.328 229.529 358.226C230.918 349.55 233.114 341.01 235.265 332.469C237.371 324.063 240.015 315.837 242.121 307.431C244.093 299.474 245.437 291.428 246.154 283.247C248.395 274.796 248.126 266.255 247.588 257.669C247.453 255.871 247.543 254.118 247.543 252.32C247.543 247.6 247.05 242.925 246.692 237.756C245.302 239.689 243.868 240.947 242.569 242.431C234.951 250.927 226.033 257.58 215.189 261.445C202.193 266.03 189.601 264.637 177.233 259.153C167.329 254.793 159.263 247.96 152.003 240.093C151.824 239.869 151.69 239.644 151.555 239.419C151.555 239.329 151.51 239.194 151.51 239.104C150.569 236.902 148.732 235.284 147.388 233.351C138.918 221.573 133.227 208.627 130.09 194.468C129.911 193.613 129.642 192.759 129.418 191.95C128.522 191.411 128.522 190.422 128.342 189.613C126.774 181.611 125.43 173.61 124.533 165.519C124.354 164.08 124.085 162.687 124.13 161.248C124.04 160.125 124.264 158.956 123.906 157.832C123.592 155.09 123.727 152.348 123.368 149.651C123.189 148.212 122.83 147.044 121.8 146.01C119.962 144.077 118.708 141.829 118.349 139.132C118.26 138.458 117.991 137.784 118.439 137.154C117.139 129.602 115.705 122.096 114.585 114.544C113.061 104.43 111.672 94.2705 112.434 84.0216C113.375 70.626 119.38 59.8826 130.045 51.7913C133.72 48.9594 137.439 46.1724 141.652 43.7C139.411 41.6772 136.991 39.9241 134.975 37.4518C159.935 22.6178 185.926 21.1793 213.217 30.6191C212.948 26.4836 210.976 22.8425 209.901 18.7969C212.097 19.0666 214.023 20.0555 215.95 20.9096C225.54 25.0002 235.04 29.3155 243.465 35.6537C249.067 39.8792 254.175 44.644 257.805 50.7574C258.388 51.7464 259.239 52.1509 260.091 52.6903C264.706 55.3874 269.367 57.9497 272.817 62.2201C276.357 66.5354 278.284 71.5251 278.957 76.9642C280.032 85.505 279.449 94.0907 278.867 102.676C278.508 108.206 278.15 113.78 277.791 119.309C277.433 125.197 276.626 130.996 275.775 136.84C276.357 138.728 275.327 140.301 274.251 141.47C271.921 143.942 271.518 146.819 271.742 149.966C271.831 151.539 271.876 153.112 271.607 154.64C271.249 156.169 271.473 157.697 271.383 159.226C270.711 167.991 270.039 176.757 268.694 185.477C268.515 186.152 268.56 187.096 267.843 187.77Z" fill="#222C37"></path>
+<path d="M37.0234 315.566C39.757 311.341 43.5212 308.194 47.3751 305.092C56.0239 298.17 66.0618 293.72 75.9205 289C92.9044 280.864 109.978 272.952 127.589 266.299C128.575 265.94 128.889 265.265 129.292 264.456C132.026 258.927 134.625 253.353 138.658 248.633C141.436 245.397 144.573 242.565 148.113 240.182C149.144 239.508 150.219 238.879 151.519 239.059L151.474 239.014C152.281 240.182 152.191 241.486 152.012 242.79C151.564 246.206 151.698 249.622 151.295 253.039C151.116 257.489 150.667 261.894 150.488 266.299C150.309 270.615 150.578 274.93 151.071 279.2C151.026 282.707 151.474 286.168 151.922 289.629C153.222 299.698 155.866 309.453 158.241 319.252C161.154 331.299 163.215 343.481 164.514 355.798C165.5 365.328 165.769 374.857 165.769 384.387C165.769 387.893 166.262 391.354 165.948 394.861C165.769 396.749 165.59 397.018 163.708 396.614C156.359 395.085 148.965 393.647 141.839 391.22C141.391 391.085 140.943 390.86 140.45 391.085C114.952 383.263 92.1426 370.542 71.753 353.46C58.4885 342.402 47.0166 329.636 37.0234 315.566Z" fill="#222C37"></path>
+<path d="M140.352 391.175C141.337 390.411 142.189 391.13 143.04 391.445C149.897 393.693 157.022 394.996 164.057 396.57C164.819 396.749 165.446 396.659 165.402 395.626C165.222 387.579 165.178 379.533 164.909 371.487C164.729 365.508 164.102 359.529 163.475 353.551C162.354 342.628 160.338 331.839 157.963 321.141C156.394 314.083 154.602 307.071 152.989 300.014C151.689 294.305 150.748 288.506 150.614 282.617C150.569 281.583 149.628 280.55 150.479 279.471C151.734 280.684 151.824 282.572 152.944 283.921C156.17 287.787 159.755 291.203 164.057 293.9C173.557 299.834 183.864 303.025 195.023 303.789C207.391 304.599 219.132 302.396 230.245 296.867C235.936 294.035 240.955 290.259 244.809 285.045C245.257 284.46 245.616 283.741 246.467 283.606C246.781 287.202 245.929 290.754 245.392 294.26C243.33 307.655 238.939 320.511 235.578 333.592C232.979 343.617 230.469 353.686 229.259 364.025C228.632 369.374 228.184 374.768 227.87 380.117C227.556 385.646 227.063 391.175 227.108 396.704C227.108 397.424 226.794 397.918 228.049 397.738C241.358 395.67 254.399 392.704 267.036 388.074C270.621 386.77 274.206 385.466 277.701 383.893C278.239 383.668 278.777 383.174 279.359 383.803C266.812 389.332 253.816 393.423 240.417 396.12C231.679 397.918 222.851 399.132 213.889 399.626C207.167 399.986 200.49 400.031 193.768 399.986C180.1 399.851 166.612 398.008 153.347 394.816C149 393.738 144.609 392.794 140.352 391.175Z" fill="#0D1733"></path>
+<path d="M118.538 137.018C119.031 140.749 120.375 144.12 123.422 146.503C123.826 146.817 123.915 147.267 123.96 147.761C124.005 151.043 124.587 154.279 124.408 157.561C124.543 157.875 124.722 158.235 124.318 158.46C124.005 158.639 123.736 158.37 123.736 158.1C123.288 153.74 118.672 154.279 116.521 151.942C116.252 151.627 115.58 151.447 115.222 151.942C114.953 152.301 115.266 152.751 115.446 153.065C117.686 156.617 120.285 159.853 123.422 162.64C124.318 162.325 123.601 160.977 124.722 161.022C125.797 171.361 127.41 181.655 129.472 191.859C122.436 193.657 115.401 191.454 111.188 184.442C107.872 178.868 105.318 172.979 104.422 166.506C103.884 162.415 104.063 158.28 104.377 154.189C104.601 151.267 105.139 148.39 106.125 145.603C108.007 140.389 112.398 137.018 117.776 136.793C118 136.793 118.269 136.928 118.538 137.018Z" fill="#FAB49B"></path>
+<path d="M271.125 154.325C271.17 152.887 271.215 151.448 271.215 150.01C271.125 146.639 270.901 143.402 273.993 140.885C275.158 139.941 275.382 138.143 275.83 136.614C283.986 135.491 289.812 141.919 290.932 149.605C292.545 160.574 290.394 171.047 285.375 180.847C283.314 184.847 280.132 188.084 275.427 189.208C272.738 189.837 270.139 189.612 267.898 187.769C268.526 182.42 269.153 177.026 269.736 171.677C270.184 167.451 270.542 163.226 270.901 159C272.38 159.405 271.304 160.798 272.066 161.742C274.307 160.214 276.144 158.236 277.847 156.123C278.564 155.224 279.146 154.191 279.819 153.247C280.177 152.752 280.715 152.213 280.177 151.583C279.594 150.909 278.833 150.954 278.116 151.359C276.592 152.258 275.203 153.381 273.59 154.146C272.962 154.415 272.38 154.82 271.707 154.865C271.304 154.955 270.99 154.865 271.125 154.325Z" fill="#FAB49B"></path>
+<path d="M190.102 182.509C184.008 182.059 177.958 181.385 171.864 181.654C168.996 181.789 166.173 182.149 163.349 182.778C159.137 183.767 155.776 186.24 152.863 189.206C149.861 192.218 149.592 196.309 149.368 200.489C146.41 199.006 143.946 196.848 141.257 195.05C136.372 191.858 133.997 187.094 132.563 181.61C130.681 174.372 129.83 166.955 128.799 159.583C128.037 154.099 127.231 148.615 127.051 143.041C126.827 135.22 127.186 127.623 131.219 120.565C133.773 116.07 133.504 111.081 132.698 106.136C132.026 102 131.936 97.8198 132.115 93.5944C132.294 89.0543 134.983 85.9976 138.21 83.3454C143.99 78.5806 150.847 75.9284 158.017 73.9955C158.958 73.7258 159.316 73.8157 159.047 75.0294C158.33 78.8053 156.717 82.2666 154.925 86.1774C165.859 82.4464 176.524 79.2548 187.548 76.8724C187.01 79.12 186.562 81.2327 186.024 83.3904C186.965 83.6151 187.458 82.9409 188.041 82.6262C194.494 79.12 200.947 75.5238 208.251 74.0854C225.414 70.759 241.009 74.49 255.125 84.7389C257.455 86.4471 257.231 89.2341 257.5 91.6615C258.172 98.0895 257.724 104.563 257.948 111.036C258.217 118.318 260.502 124.836 265.745 130.095C266.911 131.264 266.955 132.657 267 134.051C267.224 142.592 266.731 151.087 265.925 159.538C265.253 166.506 264.446 173.428 263.102 180.261C262.026 185.61 259.203 189.791 254.901 193.072C251.809 195.41 248.851 197.972 244.953 199.545C244.773 196.219 244.236 193.117 242.353 190.375C239.217 185.745 234.691 183.273 229.313 182.329C221.292 180.89 213.225 181.385 205.159 182.149C204.129 182.239 203.098 182.284 202.067 182.374C201.798 182.464 201.485 182.598 201.305 182.329C200.947 181.654 201.619 181.52 201.978 181.385C204.039 180.8 205.831 179.632 207.624 178.508C208.431 178.013 209.192 177.429 209.685 176.53C209.909 176.17 210.133 175.811 209.865 175.406C209.596 175.002 209.148 175.047 208.744 175.092C206.1 175.451 203.456 175.721 200.812 175.946C197.451 176.26 194.046 177.114 190.64 176.125C189.923 175.901 189.161 175.766 188.489 175.406C184.814 173.563 183.918 170.956 185.755 167.315C189.475 159.898 193.105 152.391 195.614 144.48C195.928 143.536 197.003 142.187 195.121 141.603C193.553 141.108 192.388 141.827 192.029 143.67C190.461 151.717 187.458 159.359 184.501 166.955C183.022 170.776 183.605 174.237 185.397 177.654C186.383 179.497 187.727 181.07 190.013 181.385C190.416 181.43 191.088 181.52 190.73 182.239C190.685 182.778 190.371 182.643 190.102 182.509Z" fill="#F9B39A"></path>
+<path d="M168.812 190.332C180.283 191.006 191.8 191.905 203.317 191.501C210.353 191.276 217.388 190.872 224.468 190.467C226.888 190.332 229.308 190.287 231.638 190.827C236.433 191.95 239.032 195.546 239.122 200.986C239.256 207.953 237.061 214.291 233.745 220.27C227.516 231.598 217.971 239.015 205.468 241.892C195.34 244.229 185.616 241.757 176.833 236.318C166.168 229.755 158.818 220.54 155.771 208.133C155.009 204.941 154.965 201.75 155.637 198.558C156.802 193.254 160.342 190.512 166.078 190.242C167.064 190.287 167.915 190.332 168.812 190.332Z" fill="#F9B39A"></path>
+<path d="M246.56 283.56C238.897 294.753 227.56 300.102 214.923 302.844C198.073 306.485 181.851 304.373 166.615 295.967C161.148 292.955 156.308 289.134 152.544 283.965C151.513 282.571 150.931 281.043 150.572 279.424C149.631 274.12 149.721 268.816 149.945 263.512C150.124 260.05 150.438 256.589 150.707 253.083C152.051 253.532 151.603 254.701 151.513 255.51C151.289 257.623 152.23 258.927 153.799 260.185C157.608 263.287 161.058 266.883 164.823 270.075C172.53 276.592 181.493 280.503 191.262 282.571C199.776 284.369 207.932 283.29 216.043 280.323C225.364 276.907 233.161 271.243 240.466 264.68C242.034 263.287 243.647 261.848 245.171 260.41C246.65 259.016 247.232 257.488 247.188 255.51C247.188 254.297 246.426 252.768 247.994 251.869C248.218 258.342 248.846 264.86 248.442 271.333C248.308 275.424 248.218 279.649 246.56 283.56Z" fill="#FAB49B"></path>
+<path d="M248.09 251.827C247.373 253.535 247.866 255.333 247.776 257.086C247.732 258.03 247.597 258.794 246.88 259.468C239.128 266.93 231.151 274.078 221.248 278.663C213.719 282.169 205.922 284.461 197.497 283.922C190.641 283.473 184.098 281.495 177.824 278.753C171.237 275.876 165.635 271.515 160.348 266.706C157.569 264.188 155.105 261.266 151.923 259.199C150.847 258.479 151.161 257.535 151.072 256.636C150.937 255.423 151.43 254.164 150.758 253.04C150.982 248.365 151.251 243.645 151.475 238.97C153.76 241.173 156.001 243.466 158.331 245.623C166.756 253.49 176.346 259.289 187.594 262.076C202.875 265.896 216.587 262.21 229.269 253.49C235.543 249.219 240.786 243.78 245.715 238.071C246.163 237.577 246.567 237.083 247.284 236.318C247.552 241.757 247.821 246.792 248.09 251.827Z" fill="#F6987D"></path>
+<path d="M190.103 182.508C190.148 182.463 190.238 182.463 190.283 182.418C190.372 182.329 190.462 182.239 190.507 182.149C187.191 182.014 185.667 179.721 184.457 177.114C182.933 173.743 182.665 170.371 184.099 166.775C187.191 159.089 190.014 151.312 191.717 143.176C192.075 141.333 195.212 140.344 196.601 141.558C197.453 142.277 196.691 143.131 196.512 143.805C195.346 148.21 193.509 152.301 191.672 156.437C189.969 160.257 188.356 164.168 186.205 167.719C184.009 171.405 185.846 173.473 189.117 175.226C190.91 176.17 193.061 176.395 195.122 176.17C199.648 175.721 204.174 175.136 208.7 174.642C209.417 174.552 210.403 174.237 210.851 174.867C211.389 175.631 210.672 176.53 210.179 177.069C207.983 179.632 205.115 181.16 201.889 182.014C201.799 182.059 201.71 182.104 201.62 182.194C201.799 182.284 201.934 182.374 202.113 182.508C198.125 184.172 194.136 183.542 190.103 182.508Z" fill="#DE846F"></path>
+<path d="M271.123 154.326C273.543 154.371 275.111 152.617 276.904 151.494C277.89 150.864 278.696 150.19 279.996 150.685C280.982 151.044 281.385 151.763 280.847 152.572C278.606 155.989 276.142 159.27 272.826 161.788C272.422 162.102 271.929 162.417 271.302 162.327C270.764 161.293 271.571 159.989 270.764 159.001C270.72 157.427 270.764 155.899 271.123 154.326Z" fill="#E98C74"></path>
+<path d="M124.678 161.024C123.961 161.743 124.678 162.777 124.05 163.676C120.062 160.664 117.06 156.843 114.55 152.573C113.833 151.359 114.326 150.999 115.581 151.089C116.387 151.134 116.97 151.539 117.597 151.988C118.673 152.708 119.704 153.562 120.869 154.056C122.706 154.82 124.543 155.36 123.961 157.967C123.961 157.967 124.05 158.012 124.095 158.057C124.185 157.922 124.274 157.742 124.364 157.607C124.947 158.686 124.767 159.9 124.678 161.024Z" fill="#EA8D75"></path>
+<path d="M136.773 132.885C136.818 128.659 138.431 125.512 141.837 123.31C146.677 120.118 152.099 118.994 157.746 118.725C164.243 118.41 170.741 118.095 177.105 119.804C179.838 120.568 181.362 122.141 181.496 124.299C181.765 127.985 180.017 129.783 175.984 130.142C171.906 130.502 167.963 129.558 163.93 129.198C154.654 128.344 145.557 128.974 136.773 132.885Z" fill="#142244"></path>
+<path d="M256.779 132.704C248.758 129.467 240.691 128.299 232.312 128.883C227.337 129.243 222.363 129.647 217.389 130.052C213.49 130.411 211.788 127.714 211.519 124.478C211.339 122.275 212.46 120.927 214.476 120.117C216.807 119.218 219.226 118.859 221.646 118.724C229.175 118.274 236.658 118.095 244.008 120.162C248.041 121.286 251.805 123.084 254.538 126.456C256.107 128.209 256.734 130.187 256.779 132.704Z" fill="#142245"></path>
+<path d="M156.353 147.087C156.308 144.3 157.428 142.007 159.266 140.074C162.089 137.063 165.45 137.018 168.407 139.895C173.157 144.525 172.44 152.256 166.929 155.897C165.36 156.931 163.657 157.291 161.954 156.212C158.593 154.099 156.442 151.222 156.353 147.087Z" fill="#142245"></path>
+<path d="M237.866 147.133C237.821 150.28 236.88 153.022 234.46 155.18C232.085 157.337 229.531 157.292 227.201 155.09C222.943 151.134 222.809 143.672 226.932 139.537C229.352 137.064 232.713 137.064 235.043 139.626C237.014 141.739 237.911 144.301 237.866 147.133Z" fill="#142244"></path>
+<path d="M231.328 194.871C232.18 196.265 231.866 197.748 231.373 199.142C228.236 208.357 221.828 214.29 212.687 217.167C198.481 221.618 184.948 220.494 172.624 211.458C168.188 208.222 164.827 204.176 164.02 198.512C163.796 197.074 163.976 195.725 164.693 194.467C164.827 194.602 165.006 194.737 165.096 194.916C167.157 200.041 171.549 201.884 176.433 203.098C186.113 205.48 195.927 205.884 205.785 205.12C211.701 204.671 217.481 203.727 223.128 201.929C226.444 200.895 228.953 199.007 230.567 195.905C230.746 195.456 231.015 195.186 231.328 194.871Z" fill="#0D1733"></path>
+<path d="M231.329 194.871C230.433 198.872 227.52 200.985 224.025 202.198C218.423 204.176 212.598 205.075 206.682 205.615C200.095 206.199 193.552 206.199 187.01 205.57C181.453 205.03 175.941 204.131 170.833 201.794C167.651 200.355 165.231 198.153 164.648 194.467C169.981 195.501 175.314 196.624 180.691 197.524C188.757 198.872 196.868 198.827 204.98 198.288C213.091 197.748 221.022 195.95 229.089 195.231C229.85 195.186 230.567 195.006 231.329 194.871Z" fill="#FFF7F2"></path></svg><span style="display: flex; flex-direction: column; gap: 1px"><span style="font-size: 17px; font-weight: 800">You’ll talk to Imran</span><span style="font-size: 14px; color: #5C5850">Founder, Opsglee</span></span></span>
+<span style="font-size: 14px; font-weight: 800; letter-spacing: 0.1em; color: #5C5850">WHAT TO EXPECT</span>
+<span style="display: flex; gap: 12px; align-items: center; font-size: 17px; font-weight: 700"><svg width="22" height="22" viewBox="0 0 20 20" aria-hidden="true" style="flex-shrink: 0"><circle cx="10" cy="10" r="9" fill="#BFEFD4"></circle><path d="M6 10.3 L8.8 13 L14 7.5" fill="none" stroke="#1C1B18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>You show us the messy process</span>
+<span style="display: flex; gap: 12px; align-items: center; font-size: 17px; font-weight: 700"><svg width="22" height="22" viewBox="0 0 20 20" aria-hidden="true" style="flex-shrink: 0"><circle cx="10" cy="10" r="9" fill="#BFEFD4"></circle><path d="M6 10.3 L8.8 13 L14 7.5" fill="none" stroke="#1C1B18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>We find the leak together</span>
+<span style="display: flex; gap: 12px; align-items: center; font-size: 17px; font-weight: 700"><svg width="22" height="22" viewBox="0 0 20 20" aria-hidden="true" style="flex-shrink: 0"><circle cx="10" cy="10" r="9" fill="#BFEFD4"></circle><path d="M6 10.3 L8.8 13 L14 7.5" fill="none" stroke="#1C1B18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>An idea for your first fix</span>
+<span style="display: flex; gap: 12px; align-items: center; font-size: 17px; font-weight: 700"><svg width="22" height="22" viewBox="0 0 20 20" aria-hidden="true" style="flex-shrink: 0"><circle cx="10" cy="10" r="9" fill="#BFEFD4"></circle><path d="M6 10.3 L8.8 13 L14 7.5" fill="none" stroke="#1C1B18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>An honest yes or no on fit</span>
+<span style="display: flex; gap: 12px; align-items: center; font-size: 17px; font-weight: 700"><svg width="22" height="22" viewBox="0 0 20 20" aria-hidden="true" style="flex-shrink: 0"><circle cx="10" cy="10" r="9" fill="#BFEFD4"></circle><path d="M6 10.3 L8.8 13 L14 7.5" fill="none" stroke="#1C1B18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Zero pressure to buy</span>
+</div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer class="r-sec r-footer" style="flex-grow: 1; padding: 130px 120px 0; display: flex; flex-direction: column; position: relative; overflow: hidden">
+<div class="r-col" style="display: flex; justify-content: space-between; align-items: flex-start; gap: 40px">
+<div style="display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; align-items: center; gap: 10px"><svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true" style="overflow: visible"><path class="lg-ant" d="M16 8 V4.8" fill="none" stroke="#1C1B18" stroke-width="2.6" stroke-linecap="round"></path><circle class="lg-dot" cx="16" cy="3" r="2" fill="#1C1B18"></circle><rect class="lg-face" x="3.5" y="8" width="25" height="20" rx="7.5" fill="none" stroke="#1C1B18" stroke-width="2.6"></rect><g class="lg-look"><g class="lg-blink"><path class="lg-eye" d="M12.5 15 V20" fill="none" stroke="#1C1B18" stroke-width="3" stroke-linecap="round" style="animation-delay: .5s"></path><path class="lg-eye" d="M19.5 15 V20" fill="none" stroke="#1C1B18" stroke-width="3" stroke-linecap="round" style="animation-delay: .58s"></path></g></g></svg><span style="font-size: 28px; font-weight: 900; letter-spacing: -0.04em">opsglee</span></div>
+<span style="font-size: 17px; color: #5C5850">Small fixes. Compounding returns.</span>
+</div>
+<nav class="r-footnav" aria-label="Footer" style="display: flex; gap: 70px; font-size: 17px">
+<div style="display: flex; flex-direction: column; gap: 12px"><span style="font-size: 12px; font-weight: 800; letter-spacing: 0.1em; color: #5C5850">EXPLORE</span><a class="c-nav" href="#how" style="padding: 2px 0">How it works</a><a class="c-nav" href="#automate" style="padding: 2px 0">What we automate</a><a class="c-nav" href="#roi" style="padding: 2px 0">ROI calculator</a><a class="c-nav" href="#pricing" style="padding: 2px 0">Pricing</a><a class="c-nav" href="#faq" style="padding: 2px 0">FAQ</a></div>
+<div style="display: flex; flex-direction: column; gap: 12px"><span style="font-size: 12px; font-weight: 800; letter-spacing: 0.1em; color: #5C5850">GET IN TOUCH</span><a class="c-nav" href="#call" style="padding: 2px 0">Get your first week free</a><span style="color: #3F3C36">hello@opsglee.com</span></div>
+</nav>
+</div>
+<div class="r-colm" style="display: flex; justify-content: space-between; margin-top: 60px; padding-top: 24px; border-top: 1px solid #E6E2D8; font-size: 14px; color: #5C5850"><span>© 2026 Opsglee</span><span>Terms · Privacy</span></div>
+<div style="position: relative; margin-top: auto">
+<div class="c-word r-wordmark" aria-hidden="true" style="font-size: 330px; line-height: 0.78; font-weight: 900; letter-spacing: -0.065em; color: #ECE9E1; text-align: center; white-space: nowrap; transform: translateY(18%)">opsglee</div>
+<div class="r-glee-foot" aria-hidden="true" style="position: absolute; left: 856px; top: -93px; width: 110px; height: 110px">
+<svg width="110" height="110" viewBox="0 0 120 120" aria-hidden="true" style="overflow: visible"><ellipse class="j-shadow" cx="60" cy="113" rx="30" ry="4.5" fill="#1C1B181F"></ellipse><g class="m-tilt"><g class="j-bob"><path d="M60 30 V17" fill="none" stroke="#1C1B18" stroke-width="5" stroke-linecap="round"></path><circle class="" cx="60" cy="11" r="7" fill="#1C1B18"></circle><rect x="14" y="30" width="92" height="72" rx="27" fill="#FFFFFF" stroke="#1C1B18" stroke-width="5"></rect><ellipse cx="30" cy="84" rx="6" ry="4" fill="#FFB08A" opacity="0.85"></ellipse><ellipse cx="90" cy="84" rx="6" ry="4" fill="#FFB08A" opacity="0.85"></ellipse><g class="j-blink"><path d="M47 55 V72 M73 55 V72" fill="none" stroke="#1C1B18" stroke-width="7" stroke-linecap="round"></path></g></g></g></svg>
+<span class="c-hand" style="position: absolute; left: 116px; top: 8px; white-space: nowrap; font-size: 28px; color: #3F3C36; transform: rotate(-3deg)">Hi, I’m Glee. See you next week!</span>
+</div>
+</div>
+</footer>
+
+</div>
+<script>
+(function () {
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* FAQ: one answer open at a time */
+  var faqBtns = Array.prototype.slice.call(document.querySelectorAll('[data-faq]'));
+  function setFaq(openKey) {
+    faqBtns.forEach(function (b) {
+      var k = b.getAttribute('data-faq'), on = k === openKey;
+      b.setAttribute('aria-expanded', on ? 'true' : 'false');
+      var a = document.querySelector('[data-faq-a="' + k + '"]'); if (a) a.hidden = !on;
+      var ico = b.lastElementChild; if (ico) { ico.style.background = on ? '#FFE066' : '#F6F5F1'; ico.style.transform = 'rotate(' + (on ? 180 : 0) + 'deg)'; }
+    });
+  }
+  faqBtns.forEach(function (b) {
+    b.addEventListener('click', function () { setFaq(b.getAttribute('aria-expanded') === 'true' ? null : b.getAttribute('data-faq')); });
+  });
+
+  /* How it works: auto-advances every 4s until a step is clicked */
+  var tints = ['#FFD3BF', '#FFE066', '#BFEFD4'], step = 0, manual = false;
+  var stepBtns = Array.prototype.slice.call(document.querySelectorAll('[data-step]'));
+  function renderSteps() {
+    stepBtns.forEach(function (b) {
+      var i = +b.getAttribute('data-step'), on = i === step;
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+      b.style.background = on ? '#FFFFFF' : 'transparent';
+      b.style.boxShadow = on ? '0 12px 24px -14px #1C1B1855' : 'none';
+      var badge = b.firstElementChild; if (badge) badge.style.background = on ? tints[i] : '#F1EEE7';
+      var bar = b.querySelector('[data-stepbar]'); if (bar) bar.hidden = !(on && !manual);
+      var panel = document.querySelector('[data-panel="' + i + '"]'); if (panel) panel.hidden = !on;
+    });
+  }
+  stepBtns.forEach(function (b) { b.addEventListener('click', function () { step = +b.getAttribute('data-step'); manual = true; renderSteps(); }); });
+  setInterval(function () { if (!manual) { step = (step + 1) % 3; renderSteps(); } }, 4000);
+
+  /* Before / after toggle */
+  function setBA(after) {
+    var thumb = document.querySelector('[data-ba-thumb]'); if (thumb) thumb.style.transform = 'translateX(' + (after ? '100%' : '0%') + ')';
+    document.querySelectorAll('[data-ba]').forEach(function (b) {
+      var isAfterBtn = b.getAttribute('data-ba') === 'after', on = isAfterBtn === after;
+      b.setAttribute('aria-pressed', on ? 'true' : 'false'); b.style.color = on ? '#FFFFFF' : '#1C1B18';
+    });
+    document.querySelectorAll('[data-ba-panel]').forEach(function (p) { p.hidden = (p.getAttribute('data-ba-panel') === 'after') !== after; });
+  }
+  document.querySelectorAll('[data-ba]').forEach(function (b) { b.addEventListener('click', function () { setBA(b.getAttribute('data-ba') === 'after'); }); });
+
+  /* ROI calculator */
+  var hoursIn = document.querySelector('[data-roi-in="hours"]'), rateIn = document.querySelector('[data-roi-in="rate"]');
+  function setText(sel, v) { document.querySelectorAll(sel).forEach(function (n) { n.textContent = v; }); }
+  function roi() {
+    var hours = +hoursIn.value, rate = +rateIn.value;
+    var monthly = Math.round(hours * rate * 52 / 12), top = Math.max(monthly, 500);
+    setText('[data-roi="hours"]', hours); setText('[data-roi="rate"]', rate);
+    setText('[data-roi="monthly"]', monthly.toLocaleString('en-US'));
+    setText('[data-roi="be"]', (500 / (rate * 52 / 12)).toFixed(1));
+    var m = document.querySelector('[data-roi-bar="manual"]'), j = document.querySelector('[data-roi-bar="joy"]');
+    if (m) m.style.width = Math.max(2, Math.round(monthly / top * 100)) + '%';
+    if (j) j.style.width = Math.round(500 / top * 100) + '%';
+  }
+  if (hoursIn && rateIn) { hoursIn.addEventListener('input', roi); rateIn.addEventListener('input', roi); roi(); }
+
+  /* Magnetic buttons */
+  if (!reduce) document.querySelectorAll('[data-magnet]').forEach(function (el) {
+    el.addEventListener('mousemove', function (e) {
+      var r = el.getBoundingClientRect(), c = function (n) { return Math.max(-10, Math.min(10, n)); };
+      el.style.transform = 'translate(' + Math.round(c((e.clientX - r.left - r.width / 2) * 0.22)) + 'px,' + Math.round(c((e.clientY - r.top - r.height / 2) * 0.35)) + 'px)';
+    });
+    el.addEventListener('mouseleave', function () { el.style.transform = ''; });
+  });
+})();
+</script>
+</body>
+</html>
